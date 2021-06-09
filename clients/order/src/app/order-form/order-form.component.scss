@@ -1,0 +1,77 @@
+:host { 
+    font-family: Helvetica, Arial, Geneva, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+// Same sizing for all inputs an selects
+input, select {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.form-wrapper {
+    width: 100%;
+    display: grid;
+    background-color: #bbb;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.form-row-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% auto;
+    background-color: #bbb;
+}
+
+.form-item {
+    padding: 10px;
+}
+
+.form-input {
+    font-size: inherit;
+    width: 98%;
+}
+
+.menu-wrapper {
+    width: 100%;
+    display: grid;
+}
+
+.menu-row-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 40%;
+}
+
+.menu-row:nth-child(even) {
+    background-color: #ffcccc;
+}
+
+.menu-item {
+    padding: 10px;
+    height: 40px;
+    line-height: 40px
+}
+
+
+.button-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #bbb;
+}
+
+.button {
+    width: 100%;
+    font-size: inherit;
+    padding: 15px; 
+    background:#eee; 
+    font-weight: bold;
+    width: 90%;
+    justify-self: center;
+}

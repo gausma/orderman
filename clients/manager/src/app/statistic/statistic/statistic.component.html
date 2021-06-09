@@ -1,0 +1,22 @@
+<h1>Statistik</h1>
+
+<div class="commandline">
+    <div class="commandline-filter">
+    </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+</div>
+
+<table mat-table matSort [dataSource]="dataSource" class="table mat-elevation-z8">
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.title }}</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="column.align">{{ element[column.id] }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns">
+    </tr>
+</table>

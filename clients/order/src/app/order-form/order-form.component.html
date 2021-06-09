@@ -1,0 +1,70 @@
+<!-- Filter -->
+<div class="form-row-wrapper">
+    <div class="form-item">
+        Filter
+    </div>
+    <div class="form-item">
+        <input class="form-input" type="text" [(ngModel)]="filter" (input)="onFilter($event.target.value)">
+    </div>
+</div>
+<div class="form-row-wrapper">
+    <div class="form-item">
+        Auswahl
+    </div>
+    <div class="form-item">
+        <select class="form-input" size="4" [(ngModel)]="selectedValue" (ngModelChange)="onSelect($event)">
+            <option [ngValue]="selection" *ngFor="let selection of selectionList">{{selection.name1}}, {{selection.name2}}</option>
+        </select>
+    </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Section Name, ... -->
+    <div class="form-wrapper">
+        <div class="form-row-wrapper">
+            <div class="form-item">
+                Name
+            </div>
+            <div class="form-item">
+                <input class="form-input" type="text" formControlName="name1" (input)="onBaseDataChanged($event.target.value)">
+            </div>
+        </div>
+        <div class="form-row-wrapper">
+            <div class="form-item">
+                Vorname
+            </div>
+            <div class="form-item">
+                <input class="form-input" type="text" formControlName="name2" (input)="onBaseDataChanged($event.target.value)">
+            </div>
+        </div>
+        <div class="form-row-wrapper">
+            <div class="form-item">
+                Bemerkung
+            </div>
+            <div class="form-item">
+                <input class="form-input" type="text" formControlName="comment">
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Positions -->
+    <div formArrayName="positions">
+        <div class="menu-wrapper">
+            <div class="menu-row-wrapper menu-row" *ngFor="let menu of menus; let i = index">
+                <div class="menu-item">
+                    {{ menu.name }}
+                </div>
+                <div class="menu-item">
+                    <app-number-spinner formControlName="{{ i }}" [min]="0"></app-number-spinner>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Buttons -->
+    <div class="button-wrapper">
+        <button class="button" type="button" (click)="reset()">Zurücksetzen</button>
+        <button class="button" type="submit" [disabled]="form.value.name1==''">Bestellen</button>
+    </div>
+</form>

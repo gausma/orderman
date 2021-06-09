@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>{{ title }}</h1>
+
+    <mat-card [class.mat-elevation-z8]="true">
+        <mat-card-content>
+
+            <!-- Basic data -->
+            <div class="form-row2-wrapper">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput autocomplete="on" type="text" formControlName="name1">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Vorname</mat-label>
+                    <input matInput autocomplete="on" type="text" formControlName="name2">
+                </mat-form-field>
+            </div>
+
+            <div class="form-row1-wrapper">
+                <mat-form-field>
+                    <mat-label>Bemerkung</mat-label>
+                    <input matInput autocomplete="on" type="text" formControlName="comment">
+                </mat-form-field>
+            </div>
+
+            <!-- Section Menu Items -->
+            <div class="menu" formArrayName="positions">
+                <mat-form-field *ngFor="let menu of menus; let i = index">
+                    <mat-label>{{ menu.name }}</mat-label>
+                    <input matInput autocomplete="on" type="number" formControlName="{{ i }}">
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Section Buttons -->
+    <div class="buttonline">
+        <button mat-raised-button class="buttonline-item" color="basic" type="button"
+            (click)="cancel()">Abbrechen</button>
+        <button mat-raised-button class="buttonline-item" color="basic" type="button"
+            (click)="reset()">Zurücksetzen</button>
+        <button mat-raised-button class="buttonline-item" color="primary" type="submit"
+            [disabled]="form.value.name1 === ''">{{ command }}</button>
+    </div>
+</form>

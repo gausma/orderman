@@ -1,0 +1,34 @@
+.form-row1-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.form-row2-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    column-gap: 2%;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.buttonline {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.buttonline-item {
+    width: 200px;
+    margin-left: 15px;
+}

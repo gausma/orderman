@@ -15,10 +15,15 @@ import { BackupsModule } from './backups/backups.module';
 
 @Module({
     imports: [
-        MongooseModule.forRoot('mongodb://localhost/orderman'),
         ServeStaticModule.forRoot({
-            rootPath: join(__dirname, '../../clients/registration/dist/registration/'),
+            rootPath: join(__dirname, '../../clients/manager/dist/registration/'),
+            serveRoot: "/manager",
         }),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '../../clients/order/dist/registration/'),
+            serveRoot: "/order",
+        }),
+        MongooseModule.forRoot('mongodb://localhost/orderman'),
         BackupsModule,
         CommunicationsModule,
         MenusModule,

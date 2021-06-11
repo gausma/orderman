@@ -53,3 +53,4 @@ mongodb 4.4.6
 
 server / clients
 yarn install
+yarn build

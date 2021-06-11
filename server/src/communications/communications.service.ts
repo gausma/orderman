@@ -7,15 +7,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class CommunicationsService {
-    constructor(@InjectModel(Communication.name) private communicationModel: Model<CommunicationDocument>) {
-        communicationModel.deleteMany(() => true);
-        const communications: Communication[] = [
-            { id: "1", name: "Email", communicationType: CommunicationType.Email },
-            { id: "2", name: "Flyer", communicationType: CommunicationType.Check },
-            { id: "3", name: "Telefon", communicationType: CommunicationType.Phone },
-        ];  
-        communications.forEach(communication => this.create(communication));
-    }
+    constructor(@InjectModel(Communication.name) private communicationModel: Model<CommunicationDocument>) {}
 
     toCommunication(communicationDocument: CommunicationDocument): Communication {
         return { 

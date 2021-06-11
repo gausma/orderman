@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "OrgaMan"', () => {
-      expect(appController.getProductInfo()).toBe('OrgaMan');
+    it('should return "OrderMan"', () => {
+      expect(appController.getProductInfo()).toBe('OrderMan');
     });
   });
 });

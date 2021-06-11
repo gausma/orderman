@@ -8,58 +8,8 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class PreOrdersService {
-    constructor(@InjectModel(PreOrder.name) private preOrderModel: Model<PreOrderDocument>) {
-        preOrderModel.deleteMany(() => true);
-        const preOrders: PreOrder[] = [
-            {
-                id: "1",
-                name1: "Gaus",
-                name2: "Martin",
-                comment: "",
-                datetime: "",
-                communicationId: "2",
-                communicationValue: "",
-                positions: [
-                    { id: "1", amount: 1 },
-                    { id: "2", amount: 0 },
-                    { id: "3", amount: 0 },
-                    { id: "4", amount: 0 },
-                    { id: "5", amount: 0 },
-                    { id: "6", amount: 2 },
-                    { id: "7", amount: 0 },
-                    { id: "8", amount: 1 },
-                    { id: "9", amount: 0 },
-                    { id: "10", amount: 0 },
-                    { id: "11", amount: 1 },
-                    { id: "12", amount: 0 },
-                ]
-            },
-            {
-                id: "2",
-                name1: "Dow",
-                name2: "Max",
-                comment: "fikiv",
-                datetime: "",
-                communicationId: "1",
-                communicationValue: "123",
-                positions: [
-                    { id: "1", amount: 2 },
-                    { id: "2", amount: 3 },
-                    { id: "3", amount: 4 },
-                    { id: "4", amount: 5 },
-                    { id: "5", amount: 0 },
-                    { id: "6", amount: 2 },
-                    { id: "7", amount: 0 },
-                    { id: "8", amount: 1 },
-                    { id: "9", amount: 0 },
-                    { id: "10", amount: 0 },
-                    { id: "11", amount: 1 },
-                    { id: "12", amount: 0 },
-                ]
-            }
-        ];
-        preOrders.forEach(preOrder => this.create(preOrder));
-    }
+    constructor(@InjectModel(PreOrder.name) private preOrderModel: Model<PreOrderDocument>) {}
+
 
     toPreOrder(preOrderDocument: PreOrderDocument): PreOrder {
         return { 

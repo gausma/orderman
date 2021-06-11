@@ -27,9 +27,23 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
+-----
 
 
+Mac
+Mongo
 
+
+If you need to have mongodb-community@4.0 first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"' >> /Users/Martin/.bash_profile
+
+
+To have launchd start mongodb/brew/mongodb-community@4.0 now and restart at login:
+  brew services start mongodb/brew/mongodb-community@4.0
+Or, if you don't want/need a background service you can just run:
+  mongod --config /usr/local/etc/mongod.conf
+==> Summary
+🍺  /usr/local/Cellar/mongodb-community@4.0/4.0.22: 21 files, 223.1MB, built in 12 seconds
 
 -------
 

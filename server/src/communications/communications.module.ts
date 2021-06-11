@@ -5,8 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Communication, CommunicationSchema } from './contracts/Communication';
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: Communication.name, schema: CommunicationSchema }])],        
+    imports: [MongooseModule.forFeature([{ name: Communication.name, schema: CommunicationSchema }])],
     controllers: [CommunicationsController],
-    providers: [CommunicationsService]
+    providers: [CommunicationsService],
+    exports: [CommunicationsService],
 })
-export class CommunicationsModule {}
+export class CommunicationsModule { }

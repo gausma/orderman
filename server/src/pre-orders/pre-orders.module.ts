@@ -5,8 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PreOrder, PreOrderSchema } from './contracts/pre-order';
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: PreOrder.name, schema: PreOrderSchema }])],    
+    imports: [MongooseModule.forFeature([{ name: PreOrder.name, schema: PreOrderSchema }])],
+    controllers: [PreOrdersController],
     providers: [PreOrdersService],
-    controllers: [PreOrdersController]
+    exports: [PreOrdersService],
 })
-export class PreOrdersModule {}
+export class PreOrdersModule { }

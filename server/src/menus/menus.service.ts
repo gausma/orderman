@@ -26,8 +26,18 @@ export class MenusService {
         menus.forEach(menu => this.create(menu));
     }
 
+    toMenu(menuDocument: MenuDocument): Menu {
+        return { 
+            id: menuDocument.id,
+            name: menuDocument.name,
+            price: menuDocument.price,
+            comment: menuDocument.comment,
+        };
+    }
+
     async getAll(): Promise<Menu[]> {
-        return this.menuModel.find().exec();
+        const menuDocuments = await this.menuModel.find().exec();
+        return menuDocuments.map((md: MenuDocument) => this.toMenu(md));
     }
 
     async create(menu: Menu): Promise<Menu> {
@@ -36,14 +46,20 @@ export class MenusService {
             clonedMenu.id = uuidV4();
         }
         const newMenu = new this.menuModel(clonedMenu);
-        return newMenu.save();
+        const menuDocument = await newMenu.save();
+        return this.toMenu(menuDocument);
     }
 
     async update(id: string, menu: Menu): Promise<Menu> {
-        return this.menuModel.updateOne({id: id}, menu).exec();
+        const menuDocument = await this.menuModel.updateOne({id: id}, menu).exec();
+        return this.toMenu(menuDocument);
     }
 
     async delete(id: string): Promise<void> {
         await this.menuModel.deleteOne({ id: id });
+    }
+
+    async deleteAll(): Promise<void> {
+        await this.menuModel.deleteMany(() => true);
     }
 }

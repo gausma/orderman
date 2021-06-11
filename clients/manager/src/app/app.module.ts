@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { CommunicationListComponent } from './communication/communication-list/communication-list.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { BackupComponent } from './backup/backup.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -27,7 +29,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './navigation/header/header.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { StatisticComponent } from './statistic/statistic/statistic.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { StatisticComponent } from './statistic/statistic/statistic.component';
         CommunicationListComponent,
         MenuListComponent,
         StatisticComponent,
+        BackupComponent,
     ],
     imports: [
         BrowserModule,

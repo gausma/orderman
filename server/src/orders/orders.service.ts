@@ -10,12 +10,26 @@ import * as _ from 'lodash';
 export class OrdersService {
     constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>) {}
 
+    toOrder(orderDocument: OrderDocument): Order {
+        return { 
+            id: orderDocument.id,
+            name1: orderDocument.name1,
+            name2: orderDocument.name2,
+            comment: orderDocument.comment,
+            datetime: orderDocument.datetime,
+            preOrderId: orderDocument.preOrderId,
+            positions: orderDocument.positions,
+        };
+    }
+
     async getAll(): Promise<Order[]> {
-        return this.orderModel.find().exec();
+        const orderDocuments = await this.orderModel.find().exec();
+        return orderDocuments.map((od: OrderDocument) => this.toOrder(od));
     }
 
     async getById(id: string): Promise<Order> {
-        return this.orderModel.findOne({ id: id }).exec();
+        const orderDocument = await this.orderModel.findOne({ id: id }).exec();
+        return this.toOrder(orderDocument);
     }
 
     async create(order: Order): Promise<Order> {
@@ -23,15 +37,21 @@ export class OrdersService {
         if (_.isNil(clonedOrder.id)) {
             clonedOrder.id = uuidV4();
         }
-        const orderDocument = new this.orderModel(clonedOrder);
-        return orderDocument.save();
+        const newOrder = new this.orderModel(clonedOrder);
+        const orderDocument = await newOrder.save();
+        return this.toOrder(orderDocument);
     }
 
     async update(id: string, order: Order): Promise<Order> {
-        return this.orderModel.updateOne({ id: id }, order).exec();
+        const orderDocument = await this.orderModel.updateOne({ id: id }, order).exec();
+        return this.toOrder(orderDocument);
     }
 
     async delete(id: string): Promise<void> {
         await this.orderModel.deleteOne({ id: id });
     }   
+
+    async deleteAll(): Promise<void> {
+        await this.orderModel.deleteMany(() => true);
+    }    
 }

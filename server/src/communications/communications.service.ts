@@ -17,8 +17,17 @@ export class CommunicationsService {
         communications.forEach(communication => this.create(communication));
     }
 
+    toCommunication(communicationDocument: CommunicationDocument): Communication {
+        return { 
+            id: communicationDocument.id,
+            name: communicationDocument.name,
+            communicationType: communicationDocument.communicationType,
+        };
+    }
+
     async getAll(): Promise<Communication[]> {
-        return this.communicationModel.find().exec();
+        const communicationDocuments = await this.communicationModel.find().exec();
+        return communicationDocuments.map((cd: CommunicationDocument) => this.toCommunication(cd));
     }
 
     async create(communication: Communication): Promise<Communication> {
@@ -27,14 +36,20 @@ export class CommunicationsService {
             clonedCommunication.id = uuidV4();
         }
         const newCommunication = new this.communicationModel(clonedCommunication);
-        return newCommunication.save();
+        const communicationDocument = await newCommunication.save();
+        return this.toCommunication(communicationDocument);
     }
 
     async update(id: string, communication: Communication): Promise<Communication> {
-        return this.communicationModel.updateOne({id: id}, communication).exec();
+        const communicationDocument = await this.communicationModel.updateOne({id: id}, communication).exec();
+        return this.toCommunication(communicationDocument);
     }
 
     async delete(id: string): Promise<void> {
         await this.communicationModel.deleteOne({ id: id });
+    }
+
+    async deleteAll(): Promise<void> {
+        await this.communicationModel.deleteMany(() => true);
     }
 }

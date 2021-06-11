@@ -6,7 +6,8 @@ import { CommunicationListComponent } from './communication/communication-list/c
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { OrderFormComponent } from './order/order-form/order-form.component';
-import { StatisticComponent } from './statistic/statistic/statistic.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { BackupComponent } from './backup/backup.component';
 
 const routes: Routes = [
     { path: 'preorderlist', component: PreOrderListComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'communicationlist', component: CommunicationListComponent },
     { path: 'menulist', component: MenuListComponent },
     { path: 'statistic', component: StatisticComponent },
+    { path: 'backup', component: BackupComponent },
     { path: '**', component: PreOrderListComponent },
 ];
 

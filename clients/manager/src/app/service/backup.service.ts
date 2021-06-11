@@ -5,38 +5,24 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class MenusService {
+export class BackupService {
     private url = '';
 
     constructor(private http: HttpClient) {
         const hostname = window.location.hostname;
-        this.url = `http://${hostname}:1956/menus`;
+        this.url = `http://${hostname}:1956/backups`;
     }
 
-    getMenus(): Observable<any> {
+    createBackup(): Observable<any> {
         return this.http.get(this.url);
     }
 
-    createMenu(value): Observable<any> {
+    restorBackup(value: any): Observable<any> {
         const headers = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
         return this.http.post(this.url, value, headers);
-    }
-
-    updateMenu(id: string, value): Observable<any> {
-        const headers = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
-        value.id = id;
-        return this.http.put(`${this.url}/${id}`, value, headers);
-    }
-
-    deleteMenu(id: string): Observable<any> {
-        return this.http.delete(`${this.url}/${id}`);
     }
 }

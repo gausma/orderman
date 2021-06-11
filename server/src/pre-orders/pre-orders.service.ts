@@ -61,20 +61,36 @@ export class PreOrdersService {
         preOrders.forEach(preOrder => this.create(preOrder));
     }
 
+    toPreOrder(preOrderDocument: PreOrderDocument): PreOrder {
+        return { 
+            id: preOrderDocument.id,
+            name1: preOrderDocument.name1,
+            name2: preOrderDocument.name2,
+            comment: preOrderDocument.comment,
+            communicationId: preOrderDocument.communicationId,
+            communicationValue: preOrderDocument.communicationValue,
+            datetime: preOrderDocument.datetime,
+            positions: preOrderDocument.positions,
+        };
+    }
+
     async getAll(): Promise<PreOrder[]> {
-        return this.preOrderModel.find().exec();
+        const preOrderDocuments = await this.preOrderModel.find().exec();
+        return preOrderDocuments.map((pod: PreOrderDocument) => this.toPreOrder(pod));
     }
 
     async getById(id: string): Promise<PreOrder> {
-        return this.preOrderModel.findOne({ id: id }).exec();
+        const preOrderDocument = await this.preOrderModel.findOne({ id: id }).exec();
+        return this.toPreOrder(preOrderDocument);
     }
 
     async getByName(name: string): Promise<PreOrder[]> {
-        return this.preOrderModel.find({name1: {$regex: name, '$options': 'i'}}).exec();
+        const preOrderDocuments = await this.preOrderModel.find({name1: {$regex: name, '$options': 'i'}}).exec();
+        return preOrderDocuments.map((pod: PreOrderDocument) => this.toPreOrder(pod));
     }
 
     async getWithoutOrderByName(name: string): Promise<PreOrder[]> {
-        return this.preOrderModel.aggregate([
+        const preOrderDocuments = await this.preOrderModel.aggregate([
             {
                 $lookup: {
                     from: "orders",
@@ -100,13 +116,9 @@ export class PreOrdersService {
                         }
                     ]
                 }
-            },
-            {
-                $unset: [
-                    "preOrderId", "preOrderIdSize"
-                ]
             }
         ]).exec();
+        return preOrderDocuments.map((pod: PreOrderDocument) => this.toPreOrder(pod));
     }
 
     async create(preOrder: PreOrder): Promise<PreOrder> {
@@ -114,15 +126,21 @@ export class PreOrdersService {
         if (_.isNil(clonedPreOrder.id)) {
             clonedPreOrder.id = uuidV4();
         }
-        const preOrderDocument = new this.preOrderModel(clonedPreOrder);
-        return preOrderDocument.save();
+        const newPreOrder = new this.preOrderModel(clonedPreOrder);
+        const preOrderDocument = await newPreOrder.save();
+        return this.toPreOrder(preOrderDocument);
     }
 
     async update(id: string, preOrder: PreOrder): Promise<PreOrder> {
-        return this.preOrderModel.updateOne({ id: id }, preOrder).exec();
+        const preOrderDocument = await this.preOrderModel.updateOne({ id: id }, preOrder).exec();
+        return this.toPreOrder(preOrderDocument);
     }
 
     async delete(id: string): Promise<void> {
         await this.preOrderModel.deleteOne({ id: id });
     }
+
+    async deleteAll(): Promise<void> {
+        await this.preOrderModel.deleteMany(() => true);
+    }    
 }

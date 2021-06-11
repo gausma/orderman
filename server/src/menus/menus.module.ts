@@ -7,6 +7,7 @@ import { Menu, MenuSchema } from './contracts/Menu';
 @Module({
     imports: [MongooseModule.forFeature([{ name: Menu.name, schema: MenuSchema }])],        
     controllers: [MenusController],
-    providers: [MenusService]
+    providers: [MenusService],
+    exports: [MenusService],
 })
 export class MenusModule {}

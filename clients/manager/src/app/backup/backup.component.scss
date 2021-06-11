@@ -1,0 +1,19 @@
+.commandline {
+    width: 100%;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 200px 300px auto;
+    align-items: center;
+}
+
+.commandline-text {
+    justify-self: left;
+}
+
+.commandline-button {
+    justify-self: left;
+}
+
+.spacer {
+    height: 50px;
+}

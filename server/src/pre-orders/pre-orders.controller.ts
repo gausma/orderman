@@ -14,7 +14,7 @@ export class PreOrdersController {
             return this.preOrdersService.getWithoutOrderByName(name || "");
         } else {
             if (_.isNil(name)) {
-                console.log(`Get PreOrders`);
+                console.log(`Get all PreOrders`);
                 return this.preOrdersService.getAll();
             } else {
                 console.log(`Get PreOrderByName: ${name}`);
@@ -31,13 +31,13 @@ export class PreOrdersController {
 
     @Post()
     async create(@Body() preOrder: PreOrder): Promise<PreOrder> {
-        console.log(`Update PreOrder: ${preOrder}`);
+        console.log(`Create PreOrder: ${preOrder.id}`);
         return this.preOrdersService.create(preOrder);
     }
 
     @Put(':id')
     async update(@Param('id') id: string, @Body() preOrder: PreOrder) {
-        console.log(`Update PreOrder: ${preOrder}`);
+        console.log(`Update PreOrder: ${preOrder.id}`);
         return this.preOrdersService.update(id, preOrder);
     }
 

@@ -57,14 +57,17 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
         this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
 
+    refresh() {
+        this.selection.clear();
+        this.getData();
+    }
+
     add(): void {
         this.router.navigate(['preorderform']);
     }
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-console.log(this.selection);            
-
             this.router.navigate(['preorderform'], { queryParams: { preOrderId: this.selection.selected[0].id } });
         }
     }

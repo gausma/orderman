@@ -66,6 +66,11 @@ export class MenuListComponent implements OnInit, AfterViewInit {
     doFilter(value: string): void {
         this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
+    
+    refresh() {
+        this.selection.clear();
+        this.getData();
+    }
 
     add(): void {
         this.command = 'Erstellen';

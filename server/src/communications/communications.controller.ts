@@ -4,26 +4,29 @@ import { Communication } from './contracts/Communication';
 
 @Controller('communications')
 export class CommunicationsController {
-    constructor(private communicationsService: CommunicationsService) {}
+    constructor(private communicationsService: CommunicationsService) { }
 
     @Get()
     async getAll(): Promise<Communication[]> {
-      return this.communicationsService.getAll();
-    }    
+        console.log(`Get all Communications`);
+        return this.communicationsService.getAll();
+    }
 
     @Post()
     async create(@Body() communication: Communication) {
-      this.communicationsService.create(communication);
+        console.log(`Create Communication: ${communication.id}`);
+        this.communicationsService.create(communication);
     }
 
     @Put(':id')
     async update(@Param('id') id: string, @Body() communication: Communication) {
+        console.log(`Update Communication: ${communication.id}`);
         return this.communicationsService.update(id, communication);
     }
 
     @Delete(':id')
     async delete(@Param('id') id: string): Promise<void> {
-console.log(id);
+        console.log(`Delete Communication: ${id}`);
         return this.communicationsService.delete(id);
-    }    
+    }
 }

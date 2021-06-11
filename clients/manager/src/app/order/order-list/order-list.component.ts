@@ -50,6 +50,11 @@ export class OrderListComponent implements OnInit, AfterViewInit {
     doFilter(value: string): void {
         this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
+    
+    refresh() {
+        this.selection.clear();
+        this.getData();
+    }
 
     add(): void {
         this.router.navigate(['orderform']);

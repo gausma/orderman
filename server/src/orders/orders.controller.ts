@@ -8,23 +8,25 @@ export class OrdersController {
 
     @Get()
     async getAll(): Promise<Order[]> {
+        console.log(`Get all Orders`);
         return this.ordersService.getAll();
     }
 
     @Get(':id')
     async getById(@Param('id') id: string): Promise<Order> {
-        console.log(`Get PreOrderById: ${id}`);
+        console.log(`Get OrderById: ${id}`);
         return this.ordersService.getById(id);
     }    
 
     @Post()
     async create(@Body() order: Order): Promise<Order> {
+        console.log(`Create Order: ${order.id}`);
         return this.ordersService.create(order);
     }
 
     @Put(':id')
     async update(@Param('id') id: string, @Body() order: Order) {
-        console.log(`Update Order: ${order}`);
+        console.log(`Update Order: ${order.id}`);
         return this.ordersService.update(id, order);
     }
 

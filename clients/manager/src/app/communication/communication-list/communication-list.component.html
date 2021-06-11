@@ -7,6 +7,11 @@
     </div>
 
     <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm" (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>    
+    <div class="commandline-button">
         <button mat-fab color="basic" [disabled]="showForm" (click)="add()">
             <mat-icon>add</mat-icon>
         </button>

@@ -21,6 +21,7 @@ export class OrderListComponent implements OnInit, AfterViewInit {
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
+        { id: 'preOrderExists', title: 'Vorbestellung', align: 'center', type: 'string' },
         { id: 'name1', title: 'Name', align: 'left', type: 'string' },
         { id: 'name2', title: 'Vorname', align: 'left', type: 'string' },
         { id: 'comment', title: 'Bemerkung', align: 'left', type: 'string' },
@@ -118,6 +119,7 @@ export class OrderListComponent implements OnInit, AfterViewInit {
         orders.forEach(order => {
             const element: OrderRow = {
                 id: order.id,
+                preOrderExists: order.preOrderId === "" ? "" : "✓",
                 name1: order.name1,
                 name2: order.name2,
                 comment: order.comment,

@@ -15,7 +15,7 @@ export class MenusController {
 
     @Post()
     async create(@Body() menu: Menu) {
-        console.log(`Create Menu: ${menu.id}`);
+        console.log(`Create Menu`);
         this.menusService.create(menu);
     }
 

@@ -20,7 +20,7 @@ export class OrdersController {
 
     @Post()
     async create(@Body() order: Order): Promise<Order> {
-        console.log(`Create Order: ${order.id}`);
+        console.log(`Create Order`);
         return this.ordersService.create(order);
     }
 

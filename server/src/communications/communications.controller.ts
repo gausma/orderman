@@ -14,7 +14,7 @@ export class CommunicationsController {
 
     @Post()
     async create(@Body() communication: Communication) {
-        console.log(`Create Communication: ${communication.id}`);
+        console.log(`Create Communication`);
         this.communicationsService.create(communication);
     }
 

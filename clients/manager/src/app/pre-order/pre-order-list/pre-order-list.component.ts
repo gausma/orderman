@@ -11,7 +11,9 @@ import { Menu } from '../../contracts/menu';
 import { ColumnDefinition } from '../../contracts/column-definition';
 import { CommunicationsService } from '../../service/communications.service';
 import { Communication } from '../../contracts/communication';
+import { OrdersService } from 'src/app/service/orders.service';
 import { PreOrderRow } from 'src/app/contracts/pre-order-row';
+import { Order } from 'src/app/contracts/order';
 
 @Component({
     selector: 'app-pre-order-list',
@@ -23,6 +25,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
+        { id: 'orderExists', title: 'Verkauft', align: 'center', type: 'string' },
         { id: 'name1', title: 'Name', align: 'left', type: 'string' },
         { id: 'name2', title: 'Vorname', align: 'left', type: 'string' },
         { id: 'comment', title: 'Bemerkung', align: 'left', type: 'string' },
@@ -32,6 +35,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
 
     communications: Communication[] = [];
     menus: Menu[] = [];
+    orders: Order[] = [];
 
     columns: ColumnDefinition[] = [];
     displayedColumns: string[] = [];
@@ -43,6 +47,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
         private communicationService: CommunicationsService,
         private menusService: MenusService,
         private preOrderService: PreOrdersService,
+        private orderService: OrdersService,
         private router: Router) { }
 
     ngOnInit(): void {
@@ -85,11 +90,13 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
         forkJoin([
             this.communicationService.getCommunications(),
             this.menusService.getMenus(),
-            this.preOrderService.getPreOrders()
+            this.orderService.getOrders(),
+            this.preOrderService.getPreOrders(),
         ]).subscribe(responseList => {
             this.processCommunications(responseList[0]);
             this.processMenus(responseList[1]);
-            this.processPreOrders(responseList[2]);
+            this.processOrders(responseList[2]);
+            this.processPreOrders(responseList[3]);
         });
     }
 
@@ -125,6 +132,10 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
         });
     }
 
+    private processOrders(orders: Order[]): void {
+        this.orders = orders;
+    }
+
     private processPreOrders(preOrders: PreOrder[]): void {
         const data: PreOrderRow[] = [];
         preOrders.forEach(preOrder => {
@@ -132,6 +143,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
 
             const element: PreOrderRow = {
                 id: preOrder.id,
+                orderExists: "",
                 name1: preOrder.name1,
                 name2: preOrder.name2,
                 comment: preOrder.comment,
@@ -146,6 +158,9 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
                     element[menu.id] = position.amount;
                 }
             });
+
+            const orderExists = this.orders.find(o => o.preOrderId === preOrder.id);
+            element.orderExists = orderExists == null ? "" : "✓";
 
             data.push(element);
         });

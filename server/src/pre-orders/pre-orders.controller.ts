@@ -31,7 +31,7 @@ export class PreOrdersController {
 
     @Post()
     async create(@Body() preOrder: PreOrder): Promise<PreOrder> {
-        console.log(`Create PreOrder: ${preOrder.id}`);
+        console.log(`Create PreOrder`);
         return this.preOrdersService.create(preOrder);
     }
 

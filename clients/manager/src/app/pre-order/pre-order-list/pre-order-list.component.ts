@@ -14,6 +14,7 @@ import { Communication } from '../../contracts/communication';
 import { OrdersService } from 'src/app/service/orders.service';
 import { PreOrderRow } from 'src/app/contracts/pre-order-row';
 import { Order } from 'src/app/contracts/order';
+import { PreOrderPosition } from 'src/app/contracts/pre-order-position';
 
 @Component({
     selector: 'app-pre-order-list',
@@ -36,6 +37,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
     communications: Communication[] = [];
     menus: Menu[] = [];
     orders: Order[] = [];
+    preOrders: PreOrder[] = [];
 
     columns: ColumnDefinition[] = [];
     displayedColumns: string[] = [];
@@ -82,6 +84,33 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
             this.preOrderService.deletePreOrder(this.selection.selected[0].id).subscribe(() => {
                 this.selection.clear();
                 this.getData();
+            });
+        }
+    }
+
+    createOrder(): void {
+        if (!this.selection.isEmpty()) {
+            const preOrder = this.preOrders.find(p => p.id === this.selection.selected[0].id);
+            
+            const order: Order = {
+                name1: preOrder.name1,
+                name2: preOrder.name2,
+                comment: preOrder.comment,
+                datetime: new Date().toISOString(),
+                positions: [],
+                preOrderId: preOrder.id,
+            };
+    
+            preOrder.positions.forEach((p: PreOrderPosition) => {
+                order.positions.push({
+                    id: p.id,
+                    amount: p.amount,
+                });
+            });
+    
+            this.orderService.createOrder(order).subscribe(() => {
+                this.getData();
+                // this.router.navigate(['orderlist']);
             });
         }
     }
@@ -137,6 +166,8 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
     }
 
     private processPreOrders(preOrders: PreOrder[]): void {
+        this.preOrders = preOrders;
+
         const data: PreOrderRow[] = [];
         preOrders.forEach(preOrder => {
             const communication = this.communications.find(c => c.id === preOrder.communicationId);

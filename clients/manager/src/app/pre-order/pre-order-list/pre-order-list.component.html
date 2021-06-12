@@ -26,6 +26,11 @@
             <mat-icon>delete</mat-icon>
         </button>
     </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="selection.selected[0]?.orderExists !== ''" (click)="createOrder()">
+            <mat-icon>add_circle_outline</mat-icon>
+        </button>
+    </div>    
 </div>
 
 <table mat-table matSort [dataSource]="dataSource" class="table mat-elevation-z8">

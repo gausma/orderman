@@ -14,7 +14,7 @@ export class LoginService {
     //     const hostname = window.location.hostname;
     //     this.url = `http://${hostname}:1956/logins`;
     // }
-
+/*
     private default: Credentials = {
         preOrders: {
             read: true,
@@ -40,13 +40,39 @@ export class LoginService {
             read: false,
         },
     }
+*/
+    private default: Credentials = {
+        preOrders: {
+            read: true,
+            write: true,
+            order: true,
+        },
+        orders: {
+            read: true,
+            write: true,
+        },
+        communications: {
+            read: true,
+            write: true,
+        },
+        menus: {
+            read: true,
+            write: true,
+        },
+        statistics: {
+            read: true,
+        },
+        backups: {
+            read: true,
+        },
+    }
 
     private credentialsSource = new BehaviorSubject<Credentials>(this.default);
 
     public credentials$ = this.credentialsSource.asObservable();
 
     login(login: Login): void {
-        if (login.user === "MVE" && login.password == "MVE") {
+        if (login.user === "MVE" && login.password === "MVE") {
             this.credentialsSource.next({
                 preOrders: {
                     read: true,

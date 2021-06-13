@@ -58,13 +58,13 @@ export class OrderFormComponent implements OnInit {
         this.currentPreOrder = "";
     }
 
-    onChange(value: string) {
+    onChange(value: string): void {
         this.updatePrice();
     }
 
     private getMenus(): void {
-        this.menusService.resolveItems().subscribe(menus => {
-            this.menus = menus;
+        this.menusService.resolveItems().subscribe((menus: Menu[]) => {
+            this.menus = menus.sort((a, b) => a.sequence - b.sequence );
             menus.forEach(() => {
                 this.menuItems.push(this.formBuilder.control(0));
             });
@@ -99,7 +99,7 @@ export class OrderFormComponent implements OnInit {
         });
     }
 
-    private updatePrice() {
+    private updatePrice():void {
         this.price = 0.0;
         this.menus.forEach((menu, index) => {
             const amount = this.form.value.positions[index];
@@ -138,5 +138,6 @@ export class OrderFormComponent implements OnInit {
         this.currentPreOrder = "";
         this.filter = "";
         this.onFilter("");
+        this.updatePrice();
     }
 }

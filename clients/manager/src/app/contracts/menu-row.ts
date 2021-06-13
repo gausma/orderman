@@ -4,4 +4,5 @@ export class MenuRow {
     name: string;
     price: number;
     comment: string;
+    sequence: number;
 }

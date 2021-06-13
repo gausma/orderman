@@ -15,6 +15,7 @@ export class MenusService {
             name: menuDocument.name,
             price: menuDocument.price,
             comment: menuDocument.comment,
+            sequence: menuDocument.sequence,
         };
     }
 

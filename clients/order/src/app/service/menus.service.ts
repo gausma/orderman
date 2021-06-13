@@ -14,7 +14,6 @@ export class MenusService {
     }
 
     resolveItems(): Observable<any> {
-        console.log('Request is sent!');
         return this.http.get(this.url);
     }
 }

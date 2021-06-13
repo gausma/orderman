@@ -16,6 +16,9 @@ export class Menu {
 
     @Prop()
     comment: string;
+
+    @Prop()
+    sequence: number;
 }
 
 export const MenuSchema = SchemaFactory.createForClass(Menu);

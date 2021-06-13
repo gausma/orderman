@@ -3,4 +3,5 @@ export interface Menu {
     name: string;
     price: number;
     comment: string;
+    sequence: number;
 }

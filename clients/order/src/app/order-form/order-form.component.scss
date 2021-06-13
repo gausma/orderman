@@ -35,6 +35,7 @@ input, select {
     width: 98%;
 }
 
+
 .menu-wrapper {
     width: 100%;
     display: grid;
@@ -56,6 +57,22 @@ input, select {
     line-height: 40px
 }
 
+
+.price-wrapper {
+    width: 100%;
+    padding: 15px; 
+    background-color: #ccffcc;
+    text-align: center;
+}
+
+.price-text-wrapper {
+    font-size: 18px;
+    margin: 50px;
+}
+
+.price-total-wrapper {
+    font-size: 26px;
+}
 
 .button-wrapper {
     width: 100%;

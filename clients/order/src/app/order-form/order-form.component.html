@@ -56,15 +56,22 @@
                     {{ menu.name }}
                 </div>
                 <div class="menu-item">
-                    <app-number-spinner formControlName="{{ i }}" [min]="0"></app-number-spinner>
+                    <app-number-spinner formControlName="{{ i }}" [min]="0" (change)="onChange($event)"></app-number-spinner>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Section Preice -->
+    <div class="price-wrapper">
+        <span class="price-text-wrapper">Summe</span>
+        <span class="price-total-wrapper">{{ price | number: "1.2-2" }}</span>
+        <span class="price-text-wrapper">€</span>
+    </div>
+
     <!-- Section Buttons -->
     <div class="button-wrapper">
         <button class="button" type="button" (click)="reset()">Zurücksetzen</button>
-        <button class="button" type="submit" [disabled]="form.value.name1==''">Bestellen</button>
+        <button class="button" type="submit" [disabled]="form.value.name1==''">Übernehmen</button>
     </div>
 </form>

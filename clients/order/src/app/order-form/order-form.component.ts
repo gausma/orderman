@@ -22,6 +22,7 @@ export class OrderFormComponent implements OnInit {
     selectedValue: PreOrder;
     selectionList: PreOrder[];
     currentPreOrder: string;
+    price: number = 0;
 
     constructor(private formBuilder: FormBuilder, private menusService: MenusService,
         private preOrderService: PreOrdersService, private orderService: OrdersService) { }
@@ -90,6 +91,14 @@ export class OrderFormComponent implements OnInit {
                 console.warn(`PreOrder id "${id}" not found`);
             }
         });
+    }
+
+    onChange(value: string) {
+        this.price = 0.0;
+        this.menus.forEach((menu, index) => {
+            const amount = this.form.value.positions[index];
+            this.price += amount * menu.price;
+        });        
     }
 
     onSubmit(): void {

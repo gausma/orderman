@@ -14,7 +14,7 @@ export class LoginService {
     //     const hostname = window.location.hostname;
     //     this.url = `http://${hostname}:1956/logins`;
     // }
-/*
+
     private default: Credentials = {
         preOrders: {
             read: true,
@@ -38,32 +38,6 @@ export class LoginService {
         },
         backups: {
             read: false,
-        },
-    }
-*/
-    private default: Credentials = {
-        preOrders: {
-            read: true,
-            write: true,
-            order: true,
-        },
-        orders: {
-            read: true,
-            write: true,
-        },
-        communications: {
-            read: true,
-            write: true,
-        },
-        menus: {
-            read: true,
-            write: true,
-        },
-        statistics: {
-            read: true,
-        },
-        backups: {
-            read: true,
         },
     }
 

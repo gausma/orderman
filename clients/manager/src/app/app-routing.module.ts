@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { PreOrderFormComponent } from './pre-order/pre-order-form/pre-order-form.component';
 import { PreOrderListComponent } from './pre-order/pre-order-list/pre-order-list.component';
 import { CommunicationListComponent } from './communication/communication-list/communication-list.component';
@@ -8,8 +9,10 @@ import { OrderListComponent } from './order/order-list/order-list.component';
 import { OrderFormComponent } from './order/order-form/order-form.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { BackupComponent } from './backup/backup.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
+    { path: 'welcome', component: WelcomeComponent },
     { path: 'preorderlist', component: PreOrderListComponent },
     { path: 'preorderform', component: PreOrderFormComponent },
     { path: 'orderlist', component: OrderListComponent },
@@ -18,7 +21,7 @@ const routes: Routes = [
     { path: 'menulist', component: MenuListComponent },
     { path: 'statistic', component: StatisticComponent },
     { path: 'backup', component: BackupComponent },
-    { path: '**', component: PreOrderListComponent },
+    { path: '**', component: WelcomeComponent },
 ];
 
 @NgModule({

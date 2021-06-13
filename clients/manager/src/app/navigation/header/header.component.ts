@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
-import { LoginService } from 'src/app/service/login.service';
-import { Login } from 'src/app/contracts/login';
+import { LoginService } from '../../service/login.service';
+import { Login } from '../../contracts/login';
 
 export interface DialogData {
     animal: string;
@@ -24,7 +26,8 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         public dialog: MatDialog,
-        public loginService: LoginService) { }
+        public loginService: LoginService,
+        private router: Router) { }
 
     ngOnInit(): void {
     }
@@ -41,6 +44,7 @@ export class HeaderComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe((login: Login) => {
             this.loginService.login(login);
+            this.router.navigate(['welcome']);
         });
     }
 }

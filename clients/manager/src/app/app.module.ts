@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WelcomeComponent } from './welcome/welcome.component';
 import { PreOrderListComponent } from './pre-order/pre-order-list/pre-order-list.component';
 import { PreOrderFormComponent } from './pre-order/pre-order-form/pre-order-form.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
@@ -35,6 +36,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
     declarations: [
         AppComponent,
+        WelcomeComponent,
         PreOrderListComponent,
         PreOrderFormComponent,
         OrderListComponent,

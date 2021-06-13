@@ -1,30 +1,30 @@
 <mat-nav-list>
-    <div [hidden]="!credentials.preOrders">
+    <div [hidden]="!credentials.preOrders.read">
         <a mat-list-item routerLink="/preorderlist" (click)="onSidenavClose()">
             <mat-icon>reorder</mat-icon> <span class="nav-caption">Vorbestellungen</span>
         </a>
     </div>
-    <div [hidden]="!credentials.orders">
+    <div [hidden]="!credentials.orders.read">
         <a mat-list-item routerLink="/orderlist" (click)="onSidenavClose()">
             <mat-icon>attach_money</mat-icon> <span class="nav-caption">Einkäufe</span>
         </a>
     </div>
-    <div [hidden]="!credentials.communications">
+    <div [hidden]="!credentials.communications.read">
         <a mat-list-item routerLink="/communicationlist" (click)="onSidenavClose()">
             <mat-icon>call</mat-icon> <span class="nav-caption">Kommunikation</span>
         </a>
     </div>
-    <div [hidden]="!credentials.menus">
+    <div [hidden]="!credentials.menus.read">
         <a mat-list-item routerLink="/menulist" (click)="onSidenavClose()">
             <mat-icon>fastfood</mat-icon><span class="nav-caption">Gerichte</span>
         </a>
     </div>
-    <div [hidden]="!credentials.statistics">
+    <div [hidden]="!credentials.statistics.read">
         <a mat-list-item routerLink="/statistic" (click)="onSidenavClose()">
             <mat-icon>functions</mat-icon><span class="nav-caption">Statistik</span>
         </a>
     </div>
-    <div [hidden]="!credentials.backups">
+    <div [hidden]="!credentials.backups.read">
         <a mat-list-item routerLink="/backup" (click)="onSidenavClose()">
             <mat-icon>backup</mat-icon><span class="nav-caption">Backup</span>
         </a>

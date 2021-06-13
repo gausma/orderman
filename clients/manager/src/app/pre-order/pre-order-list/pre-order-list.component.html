@@ -12,22 +12,22 @@
         </button>
     </div>
     <div class="commandline-button">
-        <button mat-fab color="basic" (click)="add()">
+        <button mat-fab color="basic" [disabled]="!credentials.preOrders.write" (click)="add()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
     <div class="commandline-button">
-        <button mat-fab color="basic" [disabled]="selection.isEmpty()" (click)="edit()">
+        <button mat-fab color="basic" [disabled]="selection.isEmpty() || !credentials.preOrders.write" (click)="edit()">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
     <div class="commandline-button">
-        <button mat-fab color="basic" [disabled]="selection.isEmpty()" (click)="delete()">
+        <button mat-fab color="basic" [disabled]="selection.isEmpty() || !credentials.preOrders.write" (click)="delete()">
             <mat-icon>delete</mat-icon>
         </button>
     </div>
     <div class="commandline-button">
-        <button mat-fab color="basic" [disabled]="selection.selected[0]?.orderExists !== ''" (click)="createOrder()">
+        <button mat-fab color="basic" [disabled]="selection.selected[0]?.orderExists !== '' || !credentials.preOrders.order" (click)="createOrder()">
             <mat-icon>add_circle_outline</mat-icon>
         </button>
     </div>    

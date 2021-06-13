@@ -58,6 +58,10 @@ export class OrderFormComponent implements OnInit {
         this.currentPreOrder = "";
     }
 
+    onChange(value: string) {
+        this.updatePrice();
+    }
+
     private getMenus(): void {
         this.menusService.resolveItems().subscribe(menus => {
             this.menus = menus;
@@ -87,13 +91,15 @@ export class OrderFormComponent implements OnInit {
                         this.form.get('positions').get(`${i}`).setValue(tempPosition.amount);
                     }
                 });
+
+                this.updatePrice();
             } else {
                 console.warn(`PreOrder id "${id}" not found`);
             }
         });
     }
 
-    onChange(value: string) {
+    private updatePrice() {
         this.price = 0.0;
         this.menus.forEach((menu, index) => {
             const amount = this.form.value.positions[index];

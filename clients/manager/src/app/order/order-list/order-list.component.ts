@@ -1,22 +1,25 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { OrdersService } from '../../service/orders.service';
-import { Order } from '../../contracts/order';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { forkJoin, Subscription } from 'rxjs';
+
+import { OrdersService } from '../../service/orders.service';
+import { Order } from '../../contracts/order';
 import { MenusService } from '../../service/menus.service';
-import { forkJoin } from 'rxjs';
 import { Menu } from '../../contracts/menu';
 import { ColumnDefinition } from '../../contracts/column-definition';
-import { OrderRow } from 'src/app/contracts/order-row';
+import { OrderRow } from '../../contracts/order-row';
+import { LoginService } from '../../service/login.service';
+import { Credentials } from '../../contracts/credentials';
 
 @Component({
     selector: 'app-order-list',
     templateUrl: './order-list.component.html',
     styleUrls: ['./order-list.component.scss']
 })
-export class OrderListComponent implements OnInit, AfterViewInit {
+export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -35,17 +38,26 @@ export class OrderListComponent implements OnInit, AfterViewInit {
     dataSource: MatTableDataSource<OrderRow> = new MatTableDataSource<OrderRow>([]);
     selection = new SelectionModel<OrderRow>(false, []);
 
+    public credentials: Credentials;
+    private credentialSubscription: Subscription;
+
     constructor(
+        private loginService: LoginService,
         private menusService: MenusService,
         private orderService: OrdersService,
         private router: Router) { }
 
     ngOnInit(): void {
+        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
         this.getData();
     }
 
     ngAfterViewInit(): void {
         this.dataSource.sort = this.sort;
+    }
+
+    ngOnDestroy() {
+        this.credentialSubscription.unsubscribe();
     }
 
     doFilter(value: string): void {

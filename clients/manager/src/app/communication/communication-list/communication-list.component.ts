@@ -1,19 +1,23 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 import { ColumnDefinition } from '../../contracts/column-definition';
 import { CommunicationsService } from '../../service/communications.service';
 import { Communication } from '../../contracts/communication';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { CommunicationRow } from 'src/app/contracts/communication-row';
+import { CommunicationRow } from '../../contracts/communication-row';
+import { LoginService } from '../../service/login.service';
+import { Credentials } from '../../contracts/credentials';
 
 @Component({
     selector: 'app-communication-list',
     templateUrl: './communication-list.component.html',
     styleUrls: ['./communication-list.component.scss']
 })
-export class CommunicationListComponent implements OnInit, AfterViewInit {
+export class CommunicationListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -41,18 +45,27 @@ export class CommunicationListComponent implements OnInit, AfterViewInit {
     command: string;
     communicationId: string;
 
-    constructor(private formBuilder: FormBuilder,
-                private communicationService: CommunicationsService) { }
+    public credentials: Credentials;
+    private credentialSubscription: Subscription;
+
+    constructor(
+        private loginService: LoginService,
+        private formBuilder: FormBuilder,
+        private communicationService: CommunicationsService) { }
 
     ngOnInit(): void {
+        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
         this.initForm();
-
         this.getData();
     }
 
     ngAfterViewInit(): void {
         this.dataSource.sort = this.sort;
     }
+
+    ngOnDestroy() {
+        this.credentialSubscription.unsubscribe();
+    }    
 
     private initForm(): void {
         this.form = this.formBuilder.group({

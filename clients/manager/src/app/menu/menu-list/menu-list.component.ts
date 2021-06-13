@@ -1,20 +1,24 @@
 
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 import { ColumnDefinition } from '../../contracts/column-definition';
 import { MenusService } from '../../service/menus.service';
 import { Menu } from '../../contracts/menu';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { MenuRow } from 'src/app/contracts/menu-row';
+import { MenuRow } from '../../contracts/menu-row';
+import { LoginService } from '../../service/login.service';
+import { Credentials } from '../../contracts/credentials';
 
 @Component({
     selector: 'app-menu-list',
     templateUrl: './menu-list.component.html',
     styleUrls: ['./menu-list.component.scss']
-  })
-export class MenuListComponent implements OnInit, AfterViewInit {
+})
+export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -36,17 +40,26 @@ export class MenuListComponent implements OnInit, AfterViewInit {
     command: string;
     menuId: string;
 
-    constructor(private formBuilder: FormBuilder,
-                private menuService: MenusService) { }
+    public credentials: Credentials;
+    private credentialSubscription: Subscription;
+
+    constructor(
+        private loginService: LoginService,
+        private formBuilder: FormBuilder,
+        private menuService: MenusService) { }
 
     ngOnInit(): void {
+        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
         this.initForm();
-
         this.getData();
     }
 
     ngAfterViewInit(): void {
         this.dataSource.sort = this.sort;
+    }
+
+    ngOnDestroy() {
+        this.credentialSubscription.unsubscribe();
     }
 
     private initForm(): void {
@@ -66,7 +79,7 @@ export class MenuListComponent implements OnInit, AfterViewInit {
     doFilter(value: string): void {
         this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
-    
+
     refresh() {
         this.selection.clear();
         this.getData();

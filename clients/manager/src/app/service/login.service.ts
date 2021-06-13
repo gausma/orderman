@@ -16,12 +16,29 @@ export class LoginService {
     // }
 
     private default: Credentials = {
-        preOrders: false,
-        orders: true,
-        communications: false,
-        menus: false,
-        statistics: true,
-        backups: false,
+        preOrders: {
+            read: true,
+            write: false,
+            order: false,
+        },
+        orders: {
+            read: true,
+            write: true,
+        },
+        communications: {
+            read: false,
+            write: false,
+        },
+        menus: {
+            read: false,
+            write: false,
+        },
+        statistics: {
+            read: true,
+        },
+        backups: {
+            read: false,
+        },
     }
 
     private credentialsSource = new BehaviorSubject<Credentials>(this.default);
@@ -31,12 +48,29 @@ export class LoginService {
     login(login: Login): void {
         if (login.user === "MVE" && login.password == "MVE") {
             this.credentialsSource.next({
-                preOrders: true,
-                orders: true,
-                communications: true,
-                menus: true,
-                statistics: true,
-                backups: true,
+                preOrders: {
+                    read: true,
+                    write: true,
+                    order: true,
+                },
+                orders: {
+                    read: true,
+                    write: true,
+                },
+                communications: {
+                    read: true,
+                    write: true,
+                },
+                menus: {
+                    read: true,
+                    write: true,
+                },
+                statistics: {
+                    read: true,
+                },
+                backups: {
+                    read: true,
+                },
             });
         } else {
             this.credentialsSource.next(this.default);    

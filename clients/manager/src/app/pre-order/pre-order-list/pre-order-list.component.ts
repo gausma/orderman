@@ -1,27 +1,30 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { PreOrdersService } from '../../service/pre-orders.service';
-import { PreOrder } from '../../contracts/pre-order';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { forkJoin, Subscription } from 'rxjs';
+
+import { PreOrdersService } from '../../service/pre-orders.service';
+import { PreOrder } from '../../contracts/pre-order';
 import { MenusService } from '../../service/menus.service';
-import { forkJoin } from 'rxjs';
 import { Menu } from '../../contracts/menu';
 import { ColumnDefinition } from '../../contracts/column-definition';
 import { CommunicationsService } from '../../service/communications.service';
 import { Communication } from '../../contracts/communication';
-import { OrdersService } from 'src/app/service/orders.service';
-import { PreOrderRow } from 'src/app/contracts/pre-order-row';
-import { Order } from 'src/app/contracts/order';
-import { PreOrderPosition } from 'src/app/contracts/pre-order-position';
+import { OrdersService } from '../../service/orders.service';
+import { PreOrderRow } from '../../contracts/pre-order-row';
+import { Order } from '../../contracts/order';
+import { PreOrderPosition } from '../../contracts/pre-order-position';
+import { Credentials } from '../../contracts/credentials';
+import { LoginService } from '../../service/login.service';
 
 @Component({
     selector: 'app-pre-order-list',
     templateUrl: './pre-order-list.component.html',
     styleUrls: ['./pre-order-list.component.scss']
 })
-export class PreOrderListComponent implements OnInit, AfterViewInit {
+export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -45,7 +48,11 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
     dataSource: MatTableDataSource<PreOrderRow> = new MatTableDataSource<PreOrderRow>([]);
     selection = new SelectionModel<PreOrderRow>(false, []);
 
+    public credentials: Credentials;
+    private credentialSubscription: Subscription;
+
     constructor(
+        private loginService: LoginService,
         private communicationService: CommunicationsService,
         private menusService: MenusService,
         private preOrderService: PreOrdersService,
@@ -53,11 +60,16 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
         private router: Router) { }
 
     ngOnInit(): void {
+        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
         this.getData();
     }
 
     ngAfterViewInit(): void {
         this.dataSource.sort = this.sort;
+    }
+
+    ngOnDestroy() {
+        this.credentialSubscription.unsubscribe();
     }
 
     doFilter(value: string): void {
@@ -91,7 +103,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
     createOrder(): void {
         if (!this.selection.isEmpty()) {
             const preOrder = this.preOrders.find(p => p.id === this.selection.selected[0].id);
-            
+
             const order: Order = {
                 name1: preOrder.name1,
                 name2: preOrder.name2,
@@ -100,14 +112,14 @@ export class PreOrderListComponent implements OnInit, AfterViewInit {
                 positions: [],
                 preOrderId: preOrder.id,
             };
-    
+
             preOrder.positions.forEach((p: PreOrderPosition) => {
                 order.positions.push({
                     id: p.id,
                     amount: p.amount,
                 });
             });
-    
+
             this.orderService.createOrder(order).subscribe(() => {
                 this.getData();
                 // this.router.navigate(['orderlist']);

@@ -12,17 +12,17 @@
         </button>
     </div>        
     <div class="commandline-button">
-        <button mat-fab color="basic" [disabled]="showForm" (click)="add()">
+        <button mat-fab color="basic" [disabled]="showForm || !credentials.menus.write" (click)="add()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
     <div class="commandline-button">
-        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty()" (click)="edit()">
+        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty() || !credentials.menus.write" (click)="edit()">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
     <div class="commandline-button">
-        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty()" (click)="delete()">
+        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty() || !credentials.menus.write" (click)="delete()">
             <mat-icon>delete</mat-icon>
         </button>
     </div>

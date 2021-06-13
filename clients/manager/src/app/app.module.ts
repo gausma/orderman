@@ -15,6 +15,7 @@ import { CommunicationListComponent } from './communication/communication-list/c
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { BackupComponent } from './backup/backup.component';
+import { LoginDialogComponent } from './navigation/login-dialog/login-dialog.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -29,6 +30,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './navigation/header/header.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -43,6 +45,7 @@ import { MatCardModule } from '@angular/material/card';
         MenuListComponent,
         StatisticComponent,
         BackupComponent,
+        LoginDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -63,6 +66,7 @@ import { MatCardModule } from '@angular/material/card';
         MatToolbarModule,
         MatListModule,
         MatCardModule,
+        MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

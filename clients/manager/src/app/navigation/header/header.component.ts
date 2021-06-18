@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { LoginService } from '../../service/login.service';
 import { Login } from '../../contracts/login';
+import { Credentials } from 'src/app/contracts/credentials';
 
 export interface DialogData {
     animal: string;
@@ -19,17 +20,16 @@ export interface DialogData {
 })
 export class HeaderComponent implements OnInit {
 
-    animal: string;
-    name: string;
-
     @Output() public sidenavToggle = new EventEmitter();
 
     constructor(
         public dialog: MatDialog,
         public loginService: LoginService,
-        private router: Router) { }
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.route.data.subscribe((d) => {console.log(d)});        
     }
 
     public onToggleSidenav = () => {
@@ -38,13 +38,28 @@ export class HeaderComponent implements OnInit {
 
     public onLogin = () => {
         const dialogRef = this.dialog.open(LoginDialogComponent, {
-            width: '250px',
-            data: { name: this.name, animal: this.animal }
+            width: '250px'
         });
 
         dialogRef.afterClosed().subscribe((login: Login) => {
-            this.loginService.login(login);
-            this.router.navigate(['welcome']);
+            if (login == null) {
+                return;
+            }
+
+            const credentials: Credentials = this.loginService.login(login);
+
+            if (this.route.children.length === 1) {
+                this.route.children[0].data.subscribe((data) => {
+                    if(credentials[data.credentials] != null) {
+                        if(!credentials[data.credentials].read){
+                            this.router.navigate(['welcome']);
+                        }
+                    }
+                });
+            } else {
+                console.error("Can't evaluate current router data, retourning to welcome screen.");
+                this.router.navigate(['welcome']);
+            }
         });
     }
 }

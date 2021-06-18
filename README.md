@@ -54,3 +54,13 @@ mongodb 4.4.6
 server / clients
 yarn install
 yarn build
+
+---
+
+Todo
+- User / Credencial Verwaltung
+- Flag für Email Werbung
+- Liste für Vorbestellungen (Excel)
+- Export Email Adressen
+- Beim Anmelden nicht automatisch zum STartbildschirm wechseln, sondern nur, wenn die aktuelle Seite nicht ebrechtigt ist  - das muss eh rein
+- REST Validtor

@@ -12,16 +12,16 @@ import { BackupComponent } from './backup/backup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
-    { path: 'welcome', component: WelcomeComponent },
-    { path: 'preorderlist', component: PreOrderListComponent },
-    { path: 'preorderform', component: PreOrderFormComponent },
-    { path: 'orderlist', component: OrderListComponent },
-    { path: 'orderform', component: OrderFormComponent },
-    { path: 'communicationlist', component: CommunicationListComponent },
-    { path: 'menulist', component: MenuListComponent },
-    { path: 'statistic', component: StatisticComponent },
-    { path: 'backup', component: BackupComponent },
-    { path: '**', component: WelcomeComponent },
+    { path: 'welcome', component: WelcomeComponent, data: { credentials: "welcome" }  },
+    { path: 'preorderlist', component: PreOrderListComponent, data: { credentials: "preOrders" } },
+    { path: 'preorderform', component: PreOrderFormComponent, data: { credentials: "preOrders" }  },
+    { path: 'orderlist', component: OrderListComponent, data: { credentials: "orders" } },
+    { path: 'orderform', component: OrderFormComponent, data: { credentials: "orders" } },
+    { path: 'communicationlist', component: CommunicationListComponent, data: { credentials: "communications" }  },
+    { path: 'menulist', component: MenuListComponent, data: { credentials: "menus" }  },
+    { path: 'statistic', component: StatisticComponent, data: { credentials: "statistics" }  },
+    { path: 'backup', component: BackupComponent, data: { credentials: "backups" }  },
+    { path: '**', component: WelcomeComponent, data: { credentials: "welcome" }  },
 ];
 
 @NgModule({

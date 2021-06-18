@@ -5,6 +5,11 @@ import { MenusService } from '../menus/menus.service';
 import { OrdersService } from '../orders/orders.service';
 import { PreOrdersService } from '../pre-orders/pre-orders.service';
 import * as _ from 'lodash';
+import { Menu } from 'src/menus/contracts/Menu';
+import { PreOrderPosition } from 'src/pre-orders/contracts/pre-order-position';
+
+const csvSeparator = ";";
+const lineSeparator = "\r\n";
 
 @Injectable()
 export class BackupsService {
@@ -15,7 +20,7 @@ export class BackupsService {
         private preOrdersService: PreOrdersService) {
         }
 
-    async get(): Promise<Backup> {
+    async createBackup(): Promise<Backup> {
         const backup: Backup = {
             communications: await this.communicationsService.getAll(),
             menus: await this.menusService.getAll(),
@@ -25,7 +30,7 @@ export class BackupsService {
         return backup;
     }
 
-    async create(backup: Backup): Promise<void> {
+    async restoreBackup(backup: Backup): Promise<void> {
         await this.communicationsService.deleteAll();
         await this.menusService.deleteAll();
         await this.ordersService.deleteAll();
@@ -37,5 +42,46 @@ export class BackupsService {
         backup.preOrders.map(po => this.preOrdersService.create(po));
 
         return null;
+    }
+
+    async createCsv(): Promise<string> {
+        const menus = await this.menusService.getAll();
+        const preOrders = await this.preOrdersService.getAll();
+        
+        let csv = "";
+
+        const sortedMenus = menus.sort((a, b) => a.sequence - b.sequence );
+        sortedMenus.forEach((menu: Menu, index: number) => {
+            if (index > 0) {
+                csv += csvSeparator;
+            }
+            csv += this.encodeCsv(menu.name);
+        });
+        
+        csv += lineSeparator;
+
+        preOrders.forEach((preOrder) => {
+            sortedMenus.forEach((menu: Menu, index: number) => {
+                if (index > 0) {
+                    csv += csvSeparator;
+                }
+
+                const preorder = preOrder.positions.find((position: PreOrderPosition) => position.id === menu.id);
+                csv += preorder.amount;
+            });
+
+            csv += lineSeparator;
+        });
+
+        return csv;
+    }
+
+    private encodeCsv(value: string): string {
+        let encoded = value.replace('"', '""');
+        if ((encoded.indexOf('"') >= 0) || (encoded.indexOf(',') >= 0))
+        {
+            encoded = '"' + encoded + '"';
+        }
+        return encoded;
     }
 }

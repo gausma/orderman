@@ -24,6 +24,12 @@ export class BackupComponent implements OnInit {
         });
     }
 
+    createCsv(): void {
+        this.backupService.createCsv().subscribe(csv => {
+            this.startDownload('OrderMan.csv', csv);
+        });
+    }
+
     restore(event) {
         let reader = new FileReader();
         if (event.target.files && event.target.files.length > 0) {

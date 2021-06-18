@@ -17,6 +17,10 @@ export class BackupService {
         return this.http.get(this.url);
     }
 
+    createCsv(): Observable<string> {
+        return this.http.get(`${this.url}/csv`, { responseType: 'text' }) as Observable<string>;
+    }
+
     restorBackup(value: any): Observable<any> {
         const headers = {
             headers: new HttpHeaders({

@@ -37,12 +37,11 @@ export class PreOrderFormComponent implements OnInit {
                 private route: ActivatedRoute,
                 private router: Router) { }
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.initForm();
 
-        // Todo: Ensure initialisation order
-        this.getCommunications();
-        this.getMenus();
+        await this.getCommunications();
+        await this.getMenus();
 
         this.initMode();
     }
@@ -60,21 +59,17 @@ export class PreOrderFormComponent implements OnInit {
         });
     }
 
-    private getCommunications(): void {
-        this.communicationsService.getCommunications().subscribe(communications => {
-            this.communications = communications;
-            if (communications.length > 0) {
-                this.form.get('communication').setValue(communications[0]);
-            }
-        });
+    private async getCommunications(): Promise<void> {
+        this.communications = await this.communicationsService.getCommunications().toPromise();
+        if (this.communications.length > 0) {
+            this.form.get('communication').setValue(this.communications[0]);
+        }
     }
 
-    private getMenus(): void {
-        this.menusService.getMenus().subscribe(menus => {
-            this.menus = menus;
-            menus.forEach(() => {
-                this.menuItems.push(this.formBuilder.control(0));
-            });
+    private async getMenus(): Promise<void> {
+        this.menus = await this.menusService.getMenus().toPromise();
+        this.menus.forEach(() => {
+            this.menuItems.push(this.formBuilder.control(0));
         });
     }
 

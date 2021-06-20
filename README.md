@@ -59,5 +59,15 @@ yarn build
 
 Todo
 - User / Credencial Verwaltung
-- Export Email Adressen
+- Export Email Adressen eines bestimmten Typs
 - REST Validtor
+- Icons ausliefern
+- Mini Build
+- Scrolling in großen tabellen
+- Überbestände verwalten
+- Letzte Bestellung (neu) automatisch oben
+- Datum ans Backup
+- Statistik Vorbest.: 
+  (Summe) Anzahl Bestellungen, Summe Portionen, Port/Best, Gesamtsumme 
+  Anzahl / Summe pro Kommunikation
+

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CommunicationListComponent } from './communication-list.component';
+import { CommunicationListComponent } from "./communication-list.component";
 
-describe('CommunicationListComponent', () => {
+describe("CommunicationListComponent", () => {
   let component: CommunicationListComponent;
   let fixture: ComponentFixture<CommunicationListComponent>;
 
@@ -19,7 +19,7 @@ describe('CommunicationListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

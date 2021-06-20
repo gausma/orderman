@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from 'mongoose';
+import { Document } from "mongoose";
 
 import { OrderPosition } from "./order-position";
 

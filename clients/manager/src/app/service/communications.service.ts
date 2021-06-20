@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class CommunicationsService {
-    private url = '';
+    private url = "";
 
     constructor(private http: HttpClient) {
         const hostname = window.location.hostname;
@@ -20,7 +20,7 @@ export class CommunicationsService {
     createCommunication(value): Observable<any> {
         const headers = {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             })
         };
         return this.http.post(this.url, value, headers);
@@ -29,7 +29,7 @@ export class CommunicationsService {
     updateCommunication(id: string, value): Observable<any> {
         const headers = {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             })
         };
         value.id = id;

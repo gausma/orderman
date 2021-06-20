@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OrderListComponent } from './order-list.component';
+import { OrderListComponent } from "./order-list.component";
 
-describe('OrderListComponent', () => {
+describe("OrderListComponent", () => {
   let component: OrderListComponent;
   let fixture: ComponentFixture<OrderListComponent>;
 
@@ -19,7 +19,7 @@ describe('OrderListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, from, of, BehaviorSubject } from 'rxjs';
-import { Login } from '../contracts/login';
-import { Credentials } from '../contracts/credentials';
+import { Injectable } from "@angular/core";
+// import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, from, of, BehaviorSubject } from "rxjs";
+import { Login } from "../contracts/login";
+import { Credentials } from "../contracts/credentials";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class LoginService {
-    // private url = '';
+    // private url = "";
 
     // constructor(private http: HttpClient) {
     //     const hostname = window.location.hostname;

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PreOrderListComponent } from './pre-order-list.component';
+import { PreOrderListComponent } from "./pre-order-list.component";
 
-describe('PreOrderListComponent', () => {
+describe("PreOrderListComponent", () => {
   let component: PreOrderListComponent;
   let fixture: ComponentFixture<PreOrderListComponent>;
 
@@ -19,7 +19,7 @@ describe('PreOrderListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

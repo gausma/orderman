@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { Router, ActivatedRoute } from "@angular/router";
 
-import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
-import { LoginService } from '../../service/login.service';
-import { Login } from '../../contracts/login';
-import { Credentials } from 'src/app/contracts/credentials';
+import { LoginDialogComponent } from "../login-dialog/login-dialog.component";
+import { LoginService } from "../../service/login.service";
+import { Login } from "../../contracts/login";
+import { Credentials } from "../../contracts/credentials";
 
 export interface DialogData {
     animal: string;
@@ -14,9 +14,9 @@ export interface DialogData {
 
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    selector: "app-header",
+    templateUrl: "./header.component.html",
+    styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
 
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
 
     public onLogin = () => {
         const dialogRef = this.dialog.open(LoginDialogComponent, {
-            width: '250px'
+            width: "250px"
         });
 
         dialogRef.afterClosed().subscribe((login: Login) => {
@@ -52,13 +52,13 @@ export class HeaderComponent implements OnInit {
                 this.route.children[0].data.subscribe((data) => {
                     if(credentials[data.credentials] != null) {
                         if(!credentials[data.credentials].read){
-                            this.router.navigate(['welcome']);
+                            this.router.navigate(["welcome"]);
                         }
                     }
                 });
             } else {
                 console.error("Can't evaluate current router data, retourning to welcome screen.");
-                this.router.navigate(['welcome']);
+                this.router.navigate(["welcome"]);
             }
         });
     }

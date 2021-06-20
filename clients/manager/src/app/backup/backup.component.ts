@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BackupService } from '../service/backup.service';
+import { Component, OnInit } from "@angular/core";
+import { BackupService } from "../service/backup.service";
 
 @Component({
-    selector: 'app-backup',
-    templateUrl: './backup.component.html',
-    styleUrls: ['./backup.component.scss']
+    selector: "app-backup",
+    templateUrl: "./backup.component.html",
+    styleUrls: ["./backup.component.scss"]
 })
 export class BackupComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class BackupComponent implements OnInit {
     constructor(private backupService: BackupService) { }
 
     ngOnInit(): void {
-        this.downloadElement = document.createElement('a');
+        this.downloadElement = document.createElement("a");
     }
 
     backup(): void {
@@ -47,9 +47,9 @@ export class BackupComponent implements OnInit {
     }
 
     private startDownload(fileName: string, text: string) {
-        const fileType = 'text/json';
-        this.downloadElement.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(text)}`);
-        this.downloadElement.setAttribute('download', fileName);
+        const fileType = "text/json";
+        this.downloadElement.setAttribute("href", `data:${fileType};charset=utf-8,${encodeURIComponent(text)}`);
+        this.downloadElement.setAttribute("download", fileName);
 
         var event = new MouseEvent("click");
         this.downloadElement.dispatchEvent(event);

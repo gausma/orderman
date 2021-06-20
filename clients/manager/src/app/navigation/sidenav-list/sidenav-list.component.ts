@@ -1,12 +1,13 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { LoginService } from 'src/app/service/login.service';
-import { Credentials } from 'src/app/contracts/credentials';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs";
+
+import { LoginService } from "../../service/login.service";
+import { Credentials } from "../../contracts/credentials";
 
 @Component({
-    selector: 'app-sidenav-list',
-    templateUrl: './sidenav-list.component.html',
-    styleUrls: ['./sidenav-list.component.scss']
+    selector: "app-sidenav-list",
+    templateUrl: "./sidenav-list.component.html",
+    styleUrls: ["./sidenav-list.component.scss"]
 })
 export class SidenavListComponent implements OnInit, OnDestroy {
     @Output() sidenavClose = new EventEmitter();

@@ -1,10 +1,12 @@
 
-import { Injectable } from '@nestjs/common';
-import { PreOrder, PreOrderDocument } from './contracts/pre-order';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { v4 as uuidV4 } from 'uuid';
-import * as _ from 'lodash';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+
+import { PreOrder, PreOrderDocument } from "./contracts/pre-order";
+
+import { v4 as uuidV4 } from "uuid";
+import * as _ from "lodash";
 
 @Injectable()
 export class PreOrdersService {
@@ -35,7 +37,7 @@ export class PreOrdersService {
     }
 
     async getByName(name: string): Promise<PreOrder[]> {
-        const preOrderDocuments = await this.preOrderModel.find({name1: {$regex: name, '$options': 'i'}}).exec();
+        const preOrderDocuments = await this.preOrderModel.find({name1: {$regex: name, "$options": "i"}}).exec();
         return preOrderDocuments.map((pod: PreOrderDocument) => this.toPreOrder(pod));
     }
 
@@ -60,8 +62,8 @@ export class PreOrdersService {
                         { "preOrderIdSize": { $eq: 0 } },
                         {
                             $or: [
-                                { name1: {$regex: name, '$options': 'i'} },
-                                { name2: {$regex: name, '$options': 'i'} },
+                                { name1: {$regex: name, "$options": "i"} },
+                                { name2: {$regex: name, "$options": "i"} },
                             ]
                         }
                     ]

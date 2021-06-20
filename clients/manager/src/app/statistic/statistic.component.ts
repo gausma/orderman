@@ -1,28 +1,29 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { OrdersService } from '../service/orders.service';
-import { Order } from '../contracts/order';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { MenusService } from '../service/menus.service';
-import { forkJoin } from 'rxjs';
-import { Menu } from '../contracts/menu';
-import { ColumnDefinition } from '../contracts/column-definition';
-import { StatisticRow } from 'src/app/contracts/statistic-row';
-import { PreOrder } from 'src/app/contracts/pre-order';
-import { PreOrdersService } from 'src/app/service/pre-orders.service';
+import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
+import { forkJoin } from "rxjs";
+
+import { OrdersService } from "../service/orders.service";
+import { Order } from "../contracts/order";
+import { MenusService } from "../service/menus.service";
+import { Menu } from "../contracts/menu";
+import { ColumnDefinition } from "../contracts/column-definition";
+import { StatisticRow } from "../contracts/statistic-row";
+import { PreOrder } from "../contracts/pre-order";
+import { PreOrdersService } from "../service/pre-orders.service";
 
 @Component({
-    selector: 'app-statistic',
-    templateUrl: './statistic.component.html',
-    styleUrls: ['./statistic.component.scss']
+    selector: "app-statistic",
+    templateUrl: "./statistic.component.html",
+    styleUrls: ["./statistic.component.scss"]
 })
 export class StatisticComponent implements OnInit, AfterViewInit {
 
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
-        { id: 'title', title: '', align: 'left', type: 'string' },
-        { id: 'sum', title: 'Summe', align: 'center', type: 'string' },
+        { id: "title", title: "", align: "left", type: "string" },
+        { id: "sum", title: "Summe", align: "center", type: "string" },
     ];
 
     menus: Menu[] = [];
@@ -76,7 +77,7 @@ export class StatisticComponent implements OnInit, AfterViewInit {
                 id: column.id,
                 title: column.title,
                 align: column.align,
-                type: 'string',
+                type: "string",
             });
         });
 
@@ -84,8 +85,8 @@ export class StatisticComponent implements OnInit, AfterViewInit {
             this.columns.push({
                 id: menu.id,
                 title: menu.name,
-                align: 'center',
-                type: 'string',
+                align: "center",
+                type: "string",
             });
         });
 

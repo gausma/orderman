@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Header } from '@nestjs/common';
-import { BackupsService } from './backups.service';
-import { Backup } from './contracts/Backup';
+import { Controller, Get, Post, Body, Header } from "@nestjs/common";
+import { BackupsService } from "./backups.service";
+import { Backup } from "./contracts/Backup";
 
-@Controller('backups')
+@Controller("backups")
 export class BackupsController {
     constructor(private backupsService: BackupsService) {}
 
@@ -13,7 +13,7 @@ export class BackupsController {
         return this.backupsService.createBackup();
     }    
 
-    @Get('csv')
+    @Get("csv")
     async createCsv(): Promise<any> {
         console.log(`Create csv`);
         return this.backupsService.createCsv();

@@ -1,40 +1,40 @@
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { forkJoin, Subscription } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from "@angular/core";
+import { MatSort } from "@angular/material/sort";
+import { Router } from "@angular/router";
+import { SelectionModel } from "@angular/cdk/collections";
+import { MatTableDataSource } from "@angular/material/table";
+import { forkJoin, Subscription } from "rxjs";
 
-import { PreOrdersService } from '../../service/pre-orders.service';
-import { PreOrder } from '../../contracts/pre-order';
-import { MenusService } from '../../service/menus.service';
-import { Menu } from '../../contracts/menu';
-import { ColumnDefinition } from '../../contracts/column-definition';
-import { CommunicationsService } from '../../service/communications.service';
-import { Communication } from '../../contracts/communication';
-import { OrdersService } from '../../service/orders.service';
-import { PreOrderRow } from '../../contracts/pre-order-row';
-import { Order } from '../../contracts/order';
-import { PreOrderPosition } from '../../contracts/pre-order-position';
-import { Credentials } from '../../contracts/credentials';
-import { LoginService } from '../../service/login.service';
+import { PreOrdersService } from "../../service/pre-orders.service";
+import { PreOrder } from "../../contracts/pre-order";
+import { MenusService } from "../../service/menus.service";
+import { Menu } from "../../contracts/menu";
+import { ColumnDefinition } from "../../contracts/column-definition";
+import { CommunicationsService } from "../../service/communications.service";
+import { Communication } from "../../contracts/communication";
+import { OrdersService } from "../../service/orders.service";
+import { PreOrderRow } from "../../contracts/pre-order-row";
+import { Order } from "../../contracts/order";
+import { PreOrderPosition } from "../../contracts/pre-order-position";
+import { Credentials } from "../../contracts/credentials";
+import { LoginService } from "../../service/login.service";
 
 @Component({
-    selector: 'app-pre-order-list',
-    templateUrl: './pre-order-list.component.html',
-    styleUrls: ['./pre-order-list.component.scss']
+    selector: "app-pre-order-list",
+    templateUrl: "./pre-order-list.component.html",
+    styleUrls: ["./pre-order-list.component.scss"]
 })
 export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
-        { id: 'orderExists', title: 'Verkauft', align: 'center', type: 'string' },
-        { id: 'name1', title: 'Name', align: 'left', type: 'string' },
-        { id: 'name2', title: 'Vorname', align: 'left', type: 'string' },
-        { id: 'comment', title: 'Bemerkung', align: 'left', type: 'string' },
-        { id: 'communicationId', title: 'Kommunikation', align: 'left', type: 'string' },
-        { id: 'communicationValue', title: 'Info', align: 'left', type: 'string' },
+        { id: "orderExists", title: "Verkauft", align: "center", type: "string" },
+        { id: "name1", title: "Name", align: "left", type: "string" },
+        { id: "name2", title: "Vorname", align: "left", type: "string" },
+        { id: "comment", title: "Bemerkung", align: "left", type: "string" },
+        { id: "communicationId", title: "Kommunikation", align: "left", type: "string" },
+        { id: "communicationValue", title: "Info", align: "left", type: "string" },
     ];
 
     communications: Communication[] = [];
@@ -82,12 +82,12 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     add(): void {
-        this.router.navigate(['preorderform']);
+        this.router.navigate(["preorderform"]);
     }
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.router.navigate(['preorderform'], { queryParams: { preOrderId: this.selection.selected[0].id } });
+            this.router.navigate(["preorderform"], { queryParams: { preOrderId: this.selection.selected[0].id } });
         }
     }
 
@@ -122,7 +122,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
             this.orderService.createOrder(order).subscribe(() => {
                 this.getData();
-                // this.router.navigate(['orderlist']);
+                // this.router.navigate(["orderlist"]);
             });
         }
     }
@@ -154,7 +154,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 id: column.id,
                 title: column.title,
                 align: column.align,
-                type: 'string',
+                type: "string",
             });
         });
 
@@ -162,8 +162,8 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
             this.columns.push({
                 id: menu.id,
                 title: menu.name,
-                align: 'center',
-                type: 'string',
+                align: "center",
+                type: "string",
             });
         });
 
@@ -196,7 +196,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
             this.menus.forEach(menu => {
                 const position = preOrder.positions.find(p => p.id === menu.id);
-                element[menu.id] = '';
+                element[menu.id] = "";
                 if (position != null && position.amount !== 0) {
                     element[menu.id] = position.amount;
                 }

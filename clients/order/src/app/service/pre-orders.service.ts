@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, from } from "rxjs";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class PreOrdersService {
-    private url = '';
+    private url = "";
 
     constructor(private http: HttpClient) {
         const hostname = window.location.hostname;
@@ -32,7 +32,7 @@ export class PreOrdersService {
     createPreOrder(value): Observable<any> {
         const headers = {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             })
         };
         return this.http.post(this.url, value, headers);
@@ -41,7 +41,7 @@ export class PreOrdersService {
     updatePreOrder(id: string, value): Observable<any> {
         const headers = {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             })
         };
         value.id = id;

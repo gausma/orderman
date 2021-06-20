@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { Communication, CommunicationDocument, CommunicationType } from './contracts/Communication';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { v4 as uuidV4 } from 'uuid';
-import * as _ from 'lodash';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+
+import { Communication, CommunicationDocument, CommunicationType } from "./contracts/Communication";
+
+import { v4 as uuidV4 } from "uuid";
+import * as _ from "lodash";
 
 @Injectable()
 export class CommunicationsService {

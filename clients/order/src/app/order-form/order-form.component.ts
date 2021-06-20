@@ -1,17 +1,18 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { MenusService } from '../service/menus.service';
-import { Menu } from '../contracts/menu';
-import { OrdersService } from '../service/orders.service';
-import { PreOrdersService } from '../service/pre-orders.service';
-import { PreOrder } from '../contracts/pre-order';
-import { Order } from '../contracts/order';
-import { OrderPosition } from '../contracts/order-position';
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
+
+import { MenusService } from "../service/menus.service";
+import { Menu } from "../contracts/menu";
+import { OrdersService } from "../service/orders.service";
+import { PreOrdersService } from "../service/pre-orders.service";
+import { PreOrder } from "../contracts/pre-order";
+import { Order } from "../contracts/order";
+import { OrderPosition } from "../contracts/order-position";
 
 @Component({
-    selector: 'app-order-form',
-    templateUrl: './order-form.component.html',
-    styleUrls: ['./order-form.component.scss']
+    selector: "app-order-form",
+    templateUrl: "./order-form.component.html",
+    styleUrls: ["./order-form.component.scss"]
 })
 export class OrderFormComponent implements OnInit {
     form: FormGroup;
@@ -38,9 +39,9 @@ export class OrderFormComponent implements OnInit {
     private initForm(): void {
         this.menuItems = this.formBuilder.array([]);
         this.form = this.formBuilder.group({
-            name1: [''],
-            name2: [''],
-            comment: [''],
+            name1: [""],
+            name2: [""],
+            comment: [""],
             positions: this.menuItems
         });
     }
@@ -81,14 +82,14 @@ export class OrderFormComponent implements OnInit {
     private getPreOrderById(id: string): void {
         this.preOrderService.getPreOrder(id).subscribe(preOrder => {
             if (preOrder != null) {
-                this.form.get('name1').setValue(preOrder.name1);
-                this.form.get('name2').setValue(preOrder.name2);
-                this.form.get('comment').setValue(preOrder.comment);
+                this.form.get("name1").setValue(preOrder.name1);
+                this.form.get("name2").setValue(preOrder.name2);
+                this.form.get("comment").setValue(preOrder.comment);
 
                 this.menus.forEach((m, i) => {
                     const tempPosition = preOrder.positions.find(p => p.id === m.id);
                     if (tempPosition != null) {
-                        this.form.get('positions').get(`${i}`).setValue(tempPosition.amount);
+                        this.form.get("positions").get(`${i}`).setValue(tempPosition.amount);
                     }
                 });
 

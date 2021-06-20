@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { NumberSpinnerComponent } from './number-spinner.component';
+import { NumberSpinnerComponent } from "./number-spinner.component";
 
-describe('NgxNumberSpinnerComponent', () => {
+describe("NgxNumberSpinnerComponent", () => {
   let component: NumberSpinnerComponent;
   let fixture: ComponentFixture<NumberSpinnerComponent>;
 
@@ -19,7 +19,7 @@ describe('NgxNumberSpinnerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

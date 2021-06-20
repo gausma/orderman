@@ -1,4 +1,4 @@
-import { PreOrderPosition } from './pre-order-position';
+import { PreOrderPosition } from "./pre-order-position";
 
 export class PreOrder {
     id?: string;

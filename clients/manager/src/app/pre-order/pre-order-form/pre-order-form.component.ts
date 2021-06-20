@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
 
-import { MenusService } from '../../service/menus.service';
-import { PreOrdersService } from '../../service/pre-orders.service';
-import { CommunicationsService } from '../../service/communications.service';
-
-import { Menu } from '../../contracts/menu';
-import { Communication } from '../../contracts/communication';
-import { PreOrder } from '../../contracts/pre-order';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MenusService } from "../../service/menus.service";
+import { PreOrdersService } from "../../service/pre-orders.service";
+import { CommunicationsService } from "../../service/communications.service";
+import { Menu } from "../../contracts/menu";
+import { Communication } from "../../contracts/communication";
+import { PreOrder } from "../../contracts/pre-order";
 
 @Component({
-    selector: 'app-pre-order-form',
-    templateUrl: './pre-order-form.component.html',
-    styleUrls: ['./pre-order-form.component.scss']
+    selector: "app-pre-order-form",
+    templateUrl: "./pre-order-form.component.html",
+    styleUrls: ["./pre-order-form.component.scss"]
 })
 export class PreOrderFormComponent implements OnInit {
     preOrderId: string;
@@ -50,11 +49,11 @@ export class PreOrderFormComponent implements OnInit {
         this.menuItems = this.formBuilder.array([]);
         this.communicationItems = this.formBuilder.array([]);
         this.form = this.formBuilder.group({
-            name1: [''],
-            name2: [''],
-            comment: [''],
-            communication: [''],
-            communicationValue: [''],
+            name1: [""],
+            name2: [""],
+            comment: [""],
+            communication: [""],
+            communicationValue: [""],
             positions: this.menuItems,
         });
     }
@@ -62,7 +61,7 @@ export class PreOrderFormComponent implements OnInit {
     private async getCommunications(): Promise<void> {
         this.communications = await this.communicationsService.getCommunications().toPromise();
         if (this.communications.length > 0) {
-            this.form.get('communication').setValue(this.communications[0]);
+            this.form.get("communication").setValue(this.communications[0]);
         }
     }
 
@@ -78,14 +77,14 @@ export class PreOrderFormComponent implements OnInit {
             this.preOrderId = params.preOrderId;
             if (this.preOrderId == null) {
                 // Create
-                this.title = 'Vorbestellung erstellen';
-                this.command = 'Erstellen';
+                this.title = "Vorbestellung erstellen";
+                this.command = "Erstellen";
 
                 this.initialValues = this.form.value;
             } else {
                 // Edit
-                this.title = 'Vorbestellung bearbeiten';
-                this.command = 'Aktualisieren';
+                this.title = "Vorbestellung bearbeiten";
+                this.command = "Aktualisieren";
 
                 this.evalPreOrder();
             }
@@ -94,18 +93,18 @@ export class PreOrderFormComponent implements OnInit {
 
     private evalPreOrder(): void {
         this.preOrderService.getPreOrder(this.preOrderId).subscribe(preOrder => {
-            this.form.get('name1').setValue(preOrder.name1);
-            this.form.get('name2').setValue(preOrder.name2);
-            this.form.get('comment').setValue(preOrder.comment);
-            this.form.get('communicationValue').setValue(preOrder.communicationValue);
+            this.form.get("name1").setValue(preOrder.name1);
+            this.form.get("name2").setValue(preOrder.name2);
+            this.form.get("comment").setValue(preOrder.comment);
+            this.form.get("communicationValue").setValue(preOrder.communicationValue);
 
             const communication = this.communications.find(c => c.id === preOrder.communicationId);
-            this.form.get('communication').setValue(communication);
+            this.form.get("communication").setValue(communication);
 
             this.menus.forEach((m, i) => {
                 const tempPosition = preOrder.positions.find(p => p.id === m.id);
                 if (tempPosition != null) {
-                    this.form.get('positions').get(`${i}`).setValue(tempPosition.amount);
+                    this.form.get("positions").get(`${i}`).setValue(tempPosition.amount);
                 }
             });
 
@@ -133,17 +132,17 @@ export class PreOrderFormComponent implements OnInit {
 
         if (this.preOrderId == null) {
             this.preOrderService.createPreOrder(preOrder).subscribe(() => {
-                this.router.navigate(['preorderlist']);
+                this.router.navigate(["preorderlist"]);
             });
         } else {
             this.preOrderService.updatePreOrder(this.preOrderId, preOrder).subscribe(() => {
-                this.router.navigate(['preorderlist']);
+                this.router.navigate(["preorderlist"]);
             });
         }
     }
 
     cancel(): void {
-        this.router.navigate(['preorderlist']);
+        this.router.navigate(["preorderlist"]);
     }
 
     reset(): void {

@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MenuListComponent } from './menu-list.component';
+import { MenuListComponent } from "./menu-list.component";
 
-describe('MenuListComponent', () => {
+describe("MenuListComponent", () => {
   let component: MenuListComponent;
   let fixture: ComponentFixture<MenuListComponent>;
 
@@ -19,7 +19,7 @@ describe('MenuListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

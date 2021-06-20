@@ -1,11 +1,11 @@
-import { Component, Input, EventEmitter, Output, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, EventEmitter, Output, forwardRef } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
-    selector: 'app-number-spinner',
-    templateUrl: './number-spinner.component.html',
+    selector: "app-number-spinner",
+    templateUrl: "./number-spinner.component.html",
     styleUrls: [
-        './number-spinner.component.scss'
+        "./number-spinner.component.scss"
     ],
     providers: [
         {
@@ -20,8 +20,8 @@ export class NumberSpinnerComponent implements ControlValueAccessor {
     @Input() step = 1;
     @Input() min: number;
     @Input() max: number;
-    @Input() direction: 'horizontal' | 'vertical' = 'horizontal';
-    @Input() tag = '';
+    @Input() direction: "horizontal" | "vertical" = "horizontal";
+    @Input() tag = "";
 
     @Output() change: EventEmitter<{value: number, tag: string}> = new EventEmitter();
 

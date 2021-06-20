@@ -1,21 +1,21 @@
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from "@angular/core";
+import { SelectionModel } from "@angular/cdk/collections";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { Subscription } from "rxjs";
 
-import { ColumnDefinition } from '../../contracts/column-definition';
-import { CommunicationsService } from '../../service/communications.service';
-import { Communication } from '../../contracts/communication';
-import { CommunicationRow } from '../../contracts/communication-row';
-import { LoginService } from '../../service/login.service';
-import { Credentials } from '../../contracts/credentials';
+import { ColumnDefinition } from "../../contracts/column-definition";
+import { CommunicationsService } from "../../service/communications.service";
+import { Communication } from "../../contracts/communication";
+import { CommunicationRow } from "../../contracts/communication-row";
+import { LoginService } from "../../service/login.service";
+import { Credentials } from "../../contracts/credentials";
 
 @Component({
-    selector: 'app-communication-list',
-    templateUrl: './communication-list.component.html',
-    styleUrls: ['./communication-list.component.scss']
+    selector: "app-communication-list",
+    templateUrl: "./communication-list.component.html",
+    styleUrls: ["./communication-list.component.scss"]
 })
 export class CommunicationListComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -24,17 +24,17 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     communications: Communication[] = [];
 
     communicationTypes: { id: string, title: string }[] = [
-        { id: 'text', title: 'Text' },
-        { id: 'check', title: 'Checkbox' },
-        { id: 'email', title: 'Email Adresse' },
-        { id: 'phone', title: 'Telefonnummer' },
+        { id: "text", title: "Text" },
+        { id: "check", title: "Checkbox" },
+        { id: "email", title: "Email Adresse" },
+        { id: "phone", title: "Telefonnummer" },
     ];
 
     columns: ColumnDefinition[] = [
-        { id: 'name', title: 'Name', align: 'left', type: 'string' },
-        { id: 'communicationTypeTitle', title: 'Typ', align: 'left', type: 'string' },
+        { id: "name", title: "Name", align: "left", type: "string" },
+        { id: "communicationTypeTitle", title: "Typ", align: "left", type: "string" },
     ];
-    displayedColumns: string[] = ['name', 'communicationTypeTitle'];
+    displayedColumns: string[] = ["name", "communicationTypeTitle"];
 
     dataSource: MatTableDataSource<CommunicationRow> = new MatTableDataSource<CommunicationRow>([]);
     selection = new SelectionModel<CommunicationRow>(false, []);
@@ -69,8 +69,8 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            name: [''],
-            communicationType: ['text'],
+            name: [""],
+            communicationType: ["text"],
         });
     }
 
@@ -90,11 +90,11 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     }
 
     add(): void {
-        this.command = 'Erstellen';
+        this.command = "Erstellen";
         this.communicationId = null;
 
-        this.form.get('name').setValue('');
-        this.form.get('communicationType').setValue(this.communicationTypes[0]);
+        this.form.get("name").setValue("");
+        this.form.get("communicationType").setValue(this.communicationTypes[0]);
 
         this.selection.clear();
         this.showForm = true;
@@ -102,13 +102,13 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.command = 'Aktualisieren';
+            this.command = "Aktualisieren";
             this.communicationId = this.selection.selected[0].id;
 
-            this.form.get('name').setValue(this.selection.selected[0].name);
+            this.form.get("name").setValue(this.selection.selected[0].name);
 
             const communicationType = this.communicationTypes.find(c => c.id === this.selection.selected[0].communicationTypeId);
-            this.form.get('communicationType').setValue(communicationType);
+            this.form.get("communicationType").setValue(communicationType);
 
             this.showForm = true;
         }

@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { MenusService } from './menus.service';
-import { Menu } from './contracts/Menu';
-import { Communication } from 'src/communications/contracts/Communication';
+import { Controller, Get, Post, Body, Put, Param, Delete } from "@nestjs/common";
 
-@Controller('menus')
+import { MenusService } from "./menus.service";
+import { Menu } from "./contracts/Menu";
+
+@Controller("menus")
 export class MenusController {
     constructor(private menusService: MenusService) { }
 
@@ -19,14 +19,14 @@ export class MenusController {
         this.menusService.create(menu);
     }
 
-    @Put(':id')
-    async update(@Param('id') id: string, @Body() menu: Menu) {
+    @Put(":id")
+    async update(@Param("id") id: string, @Body() menu: Menu) {
         console.log(`Update Menu: ${menu.id}`);
         return this.menusService.update(id, menu);
     }
 
-    @Delete(':id')
-    async delete(@Param('id') id: string): Promise<void> {
+    @Delete(":id")
+    async delete(@Param("id") id: string): Promise<void> {
         console.log(`Delete Menu: ${id}`);
         return this.menusService.delete(id);
     }

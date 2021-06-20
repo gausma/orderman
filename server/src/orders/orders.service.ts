@@ -1,10 +1,12 @@
 
-import { Injectable } from '@nestjs/common';
-import { Order, OrderDocument } from './contracts/order';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { v4 as uuidV4 } from 'uuid';
-import * as _ from 'lodash';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+
+import { Order, OrderDocument } from "./contracts/order";
+
+import { v4 as uuidV4 } from "uuid";
+import * as _ from "lodash";
 
 @Injectable()
 export class OrdersService {

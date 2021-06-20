@@ -1,33 +1,33 @@
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
-import { forkJoin, Subscription } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from "@angular/core";
+import { SelectionModel } from "@angular/cdk/collections";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
+import { Router } from "@angular/router";
+import { forkJoin, Subscription } from "rxjs";
 
-import { OrdersService } from '../../service/orders.service';
-import { Order } from '../../contracts/order';
-import { MenusService } from '../../service/menus.service';
-import { Menu } from '../../contracts/menu';
-import { ColumnDefinition } from '../../contracts/column-definition';
-import { OrderRow } from '../../contracts/order-row';
-import { LoginService } from '../../service/login.service';
-import { Credentials } from '../../contracts/credentials';
+import { OrdersService } from "../../service/orders.service";
+import { Order } from "../../contracts/order";
+import { MenusService } from "../../service/menus.service";
+import { Menu } from "../../contracts/menu";
+import { ColumnDefinition } from "../../contracts/column-definition";
+import { OrderRow } from "../../contracts/order-row";
+import { LoginService } from "../../service/login.service";
+import { Credentials } from "../../contracts/credentials";
 
 @Component({
-    selector: 'app-order-list',
-    templateUrl: './order-list.component.html',
-    styleUrls: ['./order-list.component.scss']
+    selector: "app-order-list",
+    templateUrl: "./order-list.component.html",
+    styleUrls: ["./order-list.component.scss"]
 })
 export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
-        { id: 'preOrderExists', title: 'Vorbestellung', align: 'center', type: 'string' },
-        { id: 'name1', title: 'Name', align: 'left', type: 'string' },
-        { id: 'name2', title: 'Vorname', align: 'left', type: 'string' },
-        { id: 'comment', title: 'Bemerkung', align: 'left', type: 'string' },
+        { id: "preOrderExists", title: "Vorbestellung", align: "center", type: "string" },
+        { id: "name1", title: "Name", align: "left", type: "string" },
+        { id: "name2", title: "Vorname", align: "left", type: "string" },
+        { id: "comment", title: "Bemerkung", align: "left", type: "string" },
     ];
 
     menus: Menu[] = [];
@@ -70,12 +70,12 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     add(): void {
-        this.router.navigate(['orderform']);
+        this.router.navigate(["orderform"]);
     }
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.router.navigate(['orderform'], { queryParams: { orderId: this.selection.selected[0].id } });
+            this.router.navigate(["orderform"], { queryParams: { orderId: this.selection.selected[0].id } });
         }
     }
 
@@ -107,7 +107,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 id: column.id,
                 title: column.title,
                 align: column.align,
-                type: 'string',
+                type: "string",
             });
         });
 
@@ -115,8 +115,8 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
             this.columns.push({
                 id: menu.id,
                 title: menu.name,
-                align: 'center',
-                type: 'string',
+                align: "center",
+                type: "string",
             });
         });
 
@@ -139,7 +139,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
             this.menus.forEach(menu => {
                 const position = order.positions.find(p => p.id === menu.id);
-                element[menu.id] = '';
+                element[menu.id] = "";
                 if (position != null && position.amount !== 0) {
                     element[menu.id] = position.amount;
                 }

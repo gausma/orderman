@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PreOrderFormComponent } from './pre-order-form.component';
+import { PreOrderFormComponent } from "./pre-order-form.component";
 
-describe('PreOrderFormComponent', () => {
+describe("PreOrderFormComponent", () => {
   let component: PreOrderFormComponent;
   let fixture: ComponentFixture<PreOrderFormComponent>;
 
@@ -19,7 +19,7 @@ describe('PreOrderFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

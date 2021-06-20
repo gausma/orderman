@@ -1,22 +1,22 @@
 
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from "@angular/core";
+import { SelectionModel } from "@angular/cdk/collections";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { Subscription } from "rxjs";
 
-import { ColumnDefinition } from '../../contracts/column-definition';
-import { MenusService } from '../../service/menus.service';
-import { Menu } from '../../contracts/menu';
-import { MenuRow } from '../../contracts/menu-row';
-import { LoginService } from '../../service/login.service';
-import { Credentials } from '../../contracts/credentials';
+import { ColumnDefinition } from "../../contracts/column-definition";
+import { MenusService } from "../../service/menus.service";
+import { Menu } from "../../contracts/menu";
+import { MenuRow } from "../../contracts/menu-row";
+import { LoginService } from "../../service/login.service";
+import { Credentials } from "../../contracts/credentials";
 
 @Component({
-    selector: 'app-menu-list',
-    templateUrl: './menu-list.component.html',
-    styleUrls: ['./menu-list.component.scss']
+    selector: "app-menu-list",
+    templateUrl: "./menu-list.component.html",
+    styleUrls: ["./menu-list.component.scss"]
 })
 export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -25,12 +25,12 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     menus: Menu[] = [];
 
     columns: ColumnDefinition[] = [
-        { id: 'name', title: 'Name', align: 'left', type: 'string' },
-        { id: 'price', title: 'Preis €', align: 'left', type: 'currency' },
-        { id: 'comment', title: 'Bemerkung', align: 'left', type: 'string' },
-        { id: 'sequence', title: 'Reihenfolge', align: 'left', type: 'string' },
+        { id: "name", title: "Name", align: "left", type: "string" },
+        { id: "price", title: "Preis €", align: "left", type: "currency" },
+        { id: "comment", title: "Bemerkung", align: "left", type: "string" },
+        { id: "sequence", title: "Reihenfolge", align: "left", type: "string" },
     ];
-    displayedColumns: string[] = ['name', 'price', 'comment', 'sequence'];
+    displayedColumns: string[] = ["name", "price", "comment", "sequence"];
 
     dataSource: MatTableDataSource<MenuRow> = new MatTableDataSource<MenuRow>([]);
     selection = new SelectionModel<MenuRow>(false, []);
@@ -65,9 +65,9 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private initForm(): void {
         this.form = this.formBuilder.group({
-            name: [''],
+            name: [""],
             price: [0],
-            comment: [''],
+            comment: [""],
             sequence: [0],
         });
     }
@@ -88,13 +88,13 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     add(): void {
-        this.command = 'Erstellen';
+        this.command = "Erstellen";
         this.menuId = null;
 
-        this.form.get('name').setValue('');
-        this.form.get('price').setValue(0);
-        this.form.get('comment').setValue('');
-        this.form.get('sequence').setValue(0);
+        this.form.get("name").setValue("");
+        this.form.get("price").setValue(0);
+        this.form.get("comment").setValue("");
+        this.form.get("sequence").setValue(0);
 
         this.selection.clear();
         this.showForm = true;
@@ -102,13 +102,13 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.command = 'Aktualisieren';
+            this.command = "Aktualisieren";
             this.menuId = this.selection.selected[0].id;
 
-            this.form.get('name').setValue(this.selection.selected[0].name);
-            this.form.get('price').setValue(this.selection.selected[0].price);
-            this.form.get('comment').setValue(this.selection.selected[0].comment);
-            this.form.get('sequence').setValue(this.selection.selected[0].sequence);
+            this.form.get("name").setValue(this.selection.selected[0].name);
+            this.form.get("price").setValue(this.selection.selected[0].price);
+            this.form.get("comment").setValue(this.selection.selected[0].comment);
+            this.form.get("sequence").setValue(this.selection.selected[0].sequence);
 
             this.showForm = true;
         }

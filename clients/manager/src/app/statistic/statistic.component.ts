@@ -23,7 +23,9 @@ export class StatisticComponent implements OnInit, AfterViewInit {
 
     predefinedColumns: ColumnDefinition[] = [
         { id: "title", title: "", align: "left", type: "string" },
-        { id: "sum", title: "Summe", align: "center", type: "string" },
+        { id: "customers", title: "Kunden", align: "center", type: "string" },
+        { id: "portions", title: "Portionen", align: "center", type: "string" },
+        { id: "sum", title: "Summe €", align: "center", type: "currency" },
     ];
 
     menus: Menu[] = [];
@@ -59,12 +61,12 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         ]).subscribe(responseList => {
             this.processMenus(responseList[0]);
             const preOrderData = this.processPreOrders(responseList[1]);
-            const orderData = this.processOrders(responseList[2]);
-            const remainingData = this.calculateRemaining(preOrderData, orderData);
-            const earningData = this.calculateEarnings(orderData);
+            const orderPreorderedData = this.processOrdersPreordered(responseList[2]);
+            const orderNotPreorderedData = this.processOrdersNotPreordered(responseList[2]);
+            const remainingData = this.calculateRemaining(preOrderData, orderPreorderedData);
 
-            const emptyRow: StatisticRow = { title: "", sum: "" };
-            this.dataSource.data = [preOrderData, orderData, emptyRow, remainingData, earningData];        
+            const emptyRow: StatisticRow = { title: "", customers: null, portions: null, sum: null };
+            this.dataSource.data = [preOrderData, orderPreorderedData, remainingData, emptyRow, orderNotPreorderedData];
         });
     }
 
@@ -77,7 +79,7 @@ export class StatisticComponent implements OnInit, AfterViewInit {
                 id: column.id,
                 title: column.title,
                 align: column.align,
-                type: "string",
+                type: column.type,
             });
         });
 
@@ -99,73 +101,106 @@ export class StatisticComponent implements OnInit, AfterViewInit {
     private processPreOrders(preOrders: PreOrder[]): StatisticRow {
         const data: StatisticRow = {
             title: "Vorbestellungen",
-            sum: "",
+            customers: 0,
+            portions: 0,
+            sum: 0.0,
         }
         this.menus.forEach(menu => {
             data[menu.id] = 0;
         });
 
+        let portions = 0;
         preOrders.forEach(preOrder => {
             this.menus.forEach(menu => {
                 const position = preOrder.positions.find(p => p.id === menu.id);
                 if (position != null && position.amount !== 0) {
                     data[menu.id] += position.amount;
+                    portions += position.amount;
                 }
             });            
         });
 
+        data.customers = preOrders.length;
+        data.portions = portions;
+
+        let sum = 0.0;
+        this.menus.forEach(menu => {
+            const value = data[menu.id] * menu.price;
+            sum += value;
+        });
+
+        data.sum = sum;
+
         return data;
     }
 
-    private processOrders(orders: Order[]): StatisticRow {
+    private processOrdersPreordered(orders: Order[]): StatisticRow {
+        return this.processOrdersHelper(orders, true, "Einkäufe");
+    }
+
+    private processOrdersNotPreordered(orders: Order[]): StatisticRow {
+        return this.processOrdersHelper(orders, false, "Einkäufe ohne Vorbestellung");
+    }
+
+    private processOrdersHelper(orders: Order[], preordered: boolean, title: string): StatisticRow {
         const data: StatisticRow = {
-            title: "Einkäufe",
-            sum: "",
+            title,
+            customers: 0,
+            portions: 0,
+            sum: 0.0,
         }
         this.menus.forEach(menu => {
             data[menu.id] = 0;
         });
 
+        let customers = 0;
+        let portions = 0;
         orders.forEach(order => {
-            this.menus.forEach(menu => {
-                const position = order.positions.find(p => p.id === menu.id);
-                if (position != null && position.amount !== 0) {
-                    data[menu.id] += position.amount;
-                }
-            });            
+            if ((preordered && order.preOrderId !== "") ||
+                (!preordered && order.preOrderId === "")) {
+                this.menus.forEach(menu => {
+                    const position = order.positions.find(p => p.id === menu.id);
+                    if (position != null && position.amount !== 0) {
+                        data[menu.id] += position.amount;
+                        portions += position.amount;
+                    }
+                });            
+                customers++;
+            }
         });
 
-        return data;
+        data.customers = customers;
+        data.portions = portions;
+
+        let sum = 0.0;
+        this.menus.forEach(menu => {
+            const value = data[menu.id] * menu.price;
+            sum += value;
+        });
+
+        data.sum = sum;
+
+        return data;        
     }
 
     private calculateRemaining(preOrderData: StatisticRow, orderData: StatisticRow): StatisticRow {
         const remainingData: StatisticRow = {
             title: "Ausstehend",
-            sum: "",
+            customers: 0,
+            portions: 0,
+            sum: 0.0,
         }
 
+        let portions = 0;
         this.menus.forEach(menu => {
             remainingData[menu.id] = preOrderData[menu.id] - orderData[menu.id];
+            portions += remainingData[menu.id];
         });
+
+        remainingData.customers = preOrderData.customers - orderData.customers;
+        remainingData.portions = portions;
+        remainingData.sum = preOrderData.sum - orderData.sum;
 
         return remainingData;
     }    
-
-    private calculateEarnings(orderData: StatisticRow): StatisticRow {
-        const earningData: StatisticRow = {
-            title: "Einnahmen",
-            sum: "0.00",
-        }
-
-        let sum = 0.0;
-        this.menus.forEach(menu => {
-            const value = orderData[menu.id] * menu.price;
-            earningData[menu.id] = value.toFixed(2);
-            sum += value;
-        });
-
-        earningData.sum = sum.toFixed(2);
-
-        return earningData;
-    }  
 }

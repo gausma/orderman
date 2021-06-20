@@ -1,4 +1,6 @@
 export class StatisticRow {
     title: string;
-    sum: string;
+    customers: number;
+    portions: number;
+    sum: number;
 }

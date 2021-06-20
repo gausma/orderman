@@ -63,9 +63,6 @@ Todo
 - REST Validtor
 - Mini Build
 - Scrolling in großen tabellen
-- Überbestände verwalten
+- Überbestände verwalten + Statistik
 - Letzte Bestellung (neu) automatisch oben
-- Statistik Vorbest.: 
-  (Summe) Anzahl Bestellungen, Summe Portionen, Port/Best, Gesamtsumme 
-  Anzahl / Summe pro Kommunikation
 - Ids für HTML Felder (Browser Vervollständigen)

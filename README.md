@@ -65,3 +65,4 @@ Todo
 - Scrolling in großen tabellen
 - Letzte Bestellung (neu) automatisch oben
 - Ids für HTML Felder (Browser Vervollständigen)
+- Übersetzung

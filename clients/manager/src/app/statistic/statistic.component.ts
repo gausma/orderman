@@ -190,17 +190,20 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         const data: StatisticRow = {
             title: "Bestand",
             customers: null,
-            portions: null,
+            portions: 0,
             sum: 0.0,
         }
 
+        let portions = 0;
         let sum = 0.0;
         this.menus.forEach(menu => {
             data[menu.id] = menu.stock;
+            portions += data[menu.id];
             sum += menu.stock * menu.price;
         });
 
         data.sum = sum;
+        data.portions = portions;
 
         return data;
     }
@@ -230,17 +233,20 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         const data: StatisticRow = {
             title: "Übrig",
             customers: null,
-            portions: null,
+            portions: 0,
             sum: 0.0,
         }
 
+        let portions = 0;
         let sum = 0.0;
         this.menus.forEach(menu => {
             data[menu.id] = stockData[menu.id] - preOrderData[menu.id] - orderNotPreorderedData[menu.id];
+            portions += data[menu.id];
             sum += data[menu.id] * menu.price;
         });
 
         data.sum = sum;
+        data.portions = portions;
 
         return data;
     }

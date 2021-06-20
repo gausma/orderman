@@ -63,6 +63,5 @@ Todo
 - REST Validtor
 - Mini Build
 - Scrolling in großen tabellen
-- Überbestände verwalten + Statistik
 - Letzte Bestellung (neu) automatisch oben
 - Ids für HTML Felder (Browser Vervollständigen)

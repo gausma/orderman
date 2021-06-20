@@ -62,11 +62,14 @@ export class StatisticComponent implements OnInit, AfterViewInit {
             this.processMenus(responseList[0]);
             const preOrderData = this.processPreOrders(responseList[1]);
             const orderPreorderedData = this.processOrdersPreordered(responseList[2]);
-            const orderNotPreorderedData = this.processOrdersNotPreordered(responseList[2]);
             const remainingData = this.calculateRemaining(preOrderData, orderPreorderedData);
+            const stockData = this.calculateStock();
+            const orderNotPreorderedData = this.processOrdersNotPreordered(responseList[2]);
+            const remainingStockData = this.calculateRemainingStock(stockData, preOrderData, orderNotPreorderedData);
 
             const emptyRow: StatisticRow = { title: "", customers: null, portions: null, sum: null };
-            this.dataSource.data = [preOrderData, orderPreorderedData, remainingData, emptyRow, orderNotPreorderedData];
+            this.dataSource.data = [preOrderData, orderPreorderedData, remainingData, emptyRow,
+                stockData, orderNotPreorderedData, remainingStockData];
         });
     }
 
@@ -117,7 +120,7 @@ export class StatisticComponent implements OnInit, AfterViewInit {
                     data[menu.id] += position.amount;
                     portions += position.amount;
                 }
-            });            
+            });
         });
 
         data.customers = preOrders.length;
@@ -135,7 +138,7 @@ export class StatisticComponent implements OnInit, AfterViewInit {
     }
 
     private processOrdersPreordered(orders: Order[]): StatisticRow {
-        return this.processOrdersHelper(orders, true, "Einkäufe");
+        return this.processOrdersHelper(orders, true, "Einkäufe mit Vorbestellung");
     }
 
     private processOrdersNotPreordered(orders: Order[]): StatisticRow {
@@ -164,7 +167,7 @@ export class StatisticComponent implements OnInit, AfterViewInit {
                         data[menu.id] += position.amount;
                         portions += position.amount;
                     }
-                });            
+                });
                 customers++;
             }
         });
@@ -180,11 +183,30 @@ export class StatisticComponent implements OnInit, AfterViewInit {
 
         data.sum = sum;
 
-        return data;        
+        return data;
+    }
+
+    private calculateStock(): StatisticRow {
+        const data: StatisticRow = {
+            title: "Bestand",
+            customers: null,
+            portions: null,
+            sum: 0.0,
+        }
+
+        let sum = 0.0;
+        this.menus.forEach(menu => {
+            data[menu.id] = menu.stock;
+            sum += menu.stock * menu.price;
+        });
+
+        data.sum = sum;
+
+        return data;
     }
 
     private calculateRemaining(preOrderData: StatisticRow, orderData: StatisticRow): StatisticRow {
-        const remainingData: StatisticRow = {
+        const data: StatisticRow = {
             title: "Ausstehend",
             customers: 0,
             portions: 0,
@@ -193,14 +215,33 @@ export class StatisticComponent implements OnInit, AfterViewInit {
 
         let portions = 0;
         this.menus.forEach(menu => {
-            remainingData[menu.id] = preOrderData[menu.id] - orderData[menu.id];
-            portions += remainingData[menu.id];
+            data[menu.id] = preOrderData[menu.id] - orderData[menu.id];
+            portions += data[menu.id];
         });
 
-        remainingData.customers = preOrderData.customers - orderData.customers;
-        remainingData.portions = portions;
-        remainingData.sum = preOrderData.sum - orderData.sum;
+        data.customers = preOrderData.customers - orderData.customers;
+        data.portions = portions;
+        data.sum = preOrderData.sum - orderData.sum;
 
-        return remainingData;
-    }    
+        return data;
+    }
+
+    private calculateRemainingStock(stockData: StatisticRow, preOrderData: StatisticRow, orderNotPreorderedData: StatisticRow): StatisticRow {
+        const data: StatisticRow = {
+            title: "Übrig",
+            customers: null,
+            portions: null,
+            sum: 0.0,
+        }
+
+        let sum = 0.0;
+        this.menus.forEach(menu => {
+            data[menu.id] = stockData[menu.id] - preOrderData[menu.id] - orderNotPreorderedData[menu.id];
+            sum += data[menu.id] * menu.price;
+        });
+
+        data.sum = sum;
+
+        return data;
+    }
 }

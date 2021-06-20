@@ -29,8 +29,9 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "price", title: "Preis €", align: "left", type: "currency" },
         { id: "comment", title: "Bemerkung", align: "left", type: "string" },
         { id: "sequence", title: "Reihenfolge", align: "left", type: "string" },
+        { id: "stock", title: "Bestand", align: "left", type: "string" },
     ];
-    displayedColumns: string[] = ["name", "price", "comment", "sequence"];
+    displayedColumns: string[] = ["name", "price", "comment", "sequence", "stock"];
 
     dataSource: MatTableDataSource<MenuRow> = new MatTableDataSource<MenuRow>([]);
     selection = new SelectionModel<MenuRow>(false, []);
@@ -69,6 +70,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
             price: [0],
             comment: [""],
             sequence: [0],
+            stock: [0],
         });
     }
 
@@ -95,6 +97,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.form.get("price").setValue(0);
         this.form.get("comment").setValue("");
         this.form.get("sequence").setValue(0);
+        this.form.get("stock").setValue(0);
 
         this.selection.clear();
         this.showForm = true;
@@ -109,6 +112,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
             this.form.get("price").setValue(this.selection.selected[0].price);
             this.form.get("comment").setValue(this.selection.selected[0].comment);
             this.form.get("sequence").setValue(this.selection.selected[0].sequence);
+            this.form.get("stock").setValue(this.selection.selected[0].stock);
 
             this.showForm = true;
         }
@@ -138,6 +142,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
                 price: menu.price,
                 comment: menu.comment,
                 sequence: menu.sequence,
+                stock: menu.stock,
             };
             data.push(element);
         });
@@ -151,6 +156,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
             price: this.form.value.price,
             comment: this.form.value.comment,
             sequence: this.form.value.sequence,
+            stock: this.form.value.stock,
         };
 
         if (this.menuId == null) {

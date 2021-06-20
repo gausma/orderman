@@ -19,6 +19,9 @@ export class Menu {
 
     @Prop()
     sequence: number;
+
+    @Prop()
+    stock: number;
 }
 
 export const MenuSchema = SchemaFactory.createForClass(Menu);

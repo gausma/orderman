@@ -18,6 +18,7 @@ export class MenusService {
             price: menuDocument.price,
             comment: menuDocument.comment,
             sequence: menuDocument.sequence,
+            stock: menuDocument.stock,
         };
     }
 

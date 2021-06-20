@@ -4,4 +4,5 @@ export interface Menu {
     price: number;
     comment: string;
     sequence: number;
+    stock: number;
 }

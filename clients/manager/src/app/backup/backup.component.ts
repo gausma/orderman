@@ -20,13 +20,13 @@ export class BackupComponent implements OnInit {
 
     backup(): void {
         this.backupService.createBackup().subscribe(backup => {
-            this.startDownload('OrderManBackup.json', JSON.stringify(backup));
+            this.startDownload(`OrderManBackup_${this.getDate()}.json`, JSON.stringify(backup));
         });
     }
 
     createCsv(): void {
         this.backupService.createCsv().subscribe(csv => {
-            this.startDownload('OrderMan.csv', csv);
+            this.startDownload(`OrderMan_${this.getDate()}.csv`, JSON.stringify(csv));
         });
     }
 
@@ -53,5 +53,16 @@ export class BackupComponent implements OnInit {
 
         var event = new MouseEvent("click");
         this.downloadElement.dispatchEvent(event);
+    }
+
+    private getDate() : string {
+        let date = new Date().toISOString();
+        date = date.substr(0, 19);
+        date = date.replace("T", "_");
+        date = date.replace("-", "");
+        date = date.replace("-", "");
+        date = date.replace(":", "");
+        date = date.replace(":", "");
+        return date;
     }
 }

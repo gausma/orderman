@@ -65,5 +65,4 @@ Todo
 - Scrolling in großen tabellen
 - Letzte Bestellung (neu) automatisch oben
 - Übersetzung
-- STatistik - Communikation zählen
 - Seite kann nicht aufgerufen werden (URL), wenn nicht erlaubt

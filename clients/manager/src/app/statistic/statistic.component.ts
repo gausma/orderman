@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { MatSort } from "@angular/material/sort";
 import { forkJoin } from "rxjs";
 
 import { OrdersService } from "../service/orders.service";
@@ -8,58 +7,68 @@ import { Order } from "../contracts/order";
 import { MenusService } from "../service/menus.service";
 import { Menu } from "../contracts/menu";
 import { ColumnDefinition } from "../contracts/column-definition";
-import { StatisticRow } from "../contracts/statistic-row";
+import { Statistic1Row } from "../contracts/statistic1-row";
 import { PreOrder } from "../contracts/pre-order";
 import { PreOrdersService } from "../service/pre-orders.service";
+import { CommunicationsService } from '../service/communications.service';
+import { Communication } from '../contracts/communication';
+import { Statistic2Row } from '../contracts/statistic2-row';
 
 @Component({
     selector: "app-statistic",
     templateUrl: "./statistic.component.html",
     styleUrls: ["./statistic.component.scss"]
 })
-export class StatisticComponent implements OnInit, AfterViewInit {
-
-    @ViewChild(MatSort) sort: MatSort;
-
-    predefinedColumns: ColumnDefinition[] = [
+export class StatisticComponent implements OnInit {
+    statistic1PredefinedColumns: ColumnDefinition[] = [
         { id: "title", title: "", align: "left", type: "string" },
         { id: "customers", title: "Kunden", align: "center", type: "string" },
         { id: "portions", title: "Portionen", align: "center", type: "string" },
         { id: "sum", title: "Summe €", align: "center", type: "currency" },
     ];
 
+    statistic1Columns: ColumnDefinition[] = [];
+    statistic1DisplayedColumns: string[] = [];
+    statistic1DataSource: MatTableDataSource<Statistic1Row> = new MatTableDataSource<Statistic1Row>([]);
+
+    statistic2PredefinedColumns: ColumnDefinition[] = [
+        { id: "title", title: "", align: "left", type: "string" },
+    ];
+
+    statistic2Columns: ColumnDefinition[] = [];
+    statistic2DisplayedColumns: string[] = [];
+    statistic2DataSource: MatTableDataSource<Statistic2Row> = new MatTableDataSource<Statistic2Row>([]);
+
     menus: Menu[] = [];
-
-    columns: ColumnDefinition[] = [];
-    displayedColumns: string[] = [];
-
-    dataSource: MatTableDataSource<StatisticRow> = new MatTableDataSource<StatisticRow>([]);
+    communications: Communication[] = [];
 
     constructor(
         private menusService: MenusService,
         private preOrderService: PreOrdersService,
-        private orderService: OrdersService) { }
+        private orderService: OrdersService,
+        private communicationService: CommunicationsService) { }
 
     ngOnInit(): void {
-        this.getData();
-    }
-
-    ngAfterViewInit(): void {
-        this.dataSource.sort = this.sort;
+        this.getStatisticData();
     }
 
     refresh(): void {
-        this.getData();
+        this.getStatisticData();
     }
 
-    private getData(): void {
-        this.dataSource.data = [];
+    private getStatisticData(): void {
+        this.statistic1DataSource.data = [];
         forkJoin([
             this.menusService.getMenus(),
             this.preOrderService.getPreOrders(),
-            this.orderService.getOrders()
+            this.orderService.getOrders(),
+            this.communicationService.getCommunications()
         ]).subscribe(responseList => {
             this.processMenus(responseList[0]);
+            this.processCommunications(responseList[3]);
+
+            const emptyRow: Statistic1Row = { title: "", customers: null, portions: null, sum: null };
+
             const preOrderData = this.processPreOrders(responseList[1]);
             const orderPreorderedData = this.processOrdersPreordered(responseList[2]);
             const remainingData = this.calculateRemaining(preOrderData, orderPreorderedData);
@@ -67,18 +76,20 @@ export class StatisticComponent implements OnInit, AfterViewInit {
             const orderNotPreorderedData = this.processOrdersNotPreordered(responseList[2]);
             const remainingStockData = this.calculateRemainingStock(stockData, preOrderData, orderNotPreorderedData);
 
-            const emptyRow: StatisticRow = { title: "", customers: null, portions: null, sum: null };
-            this.dataSource.data = [preOrderData, orderPreorderedData, remainingData, emptyRow,
+            this.statistic1DataSource.data = [preOrderData, orderPreorderedData, remainingData, emptyRow,
                 stockData, orderNotPreorderedData, remainingStockData];
+
+            const communicationData = this.calculateCommunications(responseList[1]);
+            this.statistic2DataSource.data = [communicationData];
         });
     }
 
     private processMenus(menus: Menu[]): void {
         this.menus = menus;
 
-        this.columns = [];
-        this.predefinedColumns.forEach(column => {
-            this.columns.push({
+        this.statistic1Columns = [];
+        this.statistic1PredefinedColumns.forEach(column => {
+            this.statistic1Columns.push({
                 id: column.id,
                 title: column.title,
                 align: column.align,
@@ -87,7 +98,7 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         });
 
         menus.forEach((menu) => {
-            this.columns.push({
+            this.statistic1Columns.push({
                 id: menu.id,
                 title: menu.name,
                 align: "center",
@@ -95,14 +106,14 @@ export class StatisticComponent implements OnInit, AfterViewInit {
             });
         });
 
-        this.displayedColumns = [];
-        this.columns.forEach(column => {
-            this.displayedColumns.push(column.id);
+        this.statistic1DisplayedColumns = [];
+        this.statistic1Columns.forEach(column => {
+            this.statistic1DisplayedColumns.push(column.id);
         });
     }
 
-    private processPreOrders(preOrders: PreOrder[]): StatisticRow {
-        const data: StatisticRow = {
+    private processPreOrders(preOrders: PreOrder[]): Statistic1Row {
+        const data: Statistic1Row = {
             title: "Vorbestellungen",
             customers: 0,
             portions: 0,
@@ -137,16 +148,16 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         return data;
     }
 
-    private processOrdersPreordered(orders: Order[]): StatisticRow {
+    private processOrdersPreordered(orders: Order[]): Statistic1Row {
         return this.processOrdersHelper(orders, true, "Einkäufe mit Vorbestellung");
     }
 
-    private processOrdersNotPreordered(orders: Order[]): StatisticRow {
+    private processOrdersNotPreordered(orders: Order[]): Statistic1Row {
         return this.processOrdersHelper(orders, false, "Einkäufe ohne Vorbestellung");
     }
 
-    private processOrdersHelper(orders: Order[], preordered: boolean, title: string): StatisticRow {
-        const data: StatisticRow = {
+    private processOrdersHelper(orders: Order[], preordered: boolean, title: string): Statistic1Row {
+        const data: Statistic1Row = {
             title,
             customers: 0,
             portions: 0,
@@ -186,8 +197,8 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         return data;
     }
 
-    private calculateStock(): StatisticRow {
-        const data: StatisticRow = {
+    private calculateStock(): Statistic1Row {
+        const data: Statistic1Row = {
             title: "Bestand",
             customers: null,
             portions: 0,
@@ -208,8 +219,8 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         return data;
     }
 
-    private calculateRemaining(preOrderData: StatisticRow, orderData: StatisticRow): StatisticRow {
-        const data: StatisticRow = {
+    private calculateRemaining(preOrderData: Statistic1Row, orderData: Statistic1Row): Statistic1Row {
+        const data: Statistic1Row = {
             title: "Ausstehend",
             customers: 0,
             portions: 0,
@@ -229,8 +240,8 @@ export class StatisticComponent implements OnInit, AfterViewInit {
         return data;
     }
 
-    private calculateRemainingStock(stockData: StatisticRow, preOrderData: StatisticRow, orderNotPreorderedData: StatisticRow): StatisticRow {
-        const data: StatisticRow = {
+    private calculateRemainingStock(stockData: Statistic1Row, preOrderData: Statistic1Row, orderNotPreorderedData: Statistic1Row): Statistic1Row {
+        const data: Statistic1Row = {
             title: "Übrig",
             customers: null,
             portions: 0,
@@ -250,4 +261,48 @@ export class StatisticComponent implements OnInit, AfterViewInit {
 
         return data;
     }
+
+    private processCommunications(communications: Communication[]): void {
+        this.communications = communications;
+
+        this.statistic2Columns = [];
+        this.statistic2PredefinedColumns.forEach(column => {
+            this.statistic2Columns.push({
+                id: column.id,
+                title: column.title,
+                align: column.align,
+                type: column.type,
+            });
+        });
+
+        communications.forEach(communication => {
+            this.statistic2Columns.push({
+                id: communication.id,
+                title: communication.name,
+                align: "left",
+                type: "string",
+            });   
+        });
+
+        this.statistic2DisplayedColumns = [];
+        this.statistic2Columns.forEach(column => {
+            this.statistic2DisplayedColumns.push(column.id);
+        });
+    }
+
+    private calculateCommunications(preOrders: PreOrder[]): Statistic2Row {
+        const data: Statistic2Row = {
+            title: "Vorbestellungen",
+        }
+
+        this.communications.forEach(communication => {
+            data[communication.id] = 0;
+        });
+
+        preOrders.forEach(preOrder => {
+            data[preOrder.communicationId]++;
+        });
+
+        return data;
+    }    
 }

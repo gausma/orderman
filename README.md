@@ -62,7 +62,6 @@ Todo
 - Export Email Adressen eines bestimmten Typs
 - REST Validtor
 - Mini Build
-- Scrolling in großen tabellen
 - Letzte Bestellung (neu) automatisch oben
 - Übersetzung
 - Seite kann nicht aufgerufen werden (URL), wenn nicht erlaubt

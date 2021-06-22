@@ -4,7 +4,7 @@
         Filter
     </div>
     <div class="form-item">
-        <input class="form-input" type="text" [(ngModel)]="filter" (input)="onFilter($event.target.value)">
+        <input class="form-input" type="text"  autocomplete="off" [(ngModel)]="filter" (input)="onFilter($event.target.value)">
     </div>
 </div>
 <div class="form-row-wrapper">
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
 
     <!-- Section Name, ... -->
     <div class="form-wrapper">

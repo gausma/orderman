@@ -2,7 +2,7 @@
 <div class="commandline">
     <div class="commandline-filter">
         <mat-form-field>
-            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
+            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
         </mat-form-field>
     </div>
 
@@ -41,7 +41,7 @@
 </table>
 
 <!-- Form -->
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
     <div *ngIf="showForm === true">
         <mat-card [class.mat-elevation-z8]="true">
             <mat-card-content>
@@ -49,7 +49,7 @@
                 <div class="form-row2-wrapper">
                     <mat-form-field>
                         <mat-label>Name</mat-label>
-                        <input matInput autocomplete="on" type="text" formControlName="name">
+                        <input matInput type="text" formControlName="name">
                     </mat-form-field>
 
                     <mat-form-field>

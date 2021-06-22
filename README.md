@@ -64,5 +64,6 @@ Todo
 - Mini Build
 - Scrolling in großen tabellen
 - Letzte Bestellung (neu) automatisch oben
-- Ids für HTML Felder (Browser Vervollständigen)
 - Übersetzung
+- STatistik - Communikation zählen
+- Seite kann nicht aufgerufen werden (URL), wenn nicht erlaubt

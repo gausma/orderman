@@ -2,11 +2,11 @@
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Benutzer</mat-label>
-        <input matInput [(ngModel)]="user">
+        <input matInput autocomplete="off" [(ngModel)]="user">
     </mat-form-field>
     <mat-form-field>
         <mat-label>Kennwort</mat-label>
-        <input type="password" matInput [(ngModel)]="password">
+        <input type="password" matInput autocomplete="off" [(ngModel)]="password">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>

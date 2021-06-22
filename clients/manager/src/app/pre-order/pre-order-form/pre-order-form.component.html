@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
     <h1>{{ title }}</h1>
 
     <mat-card [class.mat-elevation-z8]="true">
@@ -8,19 +8,19 @@
             <div class="form-row2-wrapper">
                 <mat-form-field>
                     <mat-label>Name</mat-label>
-                    <input matInput autocomplete="on" type="text" formControlName="name1">
+                    <input matInput type="text" formControlName="name1">
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Vorname</mat-label>
-                    <input matInput autocomplete="on" type="text" formControlName="name2">
+                    <input matInput type="text" formControlName="name2">
                 </mat-form-field>
             </div>
 
             <div class="form-row1-wrapper">
                 <mat-form-field>
                     <mat-label>Bemerkung</mat-label>
-                    <input matInput autocomplete="on" type="text" formControlName="comment">
+                    <input matInput type="text" formControlName="comment">
                 </mat-form-field>
             </div>
 
@@ -34,7 +34,7 @@
                 </mat-form-field>
 
                 <mat-form-field *ngIf="form.value.communication?.communicationType!='check'">
-                    <input matInput autocomplete="on" type="text" formControlName="communicationValue">
+                    <input matInput type="text" formControlName="communicationValue">
                 </mat-form-field>
             </div>
 
@@ -42,7 +42,7 @@
             <div class="menu" formArrayName="positions">
                 <mat-form-field *ngFor="let menu of menus; let i = index">
                     <mat-label>{{ menu.name }}</mat-label>
-                    <input matInput autocomplete="on" type="number" formControlName="{{ i }}">
+                    <input matInput type="number" formControlName="{{ i }}">
                 </mat-form-field>
             </div>
         </mat-card-content>

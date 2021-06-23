@@ -10,18 +10,19 @@ import { OrderFormComponent } from "./order/order-form/order-form.component";
 import { StatisticComponent } from "./statistic/statistic.component";
 import { BackupComponent } from "./backup/backup.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
+import { RouteAccessGuard } from './auth/route-access/route-access.guard';
 
 const routes: Routes = [
-    { path: "welcome", component: WelcomeComponent, data: { credentials: "welcome" }  },
-    { path: "preorderlist", component: PreOrderListComponent, data: { credentials: "preOrders" } },
-    { path: "preorderform", component: PreOrderFormComponent, data: { credentials: "preOrders" }  },
-    { path: "orderlist", component: OrderListComponent, data: { credentials: "orders" } },
-    { path: "orderform", component: OrderFormComponent, data: { credentials: "orders" } },
-    { path: "communicationlist", component: CommunicationListComponent, data: { credentials: "communications" }  },
-    { path: "menulist", component: MenuListComponent, data: { credentials: "menus" }  },
-    { path: "statistic", component: StatisticComponent, data: { credentials: "statistics" }  },
-    { path: "backup", component: BackupComponent, data: { credentials: "backups" }  },
-    { path: "**", component: WelcomeComponent, data: { credentials: "welcome" }  },
+    { path: "welcome", component: WelcomeComponent, data: { credentials: "welcome", function: "read" } },
+    { path: "preorderlist", component: PreOrderListComponent, data: { credentials: "preOrders", function: "read" }, canActivate: [RouteAccessGuard] },
+    { path: "preorderform", component: PreOrderFormComponent, data: { credentials: "preOrders", function: "write" }, canActivate: [RouteAccessGuard]  },
+    { path: "orderlist", component: OrderListComponent, data: { credentials: "orders", function: "read" }, canActivate: [RouteAccessGuard] },
+    { path: "orderform", component: OrderFormComponent, data: { credentials: "orders", function: "write" }, canActivate: [RouteAccessGuard] },
+    { path: "communicationlist", component: CommunicationListComponent, data: { credentials: "communications", function: "read" }, canActivate: [RouteAccessGuard]  },
+    { path: "menulist", component: MenuListComponent, data: { credentials: "menus", function: "read" }, canActivate: [RouteAccessGuard] },
+    { path: "statistic", component: StatisticComponent, data: { credentials: "statistics", function: "read" }, canActivate: [RouteAccessGuard] },
+    { path: "backup", component: BackupComponent, data: { credentials: "backups", function: "read" }, canActivate: [RouteAccessGuard] },
+    { path: "**", component: WelcomeComponent, data: { credentials: "welcome", function: "read" } },
 ];
 
 @NgModule({

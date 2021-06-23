@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { LoginDialogComponent } from "../login-dialog/login-dialog.component";
+import { LoginDialogComponent } from "../../auth/login-dialog/login-dialog.component";
 import { LoginService } from "../../service/login.service";
 import { Login } from "../../contracts/login";
 import { Credentials } from "../../contracts/credentials";
@@ -18,7 +18,7 @@ export interface DialogData {
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.scss"]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
     @Output() public sidenavToggle = new EventEmitter();
 
@@ -27,10 +27,6 @@ export class HeaderComponent implements OnInit {
         public loginService: LoginService,
         private router: Router,
         private route: ActivatedRoute) { }
-
-    ngOnInit(): void {
-        this.route.data.subscribe((d) => {console.log(d)});        
-    }
 
     public onToggleSidenav = () => {
         this.sidenavToggle.emit();
@@ -51,7 +47,7 @@ export class HeaderComponent implements OnInit {
             if (this.route.children.length === 1) {
                 this.route.children[0].data.subscribe((data) => {
                     if(credentials[data.credentials] != null) {
-                        if(!credentials[data.credentials].read){
+                        if(!credentials[data.credentials][data.function]){
                             this.router.navigate(["welcome"]);
                         }
                     }

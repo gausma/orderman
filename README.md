@@ -64,4 +64,3 @@ Todo
 - Mini Build
 - Letzte Bestellung (neu) automatisch oben
 - Übersetzung
-- Seite kann nicht aufgerufen werden (URL), wenn nicht erlaubt

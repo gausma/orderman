@@ -37,7 +37,10 @@
     <table mat-table matSort [dataSource]="dataSource" class="table mat-elevation-z8">
         <ng-container *ngFor="let column of columns" [matColumnDef]="column.id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.title }}</th>
-            <td mat-cell *matCellDef="let element" [ngClass]="column.align">{{ element[column.id] }}</td>
+            <td mat-cell *matCellDef="let element" [ngClass]="column.align">
+                <div *ngIf="column.type==='string'">{{ element[column.id] }}</div>
+                <div *ngIf="column.type==='date'">{{ element[column.id] | date:"dd.MM.yy HH:mm" }}</div>            
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

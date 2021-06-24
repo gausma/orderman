@@ -6,4 +6,5 @@ export class PreOrderRow {
     comment: string;
     communicationId: string;
     communicationValue: string;
+    datetime: string;
 }

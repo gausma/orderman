@@ -28,6 +28,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "name1", title: "Name", align: "left", type: "string" },
         { id: "name2", title: "Vorname", align: "left", type: "string" },
         { id: "comment", title: "Bemerkung", align: "left", type: "string" },
+        { id: "datetime", title: "Erstellt", align: "left", type: "date" },
     ];
 
     menus: Menu[] = [];
@@ -53,6 +54,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
+        this.sort.sort({id: "datetime", start: "desc", disableClear: false});
         this.dataSource.sort = this.sort;
     }
 
@@ -107,7 +109,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 id: column.id,
                 title: column.title,
                 align: column.align,
-                type: "string",
+                type: column.type,
             });
         });
 
@@ -135,6 +137,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 name1: order.name1,
                 name2: order.name2,
                 comment: order.comment,
+                datetime: order.datetime,
             };
 
             this.menus.forEach(menu => {

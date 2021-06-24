@@ -62,5 +62,4 @@ Todo
 - Export Email Adressen eines bestimmten Typs
 - REST Validtor
 - Mini Build
-- Letzte Bestellung (neu) automatisch oben
 - Übersetzung

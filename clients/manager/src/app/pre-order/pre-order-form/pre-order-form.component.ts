@@ -59,7 +59,16 @@ export class PreOrderFormComponent implements OnInit {
     }
 
     private async getCommunications(): Promise<void> {
-        this.communications = await this.communicationsService.getCommunications().toPromise();
+        const communications = await this.communicationsService.getCommunications().toPromise();
+        this.communications = communications.sort((a: Communication, b: Communication) => {
+            if (a.name === b.name) {
+                return 0;
+            } else if (a.name < b.name) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
         if (this.communications.length > 0) {
             this.form.get("communication").setValue(this.communications[0]);
         }

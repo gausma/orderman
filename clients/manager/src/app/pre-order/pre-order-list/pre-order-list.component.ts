@@ -35,6 +35,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "comment", title: "Bemerkung", align: "left", type: "string" },
         { id: "communicationId", title: "Kommunikation", align: "left", type: "string" },
         { id: "communicationValue", title: "Info", align: "left", type: "string" },
+        { id: "datetime", title: "Erstellt", align: "left", type: "date" },
     ];
 
     communications: Communication[] = [];
@@ -65,6 +66,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
+        this.sort.sort({id: "datetime", start: "desc", disableClear: false});
         this.dataSource.sort = this.sort;
     }
 
@@ -154,7 +156,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 id: column.id,
                 title: column.title,
                 align: column.align,
-                type: "string",
+                type: column.type,
             });
         });
 
@@ -181,7 +183,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.preOrders = preOrders;
 
         const data: PreOrderRow[] = [];
-        preOrders.forEach(preOrder => {
+        this.preOrders.forEach(preOrder => {
             const communication = this.communications.find(c => c.id === preOrder.communicationId);
 
             const element: PreOrderRow = {
@@ -191,7 +193,8 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 name2: preOrder.name2,
                 comment: preOrder.comment,
                 communicationId: communication.name,
-                communicationValue: preOrder.communicationValue
+                communicationValue: preOrder.communicationValue,
+                datetime: preOrder.datetime,
             };
 
             this.menus.forEach(menu => {

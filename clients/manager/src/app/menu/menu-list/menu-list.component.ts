@@ -1,5 +1,5 @@
 
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy, Renderer2 } from "@angular/core";
 import { SelectionModel } from "@angular/cdk/collections";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
@@ -19,7 +19,6 @@ import { Credentials } from "../../contracts/credentials";
     styleUrls: ["./menu-list.component.scss"]
 })
 export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
-
     @ViewChild(MatSort) sort: MatSort;
 
     menus: Menu[] = [];
@@ -48,7 +47,8 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(
         private loginService: LoginService,
         private formBuilder: FormBuilder,
-        private menuService: MenusService) { }
+        private menuService: MenusService,
+        private renderer: Renderer2) { }
 
     ngOnInit(): void {
         this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
@@ -101,6 +101,10 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.selection.clear();
         this.showForm = true;
+
+        setTimeout(() => {
+            this.renderer.selectRootElement("#name").focus();
+        }, 100);
     }
 
     edit(): void {
@@ -115,6 +119,10 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
             this.form.get("stock").setValue(this.selection.selected[0].stock);
 
             this.showForm = true;
+
+            setTimeout(() => {
+                this.renderer.selectRootElement("#name").focus();
+            }, 100);
         }
     }
 

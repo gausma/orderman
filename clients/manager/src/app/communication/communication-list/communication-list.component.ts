@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy, Renderer2 } from "@angular/core";
 import { SelectionModel } from "@angular/cdk/collections";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
@@ -51,7 +51,8 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     constructor(
         private loginService: LoginService,
         private formBuilder: FormBuilder,
-        private communicationService: CommunicationsService) { }
+        private communicationService: CommunicationsService,
+        private renderer: Renderer2) { }
 
     ngOnInit(): void {
         this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
@@ -98,6 +99,10 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
 
         this.selection.clear();
         this.showForm = true;
+
+        setTimeout(() => {
+            this.renderer.selectRootElement("#name").focus();
+        }, 100);
     }
 
     edit(): void {
@@ -111,6 +116,10 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
             this.form.get("communicationType").setValue(communicationType);
 
             this.showForm = true;
+
+            setTimeout(() => {
+                this.renderer.selectRootElement("#name").focus();
+            }, 100);
         }
     }
 

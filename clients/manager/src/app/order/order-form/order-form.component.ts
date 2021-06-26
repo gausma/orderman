@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -28,7 +28,8 @@ export class OrderFormComponent implements OnInit {
                 private menusService: MenusService,
                 private orderService: OrdersService,
                 private route: ActivatedRoute,
-                private router: Router) { }
+                private router: Router,
+                private renderer: Renderer2) { }
 
     async ngOnInit(): Promise<void> {
         this.initForm();
@@ -36,6 +37,8 @@ export class OrderFormComponent implements OnInit {
         await this.getMenus();
         
         this.initMode();
+
+        this.renderer.selectRootElement('#name1').focus()
     }
 
     private initForm(): void {

@@ -29,6 +29,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "name2", title: "Vorname", align: "left", type: "string" },
         { id: "comment", title: "Bemerkung", align: "left", type: "string" },
         { id: "datetime", title: "Erstellt", align: "left", type: "date" },
+        { id: "sum", title: "Summe", align: "center", type: "currency" },
     ];
 
     menus: Menu[] = [];
@@ -138,6 +139,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 name2: order.name2,
                 comment: order.comment,
                 datetime: order.datetime,
+                sum: 0.0,
             };
 
             this.menus.forEach(menu => {
@@ -145,6 +147,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 element[menu.id] = "";
                 if (position != null && position.amount !== 0) {
                     element[menu.id] = position.amount;
+                    element.sum += position.amount * menu.price;
                 }
             });
 

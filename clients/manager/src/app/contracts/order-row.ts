@@ -5,4 +5,5 @@ export class OrderRow {
     name2: string;
     comment: string;
     datetime: string;
+    sum: number;
 }

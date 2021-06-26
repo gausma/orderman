@@ -36,6 +36,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "communicationId", title: "Kommunikation", align: "left", type: "string" },
         { id: "communicationValue", title: "Info", align: "left", type: "string" },
         { id: "datetime", title: "Erstellt", align: "left", type: "date" },
+        { id: "sum", title: "Summe", align: "center", type: "currency" },
     ];
 
     communications: Communication[] = [];
@@ -195,6 +196,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 communicationId: communication.name,
                 communicationValue: preOrder.communicationValue,
                 datetime: preOrder.datetime,
+                sum: 0.0,
             };
 
             this.menus.forEach(menu => {
@@ -202,6 +204,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 element[menu.id] = "";
                 if (position != null && position.amount !== 0) {
                     element[menu.id] = position.amount;
+                    element.sum += position.amount * menu.price;
                 }
             });
 

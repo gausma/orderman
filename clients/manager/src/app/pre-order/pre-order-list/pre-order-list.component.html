@@ -40,6 +40,7 @@
             <td mat-cell *matCellDef="let element" [ngClass]="column.align">
                 <div *ngIf="column.type==='string'">{{ element[column.id] }}</div>
                 <div *ngIf="column.type==='date'">{{ element[column.id] | date:"dd.MM.yy HH:mm" }}</div>            
+                <div *ngIf="column.type==='currency'">{{ element[column.id] | number: ".2" }}</div>            
             </td>
         </ng-container>
 

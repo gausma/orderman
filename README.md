@@ -63,3 +63,5 @@ Todo
 - REST Validtor
 - Mini Build
 - Übersetzung
+- Beim Öffnen einer For Cursor in 1. Feld
+- Statistik: geänderte Vorbestellung

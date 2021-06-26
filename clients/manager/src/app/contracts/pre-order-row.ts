@@ -7,4 +7,5 @@ export class PreOrderRow {
     communicationId: string;
     communicationValue: string;
     datetime: string;
+    sum: number;
 }

@@ -14,6 +14,7 @@ import { Order } from "../../contracts/order";
 })
 export class OrderFormComponent implements OnInit {
     orderId: string;
+    preOrderId: string;
 
     title: string;
     command: string;
@@ -66,6 +67,7 @@ export class OrderFormComponent implements OnInit {
                 this.title = "Einkauf erstellen";
                 this.command = "Erstellen";
 
+                this.preOrderId = "";
                 this.initialValues = this.form.value;
             } else {
                 // Edit
@@ -79,6 +81,8 @@ export class OrderFormComponent implements OnInit {
 
     private evalOrder(): void {
         this.orderService.getOrder(this.orderId).subscribe(order => {
+            this.preOrderId = order.preOrderId;
+
             this.form.get("name1").setValue(order.name1);
             this.form.get("name2").setValue(order.name2);
             this.form.get("comment").setValue(order.comment);
@@ -101,7 +105,7 @@ export class OrderFormComponent implements OnInit {
             comment: this.form.value.comment,
             datetime: new Date().toISOString(),
             positions: [],
-            preOrderId: "",
+            preOrderId: this.preOrderId,
         };
 
         this.form.value.positions.forEach((p: number, i: number) => {

@@ -63,4 +63,3 @@ Todo
 - REST Validtor
 - Mini Build
 - Übersetzung
-- Statistik: geänderte Vorbestellung

@@ -5,19 +5,19 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { MatTableDataSource } from "@angular/material/table";
 import { forkJoin, Subscription } from "rxjs";
 
-import { PreOrdersService } from "../../service/pre-orders.service";
+import { PreOrdersService } from "../../services/pre-orders.service";
 import { PreOrder } from "../../contracts/pre-order";
-import { MenusService } from "../../service/menus.service";
+import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { ColumnDefinition } from "../../contracts/column-definition";
-import { CommunicationsService } from "../../service/communications.service";
+import { CommunicationsService } from "../../services/communications.service";
 import { Communication } from "../../contracts/communication";
-import { OrdersService } from "../../service/orders.service";
+import { OrdersService } from "../../services/orders.service";
 import { PreOrderRow } from "../../contracts/pre-order-row";
 import { Order } from "../../contracts/order";
 import { PreOrderPosition } from "../../contracts/pre-order-position";
 import { Credentials } from "../../contracts/credentials";
-import { LoginService } from "../../service/login.service";
+import { LoginService } from "../../services/login.service";
 
 @Component({
     selector: "app-pre-order-list",

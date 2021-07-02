@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { LoginDialogComponent } from "../../auth/login-dialog/login-dialog.component";
-import { LoginService } from "../../service/login.service";
+import { LoginService } from "../../services/login.service";
 import { Login } from "../../contracts/login";
 import { Credentials } from "../../contracts/credentials";
 

@@ -6,10 +6,10 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { Subscription } from "rxjs";
 
 import { ColumnDefinition } from "../../contracts/column-definition";
-import { CommunicationsService } from "../../service/communications.service";
+import { CommunicationsService } from "../../services/communications.service";
 import { Communication } from "../../contracts/communication";
 import { CommunicationRow } from "../../contracts/communication-row";
-import { LoginService } from "../../service/login.service";
+import { LoginService } from "../../services/login.service";
 import { Credentials } from "../../contracts/credentials";
 
 @Component({

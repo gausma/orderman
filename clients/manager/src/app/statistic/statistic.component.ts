@@ -2,15 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { forkJoin } from "rxjs";
 
-import { OrdersService } from "../service/orders.service";
+import { OrdersService } from "../services/orders.service";
 import { Order } from "../contracts/order";
-import { MenusService } from "../service/menus.service";
+import { MenusService } from "../services/menus.service";
 import { Menu } from "../contracts/menu";
 import { ColumnDefinition } from "../contracts/column-definition";
 import { Statistic1Row } from "../contracts/statistic1-row";
 import { PreOrder } from "../contracts/pre-order";
-import { PreOrdersService } from "../service/pre-orders.service";
-import { CommunicationsService } from '../service/communications.service';
+import { PreOrdersService } from "../services/pre-orders.service";
+import { CommunicationsService } from '../services/communications.service';
 import { Communication } from '../contracts/communication';
 import { Statistic2Row } from '../contracts/statistic2-row';
 

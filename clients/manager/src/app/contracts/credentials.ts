@@ -22,4 +22,7 @@ export class Credentials {
     backups: {
         read: boolean,
     };    
+    infos:{
+        read: boolean,
+    };    
 }

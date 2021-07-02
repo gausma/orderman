@@ -5,13 +5,13 @@ import { MatSort } from "@angular/material/sort";
 import { Router } from "@angular/router";
 import { forkJoin, Subscription } from "rxjs";
 
-import { OrdersService } from "../../service/orders.service";
+import { OrdersService } from "../../services/orders.service";
 import { Order } from "../../contracts/order";
-import { MenusService } from "../../service/menus.service";
+import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { ColumnDefinition } from "../../contracts/column-definition";
 import { OrderRow } from "../../contracts/order-row";
-import { LoginService } from "../../service/login.service";
+import { LoginService } from "../../services/login.service";
 import { Credentials } from "../../contracts/credentials";
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 
-import { LoginService } from "../../service/login.service";
+import { LoginService } from "../../services/login.service";
 import { Credentials } from "../../contracts/credentials";
 
 @Component({

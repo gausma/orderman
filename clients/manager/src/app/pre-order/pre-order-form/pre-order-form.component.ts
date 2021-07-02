@@ -2,9 +2,9 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/co
 import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { MenusService } from "../../service/menus.service";
-import { PreOrdersService } from "../../service/pre-orders.service";
-import { CommunicationsService } from "../../service/communications.service";
+import { MenusService } from "../../services/menus.service";
+import { PreOrdersService } from "../../services/pre-orders.service";
+import { CommunicationsService } from "../../services/communications.service";
 import { Menu } from "../../contracts/menu";
 import { Communication } from "../../contracts/communication";
 import { PreOrder } from "../../contracts/pre-order";

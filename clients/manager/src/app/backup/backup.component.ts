@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { BackupService } from "../service/backup.service";
+import { BackupService } from "../services/backup.service";
 
 @Component({
     selector: "app-backup",

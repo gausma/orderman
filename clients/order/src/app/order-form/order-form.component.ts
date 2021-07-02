@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
 
-import { MenusService } from "../service/menus.service";
+import { MenusService } from "../services/menus.service";
 import { Menu } from "../contracts/menu";
-import { OrdersService } from "../service/orders.service";
-import { PreOrdersService } from "../service/pre-orders.service";
+import { OrdersService } from "../services/orders.service";
+import { PreOrdersService } from "../services/pre-orders.service";
 import { PreOrder } from "../contracts/pre-order";
 import { Order } from "../contracts/order";
 import { OrderPosition } from "../contracts/order-position";

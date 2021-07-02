@@ -7,10 +7,10 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { Subscription } from "rxjs";
 
 import { ColumnDefinition } from "../../contracts/column-definition";
-import { MenusService } from "../../service/menus.service";
+import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { MenuRow } from "../../contracts/menu-row";
-import { LoginService } from "../../service/login.service";
+import { LoginService } from "../../services/login.service";
 import { Credentials } from "../../contracts/credentials";
 
 @Component({

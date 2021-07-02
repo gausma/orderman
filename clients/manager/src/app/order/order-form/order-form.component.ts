@@ -2,8 +2,8 @@ import { Component, OnInit, Renderer2 } from "@angular/core";
 import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { MenusService } from "../../service/menus.service";
-import { OrdersService } from "../../service/orders.service";
+import { MenusService } from "../../services/menus.service";
+import { OrdersService } from "../../services/orders.service";
 import { Menu } from "../../contracts/menu";
 import { Order } from "../../contracts/order";
 

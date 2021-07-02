@@ -7,12 +7,6 @@ import { LoginService } from "../../service/login.service";
 import { Login } from "../../contracts/login";
 import { Credentials } from "../../contracts/credentials";
 
-export interface DialogData {
-    animal: string;
-    name: string;
-}
-
-
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
@@ -21,6 +15,8 @@ export interface DialogData {
 export class HeaderComponent {
 
     @Output() public sidenavToggle = new EventEmitter();
+
+    public user: string;
 
     constructor(
         public dialog: MatDialog,
@@ -42,7 +38,9 @@ export class HeaderComponent {
                 return;
             }
 
-            const credentials: Credentials = this.loginService.login(login);
+            const { user, credentials } = this.loginService.login(login);
+
+            this.user =user;
 
             if (this.route.children.length === 1) {
                 this.route.children[0].data.subscribe((data) => {

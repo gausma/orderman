@@ -45,9 +45,11 @@ export class LoginService {
 
     public credentials$ = this.credentialsSource.asObservable();
 
-    login(login: Login): Credentials {
-        let credentials = this.default;
+    login(login: Login): {user: string, credentials: Credentials} {
+        let user: string = "";
+        let credentials: Credentials = this.default;
         if (login.user === "MVE" && login.password === "MVE") {
+            user = login.user;
             credentials = {
                 preOrders: {
                     read: true,
@@ -76,6 +78,6 @@ export class LoginService {
         }
 
         this.credentialsSource.next(credentials);
-        return credentials;
+        return {user, credentials};
     }
 }

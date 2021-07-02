@@ -9,6 +9,8 @@ import { Menu } from "../menus/contracts/Menu";
 import { PreOrderPosition } from "../pre-orders/contracts/pre-order-position";
 
 import * as _ from "lodash";
+import { PreOrder } from "src/pre-orders/contracts/pre-order";
+import { Communication } from "src/communications/contracts/Communication";
 
 const csvSeparator = ";";
 const lineSeparator = "\r\n";
@@ -46,7 +48,7 @@ export class BackupsService {
         return null;
     }
 
-    async createCsv(): Promise<string> {
+    async createPreOrdersCsv(): Promise<string> {
         const menus = await this.menusService.getAll();
         const preOrders = await this.preOrdersService.getAll();
         
@@ -71,6 +73,46 @@ export class BackupsService {
                 const preorder = preOrder.positions.find((position: PreOrderPosition) => position.id === menu.id);
                 csv += preorder.amount;
             });
+
+            csv += lineSeparator;
+        });
+
+        return csv;
+    }
+
+    async createContactsCsv(): Promise<string> {
+        const communications = await this.communicationsService.getAll();
+        const preOrders = await this.preOrdersService.getAll();
+        const sortedPreOrders = preOrders.sort((a, b) => {
+            if (a.name1 < b.name1) {
+                return -1;
+            } else if (a.name1 > b.name1) {
+                return 1;
+            } else {
+                if (a.name2 < b.name2) {
+                    return -1;
+                } else if (a.name2 > b.name2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }          
+        });
+
+        let csv = "Name1;Name2;Kommunikation;Kontakt";
+        csv += lineSeparator;
+
+        sortedPreOrders.forEach((preOrder: PreOrder) => {
+            csv += this.encodeCsv(preOrder.name1);
+            csv += csvSeparator;
+            csv += this.encodeCsv(preOrder.name2);
+            csv += csvSeparator;
+
+            const communication = communications.find((communication: Communication) => communication.id === preOrder.communicationId);
+            csv += this.encodeCsv(communication.name);
+            csv += csvSeparator;
+
+            csv += preOrder.communicationValue;
 
             csv += lineSeparator;
         });

@@ -24,9 +24,15 @@ export class BackupComponent implements OnInit {
         });
     }
 
-    createCsv(): void {
-        this.backupService.createCsv().subscribe(csv => {
-            this.startDownload(`OrderMan_${this.getDate()}.csv`, csv);
+    createPreOrdersCsv(): void {
+        this.backupService.createPreOrdersCsv().subscribe(csv => {
+            this.startDownload(`OrderMan_PreOrders_${this.getDate()}.csv`, csv);
+        });
+    }
+
+    createContactsCsv(): void {
+        this.backupService.createContactsCsv().subscribe(csv => {
+            this.startDownload(`OrderMan_Contacts_${this.getDate()}.csv`, csv);
         });
     }
 

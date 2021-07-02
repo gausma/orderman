@@ -13,10 +13,16 @@ export class BackupsController {
         return this.backupsService.createBackup();
     }    
 
-    @Get("csv")
-    async createCsv(): Promise<any> {
-        console.log(`Create csv`);
-        return this.backupsService.createCsv();
+    @Get("preorders")
+    async createPreOrdersCsv(): Promise<any> {
+        console.log(`Create preorders csv`);
+        return this.backupsService.createPreOrdersCsv();
+    }    
+
+    @Get("contacts")
+    async createContactsCsv(): Promise<any> {
+        console.log(`Create contacts csv`);
+        return this.backupsService.createContactsCsv();
     }    
 
     @Post()

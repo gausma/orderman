@@ -59,7 +59,6 @@ yarn build
 
 Todo
 - User / Credencial Verwaltung
-- Export Email Adressen eines bestimmten Typs
 - REST Validtor
 - Mini Build
 - Übersetzung

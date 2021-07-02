@@ -26,7 +26,7 @@ export class BackupComponent implements OnInit {
 
     createCsv(): void {
         this.backupService.createCsv().subscribe(csv => {
-            this.startDownload(`OrderMan_${this.getDate()}.csv`, JSON.stringify(csv));
+            this.startDownload(`OrderMan_${this.getDate()}.csv`, csv);
         });
     }
 

@@ -63,5 +63,4 @@ Todo
 - REST Validtor
 - Mini Build
 - Übersetzung
-- Versionsnummer
 - Statistik im Server berechnen

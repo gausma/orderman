@@ -60,6 +60,5 @@ yarn build
 Todo
 - User / Credencial Verwaltung
 - REST Validtor
-- Mini Build
 - Übersetzung
 - Statistik im Server berechnen

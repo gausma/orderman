@@ -11,9 +11,6 @@ export class PreOrder {
     id: string;
 
     @Prop()
-    datetime: string;
-
-    @Prop()
     name1: string;
 
     @Prop()
@@ -21,6 +18,9 @@ export class PreOrder {
 
     @Prop()
     comment: string;
+
+    @Prop()
+    datetime: string;
 
     @Prop()
     communicationId: string;

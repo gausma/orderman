@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Delete, Put, Param, Query } from "@nestjs/common";
+import { Controller, Get, Post, Body, Delete, Put, Param, Query, UsePipes } from "@nestjs/common";
 
 import { PreOrder } from "./contracts/pre-order";
 import { PreOrdersService } from "./pre-orders.service";
+import { JoiValidationPipe } from "../validation/joi-validation.pipe";
+import { preOrderValidationSchema } from "./contracts/pre-order-validation.schema";
 
 import * as _ from "lodash";
 
@@ -32,13 +34,15 @@ export class PreOrdersController {
     }
 
     @Post()
+    @UsePipes(new JoiValidationPipe(preOrderValidationSchema))
     async create(@Body() preOrder: PreOrder): Promise<PreOrder> {
         console.log(`Create PreOrder`);
         return this.preOrdersService.create(preOrder);
     }
 
     @Put(":id")
-    async update(@Param("id") id: string, @Body() preOrder: PreOrder) {
+    async update(@Param("id") id: string, 
+            @Body(new JoiValidationPipe(preOrderValidationSchema)) preOrder: PreOrder) {
         console.log(`Update PreOrder: ${preOrder.id}`);
         return this.preOrdersService.update(id, preOrder);
     }

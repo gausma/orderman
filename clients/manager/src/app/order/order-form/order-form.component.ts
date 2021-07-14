@@ -114,7 +114,7 @@ export class OrderFormComponent implements OnInit {
                 amount: p,
             });
         });
-
+console.log(order);
         if (this.orderId == null) {
             this.orderService.createOrder(order).subscribe(() => {
                 this.router.navigate(["orderlist"]);

@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from "@nestjs/common";
+import { Controller, Get, Post, Body, Put, Param, Delete, UsePipes } from "@nestjs/common";
 
 import { MenusService } from "./menus.service";
 import { Menu } from "./contracts/Menu";
+import { JoiValidationPipe } from "../validation/joi-validation.pipe";
+import { menuValidationSchema } from "./contracts/menu.schema";
 
 @Controller("menus")
 export class MenusController {
@@ -14,13 +16,15 @@ export class MenusController {
     }
 
     @Post()
-    async create(@Body() menu: Menu) {
+    @UsePipes(new JoiValidationPipe(menuValidationSchema))
+    async create(@Body() menu: Menu): Promise<Menu> {
         console.log(`Create Menu`);
-        this.menusService.create(menu);
+        return this.menusService.create(menu);
     }
 
     @Put(":id")
-    async update(@Param("id") id: string, @Body() menu: Menu) {
+    async update(@Param("id") id: string, 
+            @Body(new JoiValidationPipe(menuValidationSchema)) menu: Menu): Promise<Menu> {
         console.log(`Update Menu: ${menu.id}`);
         return this.menusService.update(id, menu);
     }

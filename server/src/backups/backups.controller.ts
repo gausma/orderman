@@ -1,6 +1,8 @@
-import { Controller, Get, Post, Body, Header } from "@nestjs/common";
+import { Controller, Get, Post, Body, Header, UsePipes } from "@nestjs/common";
 import { BackupsService } from "./backups.service";
 import { Backup } from "./contracts/Backup";
+import { JoiValidationPipe } from "src/validation/joi-validation.pipe";
+import { backupValidationSchema } from "./contracts/backup.schema";
 
 @Controller("backups")
 export class BackupsController {
@@ -26,6 +28,7 @@ export class BackupsController {
     }    
 
     @Post()
+    @UsePipes(new JoiValidationPipe(backupValidationSchema))
     async restoreBackup(@Body() backup: Backup) {
         console.log(`Restore backup`);
         this.backupsService.restoreBackup(backup);

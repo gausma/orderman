@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param, Delete, Put, UsePipes } from "@nestjs/common";
 
 import { Order } from "./contracts/order";
 import { OrdersService } from "./orders.service";
+import { JoiValidationPipe } from "../validation/joi-validation.pipe";
+import { orderValidationSchema } from "./contracts/order-validation.schema"
 
 @Controller("orders")
 export class OrdersController {
@@ -20,13 +22,15 @@ export class OrdersController {
     }    
 
     @Post()
+    @UsePipes(new JoiValidationPipe(orderValidationSchema))
     async create(@Body() order: Order): Promise<Order> {
         console.log(`Create Order`);
         return this.ordersService.create(order);
     }
 
     @Put(":id")
-    async update(@Param("id") id: string, @Body() order: Order) {
+    async update(@Param("id") id: string, 
+            @Body(new JoiValidationPipe(orderValidationSchema)) order: Order): Promise<Order> {
         console.log(`Update Order: ${order.id}`);
         return this.ordersService.update(id, order);
     }

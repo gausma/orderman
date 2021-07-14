@@ -59,6 +59,6 @@ yarn build
 
 Todo
 - User / Credencial Verwaltung
-- REST Validtor
 - Übersetzung
 - Statistik im Server berechnen
+- Unit Tests 

@@ -9,6 +9,7 @@ import { OrdersModule } from "./orders/orders.module";
 import { PreOrdersModule } from "./pre-orders/pre-orders.module";
 import { CommunicationsModule } from "./communications/communications.module";
 import { BackupsModule } from "./backups/backups.module";
+import { AuthenticationsModule } from "./authentications/authentications.module";
 
 import { join } from "path";
 
@@ -29,7 +30,8 @@ import { join } from "path";
         CommunicationsModule,
         MenusModule,
         OrdersModule,
-        PreOrdersModule
+        PreOrdersModule,
+        AuthenticationsModule
     ],
     controllers: [
         AppController

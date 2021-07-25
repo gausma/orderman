@@ -1,4 +1,4 @@
-export class Credentials {
+export class AuthenticationCredentials {
     preOrders: {
         read: boolean,
         write: boolean,
@@ -25,4 +25,8 @@ export class Credentials {
     infos:{
         read: boolean,
     };    
+    authentications: {
+        read: boolean,
+        write: boolean,
+    };
 }

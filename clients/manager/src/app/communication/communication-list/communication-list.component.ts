@@ -9,8 +9,8 @@ import { ColumnDefinition } from "../../contracts/column-definition";
 import { CommunicationsService } from "../../services/communications.service";
 import { Communication } from "../../contracts/communication";
 import { CommunicationRow } from "../../contracts/communication-row";
-import { LoginService } from "../../services/login.service";
-import { Credentials } from "../../contracts/credentials";
+import { AuthenticationsService } from '../../services/authentications.service';
+import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
 
 @Component({
     selector: "app-communication-list",
@@ -45,17 +45,17 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     command: string;
     communicationId: string;
 
-    public credentials: Credentials;
-    private credentialSubscription: Subscription;
+    public credentials: AuthenticationCredentials;
+    private authenticationSubscription: Subscription;
 
     constructor(
-        private loginService: LoginService,
+        private authenticationsService: AuthenticationsService,
         private formBuilder: FormBuilder,
         private communicationService: CommunicationsService,
         private renderer: Renderer2) { }
 
     ngOnInit(): void {
-        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
+        this.authenticationSubscription = this.authenticationsService.authentications$.subscribe(a => this.credentials = a.credentials);
         this.initForm();
         this.getData();
     }
@@ -65,7 +65,7 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     }
 
     ngOnDestroy() {
-        this.credentialSubscription.unsubscribe();
+        this.authenticationSubscription.unsubscribe();
     }    
 
     private initForm(): void {

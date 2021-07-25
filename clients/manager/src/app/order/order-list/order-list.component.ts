@@ -11,8 +11,8 @@ import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { ColumnDefinition } from "../../contracts/column-definition";
 import { OrderRow } from "../../contracts/order-row";
-import { LoginService } from "../../services/login.service";
-import { Credentials } from "../../contracts/credentials";
+import { AuthenticationsService } from '../../services/authentications.service';
+import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
 
 @Component({
     selector: "app-order-list",
@@ -40,17 +40,17 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     dataSource: MatTableDataSource<OrderRow> = new MatTableDataSource<OrderRow>([]);
     selection = new SelectionModel<OrderRow>(false, []);
 
-    public credentials: Credentials;
-    private credentialSubscription: Subscription;
+    public credentials: AuthenticationCredentials;
+    private authenticationSubscription: Subscription;
 
     constructor(
-        private loginService: LoginService,
+        private authenticationsService: AuthenticationsService,
         private menusService: MenusService,
         private orderService: OrdersService,
         private router: Router) { }
 
     ngOnInit(): void {
-        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
+        this.authenticationSubscription = this.authenticationsService.authentications$.subscribe(a => this.credentials = a.credentials);
         this.getData();
     }
 
@@ -60,7 +60,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.credentialSubscription.unsubscribe();
+        this.authenticationSubscription.unsubscribe();
     }
 
     doFilter(value: string): void {

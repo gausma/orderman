@@ -10,8 +10,9 @@ import { OrderFormComponent } from "./order/order-form/order-form.component";
 import { StatisticComponent } from "./statistic/statistic.component";
 import { BackupComponent } from "./backup/backup.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
-import { RouteAccessGuard } from './auth/route-access/route-access.guard';
+import { RouteAccessGuard } from './authentication/route-access/route-access.guard';
 import { InfoComponent } from './info/info.component';
+import { AuthenticationListComponent } from './authentication/authentication-list/authentication-list.component';
 
 const routes: Routes = [
     { path: "welcome", component: WelcomeComponent, data: { credentials: "welcome", function: "read" } },
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: "communicationlist", component: CommunicationListComponent, data: { credentials: "communications", function: "read" }, canActivate: [RouteAccessGuard]  },
     { path: "menulist", component: MenuListComponent, data: { credentials: "menus", function: "read" }, canActivate: [RouteAccessGuard] },
     { path: "statistic", component: StatisticComponent, data: { credentials: "statistics", function: "read" }, canActivate: [RouteAccessGuard] },
+    { path: "authenticationlist", component: AuthenticationListComponent, data: { credentials: "authentications", function: "read" }, canActivate: [RouteAccessGuard] },
     { path: "backup", component: BackupComponent, data: { credentials: "backups", function: "read" }, canActivate: [RouteAccessGuard] },
     { path: "info", component: InfoComponent, data: { credentials: "infos", function: "read" }, canActivate: [RouteAccessGuard] },
     { path: "**", component: WelcomeComponent, data: { credentials: "welcome", function: "read" } },

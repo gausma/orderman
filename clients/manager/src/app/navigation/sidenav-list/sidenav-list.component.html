@@ -24,9 +24,14 @@
             <mat-icon>functions</mat-icon><span class="nav-caption">Statistik</span>
         </a>
     </div>
+    <div [hidden]="!credentials.authentications.read">
+        <a mat-list-item routerLink="/authenticationlist" (click)="onSidenavClose()">
+            <mat-icon>lock_open</mat-icon><span class="nav-caption">Berechtigungen</span>
+        </a>
+    </div>
     <div [hidden]="!credentials.backups.read">
         <a mat-list-item routerLink="/backup" (click)="onSidenavClose()">
-            <mat-icon>backup</mat-icon><span class="nav-caption">Backup</span>
+            <mat-icon>backup</mat-icon><span class="nav-caption">Backups</span>
         </a>
     </div>
     <div>

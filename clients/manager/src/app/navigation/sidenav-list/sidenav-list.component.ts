@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 
-import { LoginService } from "../../services/login.service";
-import { Credentials } from "../../contracts/credentials";
+import { AuthenticationsService } from '../../services/authentications.service';
+import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
 
 @Component({
     selector: "app-sidenav-list",
@@ -12,17 +12,17 @@ import { Credentials } from "../../contracts/credentials";
 export class SidenavListComponent implements OnInit, OnDestroy {
     @Output() sidenavClose = new EventEmitter();
 
-    public credentials: Credentials;
-    private credentialSubscription: Subscription;
+    public credentials: AuthenticationCredentials;
+    private authenticationSubscription: Subscription;
 
-    constructor(private loginService: LoginService) { }
+    constructor(private authenticationsService: AuthenticationsService) { }
 
     ngOnInit(): void {
-        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
+        this.authenticationSubscription = this.authenticationsService.authentications$.subscribe(a => this.credentials = a.credentials);
     }
 
     ngOnDestroy() {
-        this.credentialSubscription.unsubscribe();
+        this.authenticationSubscription.unsubscribe();
     }
 
     public onSidenavClose = () => {

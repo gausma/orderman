@@ -62,3 +62,4 @@ Todo
 - Übersetzung
 - Statistik im Server berechnen
 - Unit Tests 
+- Prettier

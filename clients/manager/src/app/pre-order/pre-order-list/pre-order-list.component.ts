@@ -16,8 +16,8 @@ import { OrdersService } from "../../services/orders.service";
 import { PreOrderRow } from "../../contracts/pre-order-row";
 import { Order } from "../../contracts/order";
 import { PreOrderPosition } from "../../contracts/pre-order-position";
-import { Credentials } from "../../contracts/credentials";
-import { LoginService } from "../../services/login.service";
+import { AuthenticationsService } from '../../services/authentications.service';
+import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
 
 @Component({
     selector: "app-pre-order-list",
@@ -50,11 +50,11 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     dataSource: MatTableDataSource<PreOrderRow> = new MatTableDataSource<PreOrderRow>([]);
     selection = new SelectionModel<PreOrderRow>(false, []);
 
-    public credentials: Credentials;
-    private credentialSubscription: Subscription;
+    public credentials: AuthenticationCredentials;
+    private authenticationSubscription: Subscription;
 
     constructor(
-        private loginService: LoginService,
+        private authenticationsService: AuthenticationsService,
         private communicationService: CommunicationsService,
         private menusService: MenusService,
         private preOrderService: PreOrdersService,
@@ -62,7 +62,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         private router: Router) { }
 
     ngOnInit(): void {
-        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
+        this.authenticationSubscription = this.authenticationsService.authentications$.subscribe(a => this.credentials = a.credentials);
         this.getData();
     }
 
@@ -72,7 +72,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.credentialSubscription.unsubscribe();
+        this.authenticationSubscription.unsubscribe();
     }
 
     doFilter(value: string): void {

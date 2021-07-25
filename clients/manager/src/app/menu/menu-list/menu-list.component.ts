@@ -10,8 +10,8 @@ import { ColumnDefinition } from "../../contracts/column-definition";
 import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { MenuRow } from "../../contracts/menu-row";
-import { LoginService } from "../../services/login.service";
-import { Credentials } from "../../contracts/credentials";
+import { AuthenticationsService } from '../../services/authentications.service';
+import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
 
 @Component({
     selector: "app-menu-list",
@@ -41,17 +41,17 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     command: string;
     menuId: string;
 
-    public credentials: Credentials;
-    private credentialSubscription: Subscription;
+    public credentials: AuthenticationCredentials;
+    private authenticationSubscription: Subscription;
 
     constructor(
-        private loginService: LoginService,
+        private authenticationsService: AuthenticationsService,
         private formBuilder: FormBuilder,
         private menuService: MenusService,
         private renderer: Renderer2) { }
 
     ngOnInit(): void {
-        this.credentialSubscription = this.loginService.credentials$.subscribe(c => this.credentials = c);
+        this.authenticationSubscription = this.authenticationsService.authentications$.subscribe(a => this.credentials = a.credentials);
         this.initForm();
         this.getData();
     }
@@ -61,7 +61,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.credentialSubscription.unsubscribe();
+        this.authenticationSubscription.unsubscribe();
     }
 
     private initForm(): void {

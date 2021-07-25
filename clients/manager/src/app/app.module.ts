@@ -16,7 +16,8 @@ import { CommunicationListComponent } from "./communication/communication-list/c
 import { MenuListComponent } from "./menu/menu-list/menu-list.component";
 import { StatisticComponent } from "./statistic/statistic.component";
 import { BackupComponent } from "./backup/backup.component";
-import { LoginDialogComponent } from "./auth/login-dialog/login-dialog.component";
+import { LoginDialogComponent } from "./authentication/login-dialog/login-dialog.component";
+import { AuthenticationListComponent } from './authentication/authentication-list/authentication-list.component';
 
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
@@ -48,6 +49,7 @@ import { MatDialogModule } from "@angular/material/dialog";
         StatisticComponent,
         BackupComponent,
         LoginDialogComponent,
+        AuthenticationListComponent
     ],
     imports: [
         BrowserModule,

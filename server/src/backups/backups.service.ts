@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
-import { Backup } from "./contracts/Backup";
+import { Backup } from "./contracts/backup";
 import { CommunicationsService } from "../communications/communications.service";
 import { MenusService } from "../menus/menus.service";
 import { OrdersService } from "../orders/orders.service";

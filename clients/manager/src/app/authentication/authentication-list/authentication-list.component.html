@@ -1,0 +1,155 @@
+<h1>Berechtigungen</h1>
+<div class="commandline">
+    <div class="commandline-filter">
+        <mat-form-field>
+            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)"
+                placeholder="Filter" />
+        </mat-form-field>
+    </div>
+
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm" (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm || !credentials.menus.write" (click)="add()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty() || !credentials.menus.write"
+            (click)="edit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty() || !credentials.menus.write"
+            (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</div>
+
+<table mat-table matSort [dataSource]="dataSource" class="table mat-elevation-z8">
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.title }}</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="column.align">
+            <div *ngIf="column.type==='string'">{{ element[column.id] }}</div>
+            <div *ngIf="column.type==='bool'">
+                <mat-icon *ngIf="element[column.id] == true" aria-hidden="false" aria-label="Success">done</mat-icon>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="toggleSelection(row)"
+        [ngClass]="{ hovered: row.hovered, highlighted: selection.isSelected(row) }" (mouseover)="row.hovered = true"
+        (mouseout)="row.hovered = false"></tr>
+</table>
+
+<!-- Form -->
+<form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+    <div *ngIf="showForm === true">
+        <mat-card [class.mat-elevation-z8]="true" class="form">
+            <mat-card-content>
+                <div class="form-row2-wrapper">
+                    <mat-form-field>
+                        <mat-label>Benutzer</mat-label>
+                        <input id="user" matInput type="text" formControlName="user">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Kennwort</mat-label>
+                        <input id="password" matInput type="password" formControlName="password">
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row4-wrapper">
+                    <mat-label>Vorbestellungen:</mat-label>
+                    <div>
+                        <mat-checkbox id="preOrdersRead" matInput formControlName="preOrdersRead">
+                            lesen
+                        </mat-checkbox>
+                        <mat-checkbox id="preOrdersWrite" matInput formControlName="preOrdersWrite">
+                            schreiben
+                        </mat-checkbox>
+                        <mat-checkbox id="preOrdersOrder" matInput formControlName="preOrdersOrder">
+                            übernehmen
+                        </mat-checkbox>
+                    </div>
+                    <mat-label>Einkäufe:</mat-label>
+                    <div>
+                        <mat-checkbox id="ordersRead" matInput formControlName="ordersRead">
+                            lesen
+                        </mat-checkbox>
+                        <mat-checkbox id="ordersWrite" matInput formControlName="ordersWrite">
+                            schreiben
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="form-row4-wrapper">
+                    <mat-label>Kommunikation:</mat-label>
+                    <div>
+                        <mat-checkbox id="communicationsRead" matInput formControlName="communicationsRead">
+                            lesen
+                        </mat-checkbox>
+                        <mat-checkbox id="communicationsWrite" matInput formControlName="communicationsWrite">
+                            schreiben
+                        </mat-checkbox>
+                    </div>
+                    <mat-label>Gerichte:</mat-label>
+                    <div>
+                        <mat-checkbox id="menusRead" matInput formControlName="menusRead">
+                            lesen
+                        </mat-checkbox>
+                        <mat-checkbox id="menusWrite" matInput formControlName="menusWrite">
+                            schreiben
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="form-row4-wrapper">
+                    <mat-label>Statistik:</mat-label>
+                    <div>
+                        <mat-checkbox id="statisticsRead" matInput formControlName="statisticsRead">
+                            lesen
+                        </mat-checkbox>
+                    </div>
+                    <mat-label>Backups:</mat-label>
+                    <div>
+                        <mat-checkbox id="backupsRead" matInput formControlName="backupsRead">
+                            lesen
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="form-row4-wrapper">
+                    <mat-label>Info:</mat-label>
+                    <div>
+                        <mat-checkbox id="infosRead" matInput formControlName="infosRead">
+                            lesen
+                        </mat-checkbox>
+                    </div>
+                    <mat-label>Berechtigungen:</mat-label>
+                    <div>
+                        <mat-checkbox id="authenticationsRead" matInput formControlName="authenticationsRead">
+                            lesen
+                        </mat-checkbox>
+                        <mat-checkbox id="authenticationsWrite" matInput formControlName="authenticationsWrite">
+                            schreiben
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Buttons -->
+        <div class="buttonline">
+            <button mat-raised-button class="buttonline-item" color="basic" type="button"
+                (click)="cancel()">Abbrechen</button>
+            <button mat-raised-button class="buttonline-item" color="primary" type="submit"
+                [disabled]="form.value.user === ''">{{ command }}</button>
+        </div>
+    </div>
+</form>

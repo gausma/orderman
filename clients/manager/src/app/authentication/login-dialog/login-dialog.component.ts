@@ -12,6 +12,10 @@ export class LoginDialogComponent {
 
     constructor(public dialogRef: MatDialogRef<LoginDialogComponent>) { }
 
+    onOk(): void {
+        this.dialogRef.close({ user: this.user || "", password: this.password || "" });
+    }
+
     onCancel(): void {
         this.dialogRef.close();
     }

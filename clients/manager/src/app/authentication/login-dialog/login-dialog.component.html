@@ -2,14 +2,16 @@
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Benutzer</mat-label>
-        <input matInput autocomplete="off" [(ngModel)]="user">
+        <input matInput autocomplete="off" [(ngModel)]="user" (keydown.enter)="onOk()">
     </mat-form-field>
     <mat-form-field>
         <mat-label>Kennwort</mat-label>
-        <input type="password" matInput autocomplete="off" [(ngModel)]="password">
+        <input matInput autocomplete="off" [(ngModel)]="password" (keydown.enter)="onOk()" type="password">
     </mat-form-field>
 </div>
+
 <div mat-dialog-actions>
     <button mat-button (click)="onCancel()">Abbrechen</button>
-    <button mat-button [mat-dialog-close]="{ user: user || '', password: password || '' }">Ok</button>
+    <button mat-raised-button color="primary" (click)="onOk()">Ok</button>
 </div>
+

@@ -1,17 +1,17 @@
-<h1 mat-dialog-title>Anmeldung</h1>
+<h1 mat-dialog-title i18n>Anmeldung</h1>
 <div mat-dialog-content>
     <mat-form-field>
-        <mat-label>Benutzer</mat-label>
+        <mat-label i18n>Benutzer</mat-label>
         <input matInput autocomplete="off" [(ngModel)]="user" (keydown.enter)="onOk()">
     </mat-form-field>
     <mat-form-field>
-        <mat-label>Kennwort</mat-label>
+        <mat-label i18n>Kennwort</mat-label>
         <input matInput autocomplete="off" [(ngModel)]="password" (keydown.enter)="onOk()" type="password">
     </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button (click)="onCancel()">Abbrechen</button>
-    <button mat-raised-button color="primary" (click)="onOk()">Ok</button>
+    <button mat-button (click)="onCancel()" i18n>Abbrechen</button>
+    <button mat-raised-button color="primary" (click)="onOk()" i18n>Ok</button>
 </div>
 

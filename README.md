@@ -55,11 +55,11 @@ server / clients
 yarn install
 yarn build
 
+yarn build:translation
+
 ---
 
 Todo
-- User / Credencial Verwaltung
-- Übersetzung
 - Statistik im Server berechnen
 - Unit Tests 
 - Prettier

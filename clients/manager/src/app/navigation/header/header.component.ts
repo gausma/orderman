@@ -73,25 +73,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             }
 
             this.authenticationsService.login(login);
-
-/* Todo
-            const { user, credentials } = this.authenticationsService.login(login);
-
-            this.user =user;
-
-            if (this.route.children.length === 1) {
-                this.route.children[0].data.subscribe((data) => {
-                    if(credentials[data.credentials] != null) {
-                        if(!credentials[data.credentials][data.function]){
-                            this.router.navigate(["welcome"]);
-                        }
-                    }
-                });
-            } else {
-                console.error("Can't evaluate current router data, retourning to welcome screen.");
-                this.router.navigate(["welcome"]);
-            }
-*/
         });
     }
 }

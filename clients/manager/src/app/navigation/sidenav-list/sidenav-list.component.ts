@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/cor
 import { Subscription } from "rxjs";
 
 import { AuthenticationsService } from '../../services/authentications.service';
-import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
+import { AuthenticationCredentials } from '../../contracts/authentication-credentials';
 
 @Component({
     selector: "app-sidenav-list",

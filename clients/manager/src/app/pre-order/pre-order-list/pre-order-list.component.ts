@@ -17,7 +17,7 @@ import { PreOrderRow } from "../../contracts/pre-order-row";
 import { Order } from "../../contracts/order";
 import { PreOrderPosition } from "../../contracts/pre-order-position";
 import { AuthenticationsService } from '../../services/authentications.service';
-import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
+import { AuthenticationCredentials } from '../../contracts/authentication-credentials';
 
 @Component({
     selector: "app-pre-order-list",
@@ -29,14 +29,14 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
-        { id: "orderExists", title: "Verkauft", align: "center", type: "string" },
-        { id: "name1", title: "Name", align: "left", type: "string" },
-        { id: "name2", title: "Vorname", align: "left", type: "string" },
-        { id: "comment", title: "Bemerkung", align: "left", type: "string" },
-        { id: "communicationId", title: "Kommunikation", align: "left", type: "string" },
-        { id: "communicationValue", title: "Info", align: "left", type: "string" },
-        { id: "datetime", title: "Erstellt", align: "left", type: "date" },
-        { id: "sum", title: "Summe", align: "center", type: "currency" },
+        { id: "orderExists", title: $localize`Verkauft`, align: "center", type: "string" },
+        { id: "name1", title: $localize`Name`, align: "left", type: "string" },
+        { id: "name2", title: $localize`Vorname`, align: "left", type: "string" },
+        { id: "comment", title: $localize`Bemerkung`, align: "left", type: "string" },
+        { id: "communicationId", title: $localize`Kommunikation`, align: "left", type: "string" },
+        { id: "communicationValue", title: $localize`Info`, align: "left", type: "string" },
+        { id: "datetime", title: $localize`Erstellt`, align: "left", type: "date" },
+        { id: "sum", title: $localize`Summe`, align: "center", type: "currency" },
     ];
 
     communications: Communication[] = [];

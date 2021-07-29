@@ -1,42 +1,42 @@
 <mat-nav-list>
     <div [hidden]="!credentials.preOrders.read">
         <a mat-list-item routerLink="/preorderlist" (click)="onSidenavClose()">
-            <mat-icon>reorder</mat-icon> <span class="nav-caption">Vorbestellungen</span>
+            <mat-icon>reorder</mat-icon> <span class="nav-caption" i18n>Vorbestellungen</span>
         </a>
     </div>
     <div [hidden]="!credentials.orders.read">
         <a mat-list-item routerLink="/orderlist" (click)="onSidenavClose()">
-            <mat-icon>attach_money</mat-icon> <span class="nav-caption">Einkäufe</span>
+            <mat-icon>attach_money</mat-icon> <span class="nav-caption" i18n>Einkäufe</span>
         </a>
     </div>
     <div [hidden]="!credentials.communications.read">
         <a mat-list-item routerLink="/communicationlist" (click)="onSidenavClose()">
-            <mat-icon>call</mat-icon> <span class="nav-caption">Kommunikation</span>
+            <mat-icon>call</mat-icon> <span class="nav-caption" i18n>Kommunikation</span>
         </a>
     </div>
     <div [hidden]="!credentials.menus.read">
         <a mat-list-item routerLink="/menulist" (click)="onSidenavClose()">
-            <mat-icon>fastfood</mat-icon><span class="nav-caption">Gerichte</span>
+            <mat-icon>fastfood</mat-icon><span class="nav-caption" i18n>Gerichte</span>
         </a>
     </div>
     <div [hidden]="!credentials.statistics.read">
         <a mat-list-item routerLink="/statistic" (click)="onSidenavClose()">
-            <mat-icon>functions</mat-icon><span class="nav-caption">Statistik</span>
+            <mat-icon>functions</mat-icon><span class="nav-caption" i18n>Statistik</span>
         </a>
     </div>
     <div [hidden]="!credentials.authentications.read">
         <a mat-list-item routerLink="/authenticationlist" (click)="onSidenavClose()">
-            <mat-icon>lock_open</mat-icon><span class="nav-caption">Berechtigungen</span>
+            <mat-icon>lock_open</mat-icon><span class="nav-caption" i18n>Berechtigungen</span>
         </a>
     </div>
     <div [hidden]="!credentials.backups.read">
         <a mat-list-item routerLink="/backup" (click)="onSidenavClose()">
-            <mat-icon>backup</mat-icon><span class="nav-caption">Backups</span>
+            <mat-icon>backup</mat-icon><span class="nav-caption" i18n>Backups</span>
         </a>
     </div>
     <div>
         <a mat-list-item routerLink="/info" (click)="onSidenavClose()">
-            <mat-icon>info</mat-icon><span class="nav-caption">Info</span>
+            <mat-icon>info</mat-icon><span class="nav-caption" i18n>Info</span>
         </a>
     </div>
 </mat-nav-list>

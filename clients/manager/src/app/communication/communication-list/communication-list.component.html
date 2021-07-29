@@ -1,8 +1,8 @@
-<h1>Kommunikation</h1>
+<h1 i18n>Kommunikation</h1>
 <div class="commandline">
     <div class="commandline-filter">
         <mat-form-field>
-            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
+            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" i18n-placeholder placeholder="Filter" />
         </mat-form-field>
     </div>
 
@@ -48,12 +48,12 @@
 
                 <div class="form-row2-wrapper">
                     <mat-form-field>
-                        <mat-label>Name</mat-label>
+                        <mat-label i18n>Name</mat-label>
                         <input id="name" matInput type="text" formControlName="name">
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-select placeholder="Kommunikation" formControlName="communicationType">
+                        <mat-select i18n-placeholder placeholder="Kommunikation" formControlName="communicationType">
                             <mat-option *ngFor="let c of communicationTypes" [value]="c">
                                 {{ c.title }}
                             </mat-option>
@@ -67,7 +67,7 @@
         <!-- Buttons -->
         <div class="buttonline">
             <button mat-raised-button class="buttonline-item" color="basic" type="button"
-                (click)="cancel()">Abbrechen</button>
+                (click)="cancel()" i18n>Abbrechen</button>
             <button mat-raised-button class="buttonline-item" color="primary" type="submit"
                 [disabled]="form.value.name === ''">{{ command }}</button>
         </div>

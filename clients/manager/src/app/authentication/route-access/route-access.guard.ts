@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { first, map } from 'rxjs/operators';
 
 import { AuthenticationsService } from '../../services/authentications.service';
-import { Authentication } from 'src/app/contracts/authentication';
+import { Authentication } from '../../contracts/authentication';
 
 @Injectable({
     providedIn: "root"

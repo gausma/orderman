@@ -11,7 +11,7 @@ import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { MenuRow } from "../../contracts/menu-row";
 import { AuthenticationsService } from '../../services/authentications.service';
-import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
+import { AuthenticationCredentials } from '../../contracts/authentication-credentials';
 
 @Component({
     selector: "app-menu-list",
@@ -24,11 +24,11 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     menus: Menu[] = [];
 
     columns: ColumnDefinition[] = [
-        { id: "name", title: "Name", align: "left", type: "string" },
-        { id: "price", title: "Preis €", align: "left", type: "currency" },
-        { id: "comment", title: "Bemerkung", align: "left", type: "string" },
-        { id: "sequence", title: "Reihenfolge", align: "left", type: "string" },
-        { id: "stock", title: "Bestand", align: "left", type: "string" },
+        { id: "name", title: $localize`Name`, align: "left", type: "string" },
+        { id: "price", title: $localize`Preis €`, align: "left", type: "currency" },
+        { id: "comment", title: $localize`Bemerkung`, align: "left", type: "string" },
+        { id: "sequence", title: $localize`Reihenfolge`, align: "left", type: "string" },
+        { id: "stock", title: $localize`Bestand`, align: "left", type: "string" },
     ];
     displayedColumns: string[] = ["name", "price", "comment", "sequence", "stock"];
 
@@ -90,7 +90,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     add(): void {
-        this.command = "Erstellen";
+        this.command = $localize`Erstellen`;
         this.menuId = null;
 
         this.form.get("name").setValue("");
@@ -109,7 +109,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.command = "Aktualisieren";
+            this.command = $localize`Aktualisieren`;
             this.menuId = this.selection.selected[0].id;
 
             this.form.get("name").setValue(this.selection.selected[0].name);

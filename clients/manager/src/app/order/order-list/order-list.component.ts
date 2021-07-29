@@ -12,7 +12,7 @@ import { Menu } from "../../contracts/menu";
 import { ColumnDefinition } from "../../contracts/column-definition";
 import { OrderRow } from "../../contracts/order-row";
 import { AuthenticationsService } from '../../services/authentications.service';
-import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
+import { AuthenticationCredentials } from '../../contracts/authentication-credentials';
 
 @Component({
     selector: "app-order-list",
@@ -24,12 +24,12 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatSort) sort: MatSort;
 
     predefinedColumns: ColumnDefinition[] = [
-        { id: "preOrderExists", title: "Vorbestellung", align: "center", type: "string" },
-        { id: "name1", title: "Name", align: "left", type: "string" },
-        { id: "name2", title: "Vorname", align: "left", type: "string" },
-        { id: "comment", title: "Bemerkung", align: "left", type: "string" },
-        { id: "datetime", title: "Erstellt", align: "left", type: "date" },
-        { id: "sum", title: "Summe", align: "center", type: "currency" },
+        { id: "preOrderExists", title: $localize`Vorbestellung`, align: "center", type: "string" },
+        { id: "name1", title: $localize`Name`, align: "left", type: "string" },
+        { id: "name2", title: $localize`Vorname`, align: "left", type: "string" },
+        { id: "comment", title: $localize`Bemerkung`, align: "left", type: "string" },
+        { id: "datetime", title: $localize`Erstellt`, align: "left", type: "date" },
+        { id: "sum", title: $localize`Summe`, align: "center", type: "currency" },
     ];
 
     menus: Menu[] = [];

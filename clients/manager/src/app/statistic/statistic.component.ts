@@ -22,9 +22,9 @@ import { Statistic2Row } from '../contracts/statistic2-row';
 export class StatisticComponent implements OnInit {
     statistic1PredefinedColumns: ColumnDefinition[] = [
         { id: "title", title: "", align: "left", type: "string" },
-        { id: "customers", title: "Kunden", align: "center", type: "string" },
-        { id: "portions", title: "Portionen", align: "center", type: "string" },
-        { id: "sum", title: "Summe €", align: "center", type: "currency" },
+        { id: "customers", title: $localize`Kunden`, align: "center", type: "string" },
+        { id: "portions", title: $localize`Portionen`, align: "center", type: "string" },
+        { id: "sum", title: $localize`Summe €`, align: "center", type: "currency" },
     ];
 
     statistic1Columns: ColumnDefinition[] = [];
@@ -118,7 +118,7 @@ export class StatisticComponent implements OnInit {
 
     private calculatePreOrders(preOrders: PreOrder[]): Statistic1Row {
         const data: Statistic1Row = {
-            title: "Vorbestellungen",
+            title: $localize`Vorbestellungen`,
             customers: 0,
             portions: 0,
             sum: 0.0,
@@ -153,11 +153,11 @@ export class StatisticComponent implements OnInit {
     }
 
     private calculateOrdersWithPreOrder(orders: Order[]): Statistic1Row {
-        return this.processOrdersHelper(orders, true, "Einkäufe mit Vorbestellung");
+        return this.processOrdersHelper(orders, true, $localize`Einkäufe mit Vorbestellung`);
     }
 
     private calculateOrdersWithouPreOrder(orders: Order[]): Statistic1Row {
-        return this.processOrdersHelper(orders, false, "Einkäufe ohne Vorbestellung");
+        return this.processOrdersHelper(orders, false, $localize`Einkäufe ohne Vorbestellung`);
     }
 
     private processOrdersHelper(orders: Order[], preordered: boolean, title: string): Statistic1Row {
@@ -203,7 +203,7 @@ export class StatisticComponent implements OnInit {
 
     private calculateStock(): Statistic1Row {
         const data: Statistic1Row = {
-            title: "Bestand",
+            title: $localize`Bestand`,
             customers: null,
             portions: 0,
             sum: 0.0,
@@ -225,7 +225,7 @@ export class StatisticComponent implements OnInit {
 
     private calculateRemainingPreOrders(preOrders: PreOrder[], orders: Order[]): Statistic1Row {
         const data: Statistic1Row = {
-            title: "Ausstehend",
+            title: $localize`Ausstehend`,
             customers: 0,
             portions: 0,
             sum: 0.0,
@@ -260,7 +260,7 @@ export class StatisticComponent implements OnInit {
 
     private calculateRemainingStock(stockData: Statistic1Row, ordersWithPreOrderData: Statistic1Row, remainingPreOrdersData: Statistic1Row, ordersWithouPreOrderData: Statistic1Row): Statistic1Row {
         const data: Statistic1Row = {
-            title: "Übrig",
+            title: $localize`Übrig`,
             customers: null,
             portions: 0,
             sum: 0.0,
@@ -310,7 +310,7 @@ export class StatisticComponent implements OnInit {
 
     private calculateCommunications(preOrders: PreOrder[]): Statistic2Row {
         const data: Statistic2Row = {
-            title: "Vorbestellungen",
+            title: $localize`Vorbestellungen`,
         }
 
         this.communications.forEach(communication => {

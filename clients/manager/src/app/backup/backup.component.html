@@ -1,9 +1,7 @@
-<h1>Datensicherung</h1>
+<h1 i18n>Datensicherung</h1>
 
 <div class="commandline">
-    <div class="commandline-text">
-        Daten von Server laden
-    </div>
+    <div class="commandline-text" i18n>Daten von Server laden</div>
     <div class="commandline-button">
         <button mat-fab color="basic" (click)="backup()">
             <mat-icon>backup</mat-icon>
@@ -13,14 +11,12 @@
 
 <div class="spacer"></div>
 
-<h1>Rücksicherung</h1>
+<h1 i18n>Rücksicherung</h1>
 
 <div class="commandline">
-    <div class="commandline-text">
-        Server-Daten überschreiben
-    </div>
+    <div class="commandline-text" i18n>Server-Daten überschreiben</div>
     <div class="commandline-button">
-        <input type="file" (change)="restore($event)" placeholder="Rücksicherung" accept=".json">
+        <input type="file" (change)="restore($event)" i18n-placeholder placeholder="Rücksicherung" accept=".json">
     </div>
     <div class="commandline-button" [hidden]="!backupCreated">
         <mat-icon aria-hidden="false" aria-label="Success">done</mat-icon>
@@ -29,12 +25,10 @@
 
 <div class="spacer"></div>
 
-<h1>CSV Vorbestellungen</h1>
+<h1 i18n>CSV Vorbestellungen</h1>
 
 <div class="commandline">
-    <div class="commandline-text">
-        Liste von Server laden
-    </div>
+    <div class="commandline-text" i18n>Liste von Server laden</div>
     <div class="commandline-button">
         <button mat-fab color="basic" (click)="createPreOrdersCsv()">
             <mat-icon>apps</mat-icon>
@@ -44,12 +38,10 @@
 
 <div class="spacer"></div>
 
-<h1>Kontakte</h1>
+<h1 i18n>Kontakte</h1>
 
 <div class="commandline">
-    <div class="commandline-text">
-        Liste von Server laden
-    </div>
+    <div class="commandline-text" i18n>Liste von Server laden</div>
     <div class="commandline-button">
         <button mat-fab color="basic" (click)="createContactsCsv()">
             <mat-icon>apps</mat-icon>

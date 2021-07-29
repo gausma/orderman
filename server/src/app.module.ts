@@ -18,7 +18,7 @@ import { join } from "path";
 @Module({
     imports: [
         ServeStaticModule.forRoot({
-            rootPath: join(__dirname, "../../clients/manager/dist/registration/"),
+            rootPath: join(__dirname, "../../clients/manager/dist/manager/"),
             serveRoot: "/manager",
         }),
         ServeStaticModule.forRoot({

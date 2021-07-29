@@ -64,15 +64,15 @@ export class OrderFormComponent implements OnInit {
             this.orderId = params.orderId;
             if (this.orderId == null) {
                 // Create
-                this.title = "Einkauf erstellen";
-                this.command = "Erstellen";
+                this.title = $localize`Einkauf erstellen`;
+                this.command = $localize`Erstellen`;
 
                 this.preOrderId = "";
                 this.initialValues = this.form.value;
             } else {
                 // Edit
-                this.title = "Einkauf bearbeiten";
-                this.command = "Aktualisieren";
+                this.title = $localize`Einkauf bearbeiten`;
+                this.command = $localize`Aktualisieren`;
 
                 this.evalOrder();
             }

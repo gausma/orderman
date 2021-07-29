@@ -10,7 +10,7 @@ import { CommunicationsService } from "../../services/communications.service";
 import { Communication } from "../../contracts/communication";
 import { CommunicationRow } from "../../contracts/communication-row";
 import { AuthenticationsService } from '../../services/authentications.service';
-import { AuthenticationCredentials } from 'src/app/contracts/authentication-credentials';
+import { AuthenticationCredentials } from '../../contracts/authentication-credentials';
 
 @Component({
     selector: "app-communication-list",
@@ -31,8 +31,8 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     ];
 
     columns: ColumnDefinition[] = [
-        { id: "name", title: "Name", align: "left", type: "string" },
-        { id: "communicationTypeTitle", title: "Typ", align: "left", type: "string" },
+        { id: "name", title: $localize`Name`, align: "left", type: "string" },
+        { id: "communicationTypeTitle", title: $localize`Typ`, align: "left", type: "string" },
     ];
     displayedColumns: string[] = ["name", "communicationTypeTitle"];
 
@@ -91,7 +91,7 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
     }
 
     add(): void {
-        this.command = "Erstellen";
+        this.command = $localize`Erstellen`;
         this.communicationId = null;
 
         this.form.get("name").setValue("");
@@ -107,7 +107,7 @@ export class CommunicationListComponent implements OnInit, AfterViewInit, OnDest
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.command = "Aktualisieren";
+            this.command = $localize`Aktualisieren`;
             this.communicationId = this.selection.selected[0].id;
 
             this.form.get("name").setValue(this.selection.selected[0].name);

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="de" datatype="plaintext" original="ng2.template">
+    <body>
+
+        <!-- pre-order-list.component.ts -->
+        <trans-unit id="2923866343880677604">
+            <source>Verkauft</source>
+        </trans-unit>
+        <trans-unit id="8953033926734869941">
+            <source>Name</source>
+        </trans-unit>
+        <trans-unit id="6278737578310385428">
+            <source>Vorname</source>
+        </trans-unit>
+        <trans-unit id="6066631435099755443">
+            <source>Bemerkung</source>
+        </trans-unit>
+        <trans-unit id="7380742090895011449">
+            <source>Kommunikation</source>
+        </trans-unit>
+        <trans-unit id="314315645942131479">
+            <source>Info</source>
+        </trans-unit>
+        <trans-unit id="1133378173705582866">
+            <source>Erstellt</source>
+        </trans-unit>
+        <trans-unit id="6941480264920362873">
+            <source>Summe</source>
+        </trans-unit>
+
+        <!-- pre-order-form.component.ts -->
+        <trans-unit id="5507831548719807256">
+            <source>Vorbestellung erstellen</source>
+        </trans-unit>
+        <trans-unit id="2961538958334556025">
+            <source>Erstellen</source>
+        </trans-unit>
+        <trans-unit id="8431178416281846063">
+            <source>Vorbestellung bearbeiten</source>
+        </trans-unit>
+        <trans-unit id="7832220288598509801">
+            <source>Aktualisieren</source>
+        </trans-unit>
+
+        <!-- order-list.component.ts -->
+        <trans-unit id="8297406851287896330">
+            <source>Vorbestellung</source>
+        </trans-unit>
+
+        <!-- order-form.component.ts -->
+        <trans-unit id="4682454056382652833">
+            <source>Einkauf erstellen</source>
+        </trans-unit>
+        <trans-unit id="3451996232589472767">
+            <source>Einkauf bearbeiten</source>
+        </trans-unit>
+
+        <!-- communication-list.component.ts -->
+        <trans-unit id="1028183456135890397">
+            <source>Typ</source>
+        </trans-unit>
+
+        <!-- menu-list.component.ts -->
+        <trans-unit id="203211822606310697">
+            <source>Preis €</source>
+        </trans-unit>
+        <trans-unit id="9154446893790494879">
+            <source>Reihenfolge</source>
+        </trans-unit>
+
+        <!-- statistic.component.ts -->
+        <trans-unit id="1023163142012768612">
+            <source>Kunden</source>
+        </trans-unit>
+        <trans-unit id="1709744324223496562">
+            <source>Portionen</source>
+        </trans-unit>
+        <trans-unit id="2262318201499246794">
+            <source>Summe €</source>
+        </trans-unit>
+        <trans-unit id="2237329826272630569">
+            <source>Vorbestellungen</source>
+        </trans-unit>
+        <trans-unit id="2469260233662324530">
+            <source>Einkäufe mit Vorbestellung</source>
+        </trans-unit>
+        <trans-unit id="6200690172042939547">
+            <source>Einkäufe ohne Vorbestellung</source>
+        </trans-unit>
+        <trans-unit id="5018628783389659117">
+            <source>Bestand</source>
+        </trans-unit>
+        <trans-unit id="5290501358885978713">
+            <source>Ausstehend</source>
+        </trans-unit>
+        <trans-unit id="8606521160790331862">
+            <source>Übrig</source>
+        </trans-unit>
+
+        <!-- authentication-list.component.ts -->
+        <trans-unit id="4586989554085646197">
+            <source>Benutzer</source>
+        </trans-unit>
+        <trans-unit id="2815226077371520438">
+            <source>Vorbestellung lesen</source>
+        </trans-unit>
+        <trans-unit id="6679995704804900712">
+            <source>Vorbestellung schreiben</source>
+        </trans-unit>
+        <trans-unit id="5105474657029471147">
+            <source>Vorbestellung übernehmen</source>
+        </trans-unit>
+        <trans-unit id="2737145428754156651">
+            <source>Bestellung lesen</source>
+        </trans-unit>
+        <trans-unit id="3165659201531865410">
+            <source>Bestellung schreiben</source>
+        </trans-unit>
+        <trans-unit id="7559020556979261445">
+            <source>Kommunikation lesen</source>
+        </trans-unit>
+        <trans-unit id="5307895165323652654">
+            <source>Kommunikation schreiben</source>
+        </trans-unit>
+        <trans-unit id="4886701732413800302">
+            <source>Gerichte lesen</source>
+        </trans-unit>
+        <trans-unit id="7995363124009816212">
+            <source>Gerichte schreiben</source>
+        </trans-unit>
+        <trans-unit id="4913687866402954884">
+            <source>Statistik lesen</source>
+        </trans-unit>
+        <trans-unit id="4710751859185275615">
+            <source>Backup lesen</source>
+        </trans-unit>
+        <trans-unit id="3432678520988389651">
+            <source>Info lesen</source>
+        </trans-unit>
+        <trans-unit id="4206058236001139600">
+            <source>Berechtigung lesen</source>
+        </trans-unit>
+        <trans-unit id="8423058150063574080">
+            <source>Berechtigung schreiben</source>
+        </trans-unit>
+    </body>
+  </file>
+</xliff>

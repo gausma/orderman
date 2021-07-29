@@ -1,8 +1,8 @@
-<h1>Gerichte</h1>
+<h1 i18n>Gerichte</h1>
 <div class="commandline">
     <div class="commandline-filter">
         <mat-form-field>
-            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
+            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" i18n-placeholder placeholder="Filter" />
         </mat-form-field>
     </div>
 
@@ -53,31 +53,31 @@
 
                 <div class="form-row2-wrapper">
                     <mat-form-field>
-                        <mat-label>Name</mat-label>
+                        <mat-label i18n>Name</mat-label>
                         <input id="name" matInput type="text" formControlName="name">
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-label>Preis</mat-label>
+                        <mat-label i18n>Preis</mat-label>
                         <input matInput type="number" formControlName="price">
                     </mat-form-field>
                 </div>
 
                 <div class="form-row2-wrapper">
                     <mat-form-field>
-                        <mat-label>Bemerkung</mat-label>
+                        <mat-label i18n>Bemerkung</mat-label>
                         <input matInput type="text" formControlName="comment">
                     </mat-form-field>
 
                     <mat-form-field>
-                        <mat-label>Reihenfolge</mat-label>
+                        <mat-label i18n>Reihenfolge</mat-label>
                         <input matInput type="number" formControlName="sequence">
                     </mat-form-field>
                 </div>
 
                 <div class="form-row2-wrapper">
                     <mat-form-field>
-                        <mat-label>Bestand</mat-label>
+                        <mat-label i18n>Bestand</mat-label>
                         <input matInput type="number" formControlName="stock">
                     </mat-form-field>
                 </div>
@@ -88,7 +88,7 @@
         <!-- Buttons -->
         <div class="buttonline">
             <button mat-raised-button class="buttonline-item" color="basic" type="button"
-                (click)="cancel()">Abbrechen</button>
+                (click)="cancel()" i18n>Abbrechen</button>
             <button mat-raised-button class="buttonline-item" color="primary" type="submit"
                 [disabled]="form.value.name === ''">{{ command }}</button>
         </div>

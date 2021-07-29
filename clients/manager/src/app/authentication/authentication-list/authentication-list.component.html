@@ -1,9 +1,8 @@
-<h1>Berechtigungen</h1>
+<h1 i18n>Berechtigungen</h1>
 <div class="commandline">
     <div class="commandline-filter">
         <mat-form-field>
-            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)"
-                placeholder="Filter" />
+            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" i18n-placeholder placeholder="Filter" />
         </mat-form-field>
     </div>
 
@@ -55,90 +54,62 @@
             <mat-card-content>
                 <div class="form-row2-wrapper">
                     <mat-form-field>
-                        <mat-label>Benutzer</mat-label>
+                        <mat-label i18n>Benutzer</mat-label>
                         <input id="user" matInput type="text" formControlName="user">
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-label>Kennwort</mat-label>
+                        <mat-label i18n>Kennwort</mat-label>
                         <input id="password" matInput type="password" formControlName="password">
                     </mat-form-field>
                 </div>
 
                 <div class="form-row4-wrapper">
-                    <mat-label>Vorbestellungen:</mat-label>
+                    <mat-label i18n>Vorbestellungen:</mat-label>
                     <div>
-                        <mat-checkbox id="preOrdersRead" matInput formControlName="preOrdersRead">
-                            lesen
-                        </mat-checkbox>
-                        <mat-checkbox id="preOrdersWrite" matInput formControlName="preOrdersWrite">
-                            schreiben
-                        </mat-checkbox>
-                        <mat-checkbox id="preOrdersOrder" matInput formControlName="preOrdersOrder">
-                            übernehmen
-                        </mat-checkbox>
+                        <mat-checkbox id="preOrdersRead" matInput formControlName="preOrdersRead" i18n>lesen</mat-checkbox>
+                        <mat-checkbox id="preOrdersWrite" matInput formControlName="preOrdersWrite" i18n>schreiben</mat-checkbox>
+                        <mat-checkbox id="preOrdersOrder" matInput formControlName="preOrdersOrder" i18n>übernehmen</mat-checkbox>
                     </div>
-                    <mat-label>Einkäufe:</mat-label>
+                    <mat-label i18n>Einkäufe:</mat-label>
                     <div>
-                        <mat-checkbox id="ordersRead" matInput formControlName="ordersRead">
-                            lesen
-                        </mat-checkbox>
-                        <mat-checkbox id="ordersWrite" matInput formControlName="ordersWrite">
-                            schreiben
-                        </mat-checkbox>
+                        <mat-checkbox id="ordersRead" matInput formControlName="ordersRead" i18n>lesen</mat-checkbox>
+                        <mat-checkbox id="ordersWrite" matInput formControlName="ordersWrite" i18n>schreiben</mat-checkbox>
                     </div>
                 </div>
 
                 <div class="form-row4-wrapper">
-                    <mat-label>Kommunikation:</mat-label>
+                    <mat-label i18n>Kommunikation:</mat-label>
                     <div>
-                        <mat-checkbox id="communicationsRead" matInput formControlName="communicationsRead">
-                            lesen
-                        </mat-checkbox>
-                        <mat-checkbox id="communicationsWrite" matInput formControlName="communicationsWrite">
-                            schreiben
-                        </mat-checkbox>
+                        <mat-checkbox id="communicationsRead" matInput formControlName="communicationsRead" i18n>lesen</mat-checkbox>
+                        <mat-checkbox id="communicationsWrite" matInput formControlName="communicationsWrite" i18n>schreiben</mat-checkbox>
                     </div>
-                    <mat-label>Gerichte:</mat-label>
+                    <mat-label i18n>Gerichte:</mat-label>
                     <div>
-                        <mat-checkbox id="menusRead" matInput formControlName="menusRead">
-                            lesen
-                        </mat-checkbox>
-                        <mat-checkbox id="menusWrite" matInput formControlName="menusWrite">
-                            schreiben
-                        </mat-checkbox>
+                        <mat-checkbox id="menusRead" matInput formControlName="menusRead" i18n>lesen</mat-checkbox>
+                        <mat-checkbox id="menusWrite" matInput formControlName="menusWrite" i18n>schreiben</mat-checkbox>
                     </div>
                 </div>
 
                 <div class="form-row4-wrapper">
-                    <mat-label>Statistik:</mat-label>
+                    <mat-label i18n>Statistik:</mat-label>
                     <div>
-                        <mat-checkbox id="statisticsRead" matInput formControlName="statisticsRead">
-                            lesen
-                        </mat-checkbox>
+                        <mat-checkbox id="statisticsRead" matInput formControlName="statisticsRead" i18n>lesen</mat-checkbox>
                     </div>
-                    <mat-label>Backups:</mat-label>
+                    <mat-label i18n>Backups:</mat-label>
                     <div>
-                        <mat-checkbox id="backupsRead" matInput formControlName="backupsRead">
-                            lesen
-                        </mat-checkbox>
+                        <mat-checkbox id="backupsRead" matInput formControlName="backupsRead" i18n>lesen</mat-checkbox>
                     </div>
                 </div>
 
                 <div class="form-row4-wrapper">
-                    <mat-label>Info:</mat-label>
+                    <mat-label i18n>Info:</mat-label>
                     <div>
-                        <mat-checkbox id="infosRead" matInput formControlName="infosRead">
-                            lesen
-                        </mat-checkbox>
+                        <mat-checkbox id="infosRead" matInput formControlName="infosRead" i18n>lesen</mat-checkbox>
                     </div>
-                    <mat-label>Berechtigungen:</mat-label>
+                    <mat-label i18n>Berechtigungen:</mat-label>
                     <div>
-                        <mat-checkbox id="authenticationsRead" matInput formControlName="authenticationsRead">
-                            lesen
-                        </mat-checkbox>
-                        <mat-checkbox id="authenticationsWrite" matInput formControlName="authenticationsWrite">
-                            schreiben
-                        </mat-checkbox>
+                        <mat-checkbox id="authenticationsRead" matInput formControlName="authenticationsRead" i18n>lesen</mat-checkbox>
+                        <mat-checkbox id="authenticationsWrite" matInput formControlName="authenticationsWrite" i18n>schreiben</mat-checkbox>
                     </div>
                 </div>
             </mat-card-content>
@@ -147,7 +118,7 @@
         <!-- Buttons -->
         <div class="buttonline">
             <button mat-raised-button class="buttonline-item" color="basic" type="button"
-                (click)="cancel()">Abbrechen</button>
+                (click)="cancel()" i18n>Abbrechen</button>
             <button mat-raised-button class="buttonline-item" color="primary" type="submit"
                 [disabled]="form.value.user === ''">{{ command }}</button>
         </div>

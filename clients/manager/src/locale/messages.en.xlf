@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1c43fa48d907789a6cadd00597bd87e73eb0e173" datatype="html">
+        <source>OrderMan</source>
+        <target>OrderMan</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/welcome/welcome.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/header/header.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c267de45075ba535f0b1152ec4e3464cab1afb0" datatype="html">
+        <source>Bestell- und Abrechnungssystem</source>
+        <target>Order- and Invoice-System</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/welcome/welcome.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9c4b60eba20994f7bda2ac4d64200dcd22c3a51a" datatype="html">
+        <source>Vorbestellungen</source>
+        <target>Preorders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-list/pre-order-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ca707824ab93066c7d9b44e1b8bf216725c2c22" datatype="html">
+        <source>Filter</source>
+        <target>Filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-list/pre-order-list.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-list/order-list.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/communication/communication-list/communication-list.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <target>Surname</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-form/pre-order-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-form/order-form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/communication/communication-list/communication-list.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d6507e7b5ae51f1734f3e169ef4cf6ef56f0001f" datatype="html">
+        <source>Vorname</source>
+        <target>First Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-form/pre-order-form.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-form/order-form.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="548f9212c76c87feda3601349622b8a40a55fe8e" datatype="html">
+        <source>Bemerkung</source>
+        <target>Comment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-form/pre-order-form.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-form/order-form.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1b24932d0f2269e4b41d0f936fdb5de1b94da401" datatype="html">
+        <source>Abbrechen</source>
+        <target>Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-form/pre-order-form.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-form/order-form.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/communication/communication-list/communication-list.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7d1d4f8fbeb2175628a88fb05a8494bd5304ba1" datatype="html">
+        <source>Zurücksetzen</source>
+        <target>Reset</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pre-order/pre-order-form/pre-order-form.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-form/order-form.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e4bd75d4d05061e3de76f8ff93d338033e584914" datatype="html">
+        <source>Einkäufe</source>
+        <target>Orders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/order/order-list/order-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1a86d75fc4f4735f5a445afeb23eca868460ccfa" datatype="html">
+        <source>Anmeldung</source>
+        <target>Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4e69c2fddd7b8dcf974680e85627847ec04d0e2f" datatype="html">
+        <source>Benutzer</source>
+        <target>User</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="09be2917e9c44dce9ce9b0e381321375f9cc2ebf" datatype="html">
+        <source>Kennwort</source>
+        <target>Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="be5c752b58791dd799bc5d5482d4351e06f18673" datatype="html">
+        <source>Ok</source>
+        <target>Ok</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e34a0ed6e8b02985885a10a7fccbef0cd4f4510d" datatype="html">
+        <source>Kommunikation</source>
+        <target>Communication</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/communication/communication-list/communication-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/communication/communication-list/communication-list.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e3abebe019ccc233aed262a6260038fdf219c809" datatype="html">
+        <source>Gerichte</source>
+        <target>Menus</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92767bfb5cd7aa47cb044229b4b6394de03d43b3" datatype="html">
+        <source>Statistik</source>
+        <target>Statistics</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/statistic/statistic.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="556ceed7e6a036f83e1ac3d27dc535cf74e17459" datatype="html">
+        <source>Berechtigungen</source>
+        <target>Authentications</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9cc5bcc636bfcae038b882a388e5e424d35ac9c2" datatype="html">
+        <source>Backups</source>
+        <target>Backups</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="321e4419a943044e674beb55b8039f42a9761ca5" datatype="html">
+        <source>Info</source>
+        <target>Info</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/sidenav-list/sidenav-list.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/info/info.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7f18d9e7e949f788d606ea4314689a9f2f7ee9c5" datatype="html">
+        <source>Preis</source>
+        <target>Price</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="241382b1c562e16c7fb38aade4e3717bf08312a7" datatype="html">
+        <source>Reihenfolge</source>
+        <target>Order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ec939e2f9ddc5027de8c2f9712cbd5cab8800d84" datatype="html">
+        <source>Bestand</source>
+        <target>Stock</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu-list/menu-list.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="40c937d588ce512753911c94ac194ba758d72841" datatype="html">
+        <source>Datensicherung</source>
+        <target>Backup</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1ac7c9e6cf81847670cc96dfac60e40ef6ac0bc2" datatype="html">
+        <source>Daten von Server laden</source>
+        <target>Load data from server</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="242d6b49e4e9152158cd15aea3f473271d6247e4" datatype="html">
+        <source>Rücksicherung</source>
+        <target>Restore</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e58285c12c0c7c88d8c381fdaa1d3608a016aafc" datatype="html">
+        <source>Server-Daten überschreiben</source>
+        <target>Overwrite server data</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c85087cc0b154b450163c87b5b0b78f7e2632a4e" datatype="html">
+        <source>CSV Vorbestellungen</source>
+        <target>CSV preorders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63e6920f7dd6197bfa1e83efa4ec3d7caad73701" datatype="html">
+        <source>Liste von Server laden</source>
+        <target>Load list from server</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="594338bbb11735e66d3096f43e8de2c183328477" datatype="html">
+        <source>Kontakte</source>
+        <target>Contacts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/backup/backup.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="023a22e505097de01ba7a7ef3ef92700711c9434" datatype="html">
+        <source>Vorbestellungen:</source>
+        <target>Preorders:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c084448e5534eaec1a49237e8cd96148eb489d36" datatype="html">
+        <source>lesen</source>
+        <target>read</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eb14b5d6558ea32789c732793bac4b32a228f3f2" datatype="html">
+        <source>schreiben</source>
+        <target>write</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9a255c52e06359c6ebfee7a20ac9fbb89a61bdd" datatype="html">
+        <source>übernehmen</source>
+        <target>apply</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd8add98ef4c185ccfec33ff3196261901862672" datatype="html">
+        <source>Einkäufe:</source>
+        <target>Orders:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e702baf457f6c7238955251adfdbd911a68e0336" datatype="html">
+        <source>Kommunikation:</source>
+        <target>Communication:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="89d418a7e94f885f1ce3209df92c82079b9aa2ad" datatype="html">
+        <source>Gerichte:</source>
+        <target>Menus:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1d4b23392ce9b644589cd51219a98fd258c4ca56" datatype="html">
+        <source>Statistik:</source>
+        <target>Statistics:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e0b33b66322a9fb64a6a79941ae551cc94ff56" datatype="html">
+        <source>Backups:</source>
+        <target>Backups:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c9ef51336d0693627f563add6def93f559789af" datatype="html">
+        <source>Info:</source>
+        <target>Info:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aa9be23bca09fd3ffa68aff9d084007659fad804" datatype="html">
+        <source>Berechtigungen:</source>
+        <target>Authentications:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/authentication/authentication-list/authentication-list.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0b0fa7b7eeb20e4f55f65a67e0b71472b7cf5008" datatype="html">
+        <source>OderMan V1.0</source>
+        <target>OderMan V1.0</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/info/info.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f0da63c1a9ac8bd5296a05ff64a7273108525ef" datatype="html">
+        <source>Vielen Dank für Deine Spende!</source>
+        <target>Thank you for your donation!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/info/info.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a4514179caa68de13e127ad45f615dd68c0ea7e" datatype="html">
+        <source>Lizenz</source>
+        <target>License</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/info/info.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+
+        <!-- pre-order-list.component.ts -->
+        <trans-unit id="2923866343880677604">
+            <source>Verkauft</source>
+            <target>Sold</target>
+        </trans-unit>
+        <trans-unit id="8953033926734869941">
+            <source>Name</source>
+            <target>Surname</target>
+        </trans-unit>
+        <trans-unit id="6278737578310385428">
+            <source>Vorname</source>
+            <target>First Name</target>
+        </trans-unit>
+        <trans-unit id="6066631435099755443">
+            <source>Bemerkung</source>
+            <target>Comment</target>
+        </trans-unit>
+        <trans-unit id="7380742090895011449">
+            <source>Kommunikation</source>
+            <target>Communication</target>
+        </trans-unit>
+        <trans-unit id="314315645942131479">
+            <source>Info</source>
+            <target>Info</target>
+        </trans-unit>
+        <trans-unit id="1133378173705582866">
+            <source>Erstellt</source>
+            <target>Created</target>
+        </trans-unit>
+        <trans-unit id="6941480264920362873">
+            <source>Summe</source>
+            <target>Total</target>
+        </trans-unit>
+
+        <!-- pre-order-form.component.ts -->
+        <trans-unit id="5507831548719807256">
+            <source>Vorbestellung erstellen</source>
+            <target>Create Preorders</target>
+        </trans-unit>
+        <trans-unit id="2961538958334556025">
+            <source>Erstellen</source>
+            <target>Create</target>
+        </trans-unit>
+        <trans-unit id="8431178416281846063">
+            <source>Vorbestellung bearbeiten</source>
+            <target>Edit Preorders</target>
+        </trans-unit>
+        <trans-unit id="7832220288598509801">
+            <source>Aktualisieren</source>
+            <target>Update</target>
+        </trans-unit>
+
+        <!-- order-list.ts -->
+        <trans-unit id="8297406851287896330">
+            <source>Vorbestellung</source>
+            <target>Preorder</target>
+        </trans-unit>
+
+        <!-- order-form.component.ts -->
+        <trans-unit id="4682454056382652833">
+            <source>Einkauf erstellen</source>
+            <target>Create Order</target>
+        </trans-unit>
+        <trans-unit id="3451996232589472767">
+            <source>Einkauf bearbeiten</source>
+            <target>Edit Order</target>
+        </trans-unit>
+
+        <!-- communication-list.component.ts -->
+        <trans-unit id="1028183456135890397">
+            <source>Typ</source>
+            <target>Type</target>
+        </trans-unit>
+
+        <!-- menu-list.component.ts -->
+        <trans-unit id="203211822606310697">
+            <source>Preis €</source>
+            <target>Price €</target>
+        </trans-unit>
+        <trans-unit id="9154446893790494879">
+            <source>Reihenfolge</source>
+            <target>Order</target>
+        </trans-unit>
+
+        <!-- statistic.component.ts -->
+        <trans-unit id="1023163142012768612">
+            <source>Kunden</source>
+            <target>Customer</target>
+        </trans-unit>      
+        <trans-unit id="1709744324223496562">
+            <source>Portionen</source>
+            <target>Portions</target>
+        </trans-unit>
+        <trans-unit id="2262318201499246794">
+            <source>Summe €</source>
+            <target>Total €</target>
+        </trans-unit>
+        <trans-unit id="2237329826272630569">
+            <source>Vorbestellungen</source>
+            <target>Preorders</target>
+        </trans-unit>
+        <trans-unit id="2469260233662324530">
+            <source>Einkäufe mit Vorbestellung</source>
+            <target>Orders wird preorders</target>
+        </trans-unit>
+        <trans-unit id="6200690172042939547">
+            <source>Einkäufe ohne Vorbestellung</source>
+            <target>Orders without preorders</target>
+        </trans-unit>
+        <trans-unit id="5018628783389659117">
+            <source>Bestand</source>
+            <target>Stock</target>
+        </trans-unit>
+        <trans-unit id="5290501358885978713">
+            <source>Ausstehend</source>
+            <target>Pending</target>
+        </trans-unit>
+        <trans-unit id="8606521160790331862">
+            <source>Übrig</source>
+            <target>Remaining</target>
+        </trans-unit>
+
+        <!-- authentication-list.component.ts -->
+        <trans-unit id="4586989554085646197">
+            <source>Benutzer</source>
+            <target>User</target>
+        </trans-unit>
+        <trans-unit id="2815226077371520438">
+            <source>Vorbestellung lesen</source>
+            <target>Preorder read</target>
+        </trans-unit>
+        <trans-unit id="6679995704804900712">
+            <source>Vorbestellung schreiben</source>
+            <target>Preorder write</target>
+        </trans-unit>
+        <trans-unit id="5105474657029471147">
+            <source>Vorbestellung übernehmen</source>
+            <target>Preorder apply</target>
+        </trans-unit>
+        <trans-unit id="2737145428754156651">
+            <source>Bestellung lesen</source>
+            <target>Order read</target>
+        </trans-unit>
+        <trans-unit id="3165659201531865410">
+            <source>Bestellung schreiben</source>
+            <target>Order write</target>
+        </trans-unit>
+        <trans-unit id="7559020556979261445">
+            <source>Kommunikation lesen</source>
+            <target>Communication read</target>
+        </trans-unit>
+        <trans-unit id="5307895165323652654">
+            <source>Kommunikation schreiben</source>
+            <target>Communication write</target>
+        </trans-unit>
+        <trans-unit id="4886701732413800302">
+            <source>Gerichte lesen</source>
+            <target>Menus read</target>
+        </trans-unit>
+        <trans-unit id="7995363124009816212">
+            <source>Gerichte schreiben</source>
+            <target>Menus write</target>
+        </trans-unit>
+        <trans-unit id="4913687866402954884">
+            <source>Statistik lesen</source>
+            <target>Statistics read</target>
+        </trans-unit>
+        <trans-unit id="4710751859185275615">
+            <source>Backup lesen</source>
+            <target>Backup read</target>
+        </trans-unit>
+        <trans-unit id="3432678520988389651">
+            <source>Info lesen</source>
+            <target>Info read</target>
+        </trans-unit>
+        <trans-unit id="4206058236001139600">
+            <source>Berechtigung lesen</source>
+            <target>Authentication read</target>
+        </trans-unit>
+        <trans-unit id="8423058150063574080">
+            <source>Berechtigung schreiben</source>
+            <target>Authentication write</target>
+        </trans-unit>
+
+    </body>
+  </file>
+</xliff>

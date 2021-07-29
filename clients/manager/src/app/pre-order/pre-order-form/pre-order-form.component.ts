@@ -89,14 +89,14 @@ export class PreOrderFormComponent implements OnInit {
             this.preOrderId = params.preOrderId;
             if (this.preOrderId == null) {
                 // Create
-                this.title = "Vorbestellung erstellen";
-                this.command = "Erstellen";
+                this.title = $localize`Vorbestellung erstellen`;
+                this.command = $localize`Erstellen`;
 
                 this.initialValues = this.form.value;
             } else {
                 // Edit
-                this.title = "Vorbestellung bearbeiten";
-                this.command = "Aktualisieren";
+                this.title = $localize`Vorbestellung bearbeiten`;
+                this.command = $localize`Aktualisieren`;
 
                 this.evalPreOrder();
             }

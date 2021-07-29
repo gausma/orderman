@@ -23,21 +23,21 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
     authentications: Authentication[] = [];
 
     columns: ColumnDefinition[] = [
-        { id: "user", title: "Benutzer", align: "left", type: "string" },
-        { id: "preOrdersRead", title: "Vorbestellung lesen", align: "center", type: "bool" },
-        { id: "preOrdersWrite", title: "Vorbestellung schreiben", align: "center", type: "bool" },
-        { id: "preOrdersOrder", title: "Vorbestellung übernehmen", align: "center", type: "bool" },
-        { id: "ordersRead", title: "Bestellung lesen", align: "center", type: "bool" },
-        { id: "ordersWrite", title: "Bestellung schreiben", align: "center", type: "bool" },
-        { id: "communicationsRead", title: "Kommunikation lesen", align: "center", type: "bool" },
-        { id: "communicationsWrite", title: "Kommunikation schreiben", align: "center", type: "bool" },
-        { id: "menusRead", title: "Gerichte lesen", align: "center", type: "bool" },
-        { id: "menusWrite", title: "Gerichte schreiben", align: "center", type: "bool" },
-        { id: "statisticsRead", title: "Statistik lesen", align: "center", type: "bool" },
-        { id: "backupsRead", title: "Backup lesen", align: "center", type: "bool" },
-        { id: "infosRead", title: "Info lesen", align: "center", type: "bool" },
-        { id: "authenticationsRead", title: "Berechtigung lesen", align: "center", type: "bool" },
-        { id: "authenticationsWrite", title: "Berechtigung schreiben", align: "center", type: "bool" },
+        { id: "user", title: $localize`Benutzer`, align: "left", type: "string" },
+        { id: "preOrdersRead", title: $localize`Vorbestellung lesen`, align: "center", type: "bool" },
+        { id: "preOrdersWrite", title: $localize`Vorbestellung schreiben`, align: "center", type: "bool" },
+        { id: "preOrdersOrder", title: $localize`Vorbestellung übernehmen`, align: "center", type: "bool" },
+        { id: "ordersRead", title: $localize`Bestellung lesen`, align: "center", type: "bool" },
+        { id: "ordersWrite", title: $localize`Bestellung schreiben`, align: "center", type: "bool" },
+        { id: "communicationsRead", title: $localize`Kommunikation lesen`, align: "center", type: "bool" },
+        { id: "communicationsWrite", title: $localize`Kommunikation schreiben`, align: "center", type: "bool" },
+        { id: "menusRead", title: $localize`Gerichte lesen`, align: "center", type: "bool" },
+        { id: "menusWrite", title: $localize`Gerichte schreiben`, align: "center", type: "bool" },
+        { id: "statisticsRead", title: $localize`Statistik lesen`, align: "center", type: "bool" },
+        { id: "backupsRead", title: $localize`Backup lesen`, align: "center", type: "bool" },
+        { id: "infosRead", title: $localize`Info lesen`, align: "center", type: "bool" },
+        { id: "authenticationsRead", title: $localize`Berechtigung lesen`, align: "center", type: "bool" },
+        { id: "authenticationsWrite", title: $localize`Berechtigung schreiben`, align: "center", type: "bool" },
     ];
     displayedColumns: string[] = [
         "user", 
@@ -117,7 +117,7 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
     }
 
     add(): void {
-        this.command = "Erstellen";
+        this.command = $localize`Erstellen`;
         this.authenticationId = null;
 
         this.form.get("user").setValue("");
@@ -146,7 +146,7 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
 
     edit(): void {
         if (!this.selection.isEmpty()) {
-            this.command = "Aktualisieren";
+            this.command = $localize`Aktualisieren`;
             this.authenticationId = this.selection.selected[0].id;
 
             this.form.get("user").setValue(this.selection.selected[0].user);

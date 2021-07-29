@@ -18,12 +18,12 @@ import { join } from "path";
 @Module({
     imports: [
         ServeStaticModule.forRoot({
-            rootPath: join(__dirname, "../../clients/manager/dist/manager/"),
-            serveRoot: "/manager",
+            rootPath: join(__dirname, "../../clients/order/dist/order/"),
+            serveRoot: "/order",
         }),
         ServeStaticModule.forRoot({
-            rootPath: join(__dirname, "../../clients/order/dist/registration/"),
-            serveRoot: "/order",
+            rootPath: join(__dirname, "../../clients/manager/dist/manager/"),
+            serveRoot: "/manager",
         }),
         MongooseModule.forRoot("mongodb://localhost/orderman"),
         BackupsModule,

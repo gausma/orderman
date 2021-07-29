@@ -1,16 +1,12 @@
 <!-- Filter -->
 <div class="form-row-wrapper">
-    <div class="form-item">
-        Filter
-    </div>
+    <div class="form-item" i18n>Filter</div>
     <div class="form-item">
         <input class="form-input" type="text"  autocomplete="off" [(ngModel)]="filter" (input)="onFilter($event.target.value)">
     </div>
 </div>
 <div class="form-row-wrapper">
-    <div class="form-item">
-        Auswahl
-    </div>
+    <div class="form-item" i18n>Auswahl</div>
     <div class="form-item">
         <select class="form-input" size="4" [(ngModel)]="selectedValue" (ngModelChange)="onSelect($event)">
             <option [ngValue]="selection" *ngFor="let selection of selectionList">{{selection.name1}}, {{selection.name2}}</option>
@@ -23,25 +19,19 @@
     <!-- Section Name, ... -->
     <div class="form-wrapper">
         <div class="form-row-wrapper">
-            <div class="form-item">
-                Name
-            </div>
+            <div class="form-item" i18n>Name</div>
             <div class="form-item">
                 <input class="form-input" type="text" formControlName="name1" (input)="onBaseDataChanged($event.target.value)">
             </div>
         </div>
         <div class="form-row-wrapper">
-            <div class="form-item">
-                Vorname
-            </div>
+            <div class="form-item" i18n>Vorname</div>
             <div class="form-item">
                 <input class="form-input" type="text" formControlName="name2" (input)="onBaseDataChanged($event.target.value)">
             </div>
         </div>
         <div class="form-row-wrapper">
-            <div class="form-item">
-                Bemerkung
-            </div>
+            <div class="form-item" i18n>Bemerkung</div>
             <div class="form-item">
                 <input class="form-input" type="text" formControlName="comment">
             </div>
@@ -64,14 +54,14 @@
 
     <!-- Section Preice -->
     <div class="price-wrapper">
-        <span class="price-text-wrapper">Summe</span>
+        <span class="price-text-wrapper" i18n>Summe</span>
         <span class="price-total-wrapper">{{ price | number: "1.2-2" }}</span>
-        <span class="price-text-wrapper">€</span>
+        <span class="price-text-wrapper" i18n>€</span>
     </div>
 
     <!-- Section Buttons -->
     <div class="button-wrapper">
-        <button class="button" type="button" (click)="reset()">Zurücksetzen</button>
-        <button class="button" type="submit" [disabled]="form.value.name1==''">Übernehmen</button>
+        <button class="button" type="button" (click)="reset()" i18n>Zurücksetzen</button>
+        <button class="button" type="submit" [disabled]="form.value.name1==''" i18n>Übernehmen</button>
     </div>
 </form>

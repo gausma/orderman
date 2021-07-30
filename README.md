@@ -123,7 +123,7 @@ Es genügt den Server zu starten (im Verzeichnis des Sevrers):
 $ yarn start:prod
 ```   
 
-## Ausführen
+## Öffnen
 
 Die Anwendungen können jetzt im Browser geöffnet werden:
 - Manager

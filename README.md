@@ -18,21 +18,21 @@ Wenn Du dieses kostenlose Projekt unterstützen möchten, ist jede Hilfe willkom
 
 - Erfassung von Vorbestellungen
 - Optimierte Durchführung und Erfassung von Einkäufen
-- Frei konfigurierbare Gerichte und Kommunikaitonsformen
+- Frei konfigurierbare Gerichte und Kommunikationsformen
 - Bestandsverwaltung und Restmengen
 - Statistik
 - Berechtigungs- und Benutzerverwaltung
 - Datensicherung und -wiederherstellung
 - Export von Erfassungslisten
-- Multi-CLient System (Erfassen von Vorbestellungen, Kassen, ...)
+- Multi-Client System (Erfassen von Vorbestellungen, Kassen, ...)
 
 ## Einrichten
 
-Vor der Erfassnung von Vorbestellungen und Einkäufen muss das System eingerichtet werden. Zuerst werden die Gerichte konfiguriert. *Name* und *Preis* werden in Bestell-Dialogen eingeblendet. Die *Reihenfolge* gibt die Sortierung vor. Der *Preis* und der *Bestand* werden zur Berechnung der Statistik verwendet. Die *Bemerkung* kann als Notiz verwendet werden.
+Vor der Erfassung von Vorbestellungen und Einkäufen muss das System eingerichtet werden. Zuerst werden die Gerichte konfiguriert. *Name* und *Preis* werden in Bestell-Dialogen eingeblendet. Die *Reihenfolge* gibt die Sortierung vor. Der *Preis* und der *Bestand* werden zur Berechnung der Statistik verwendet. Die *Bemerkung* kann als Notiz verwendet werden.
 
 ![Menus](assets/de/menus.png)
 
-Mit Hilfe der Kommunikations-Einträge kann bei der Erfassung von Vorbestellungen die Art der Bestellung erfasst werden. Falls diese Information nicht relevant ist, genügt es, einen Dummy-Eintrag zu erstellen. Der *Name* wird im Erfassungsdialog und der Statistik angezeigt. Der *Typ* wird zur Anzeige Feldern verwendet, mit denen Zusatzinformation erfasst werdne kann.
+Mit Hilfe der Kommunikations-Einträge kann bei der Erfassung von Vorbestellungen die Art der Bestellung erfasst werden. Falls diese Information nicht relevant ist, genügt es, einen Dummy-Eintrag zu erstellen. Der *Name* wird im Erfassungsdialog und der Statistik angezeigt. Der *Typ* wird zur Anzeige Feldern verwendet, mit denen Zusatzinformation erfasst werden kann.
 
 ![Communications](assets/de/communications.png)
 
@@ -50,7 +50,7 @@ Die Erfassung der Daten gliedert sich in 2 Bereiche:
 
 ![Einkäufe](assets/de/order-list.png)
 
-Für die Übernahme von Vorbestellungen in Einkäufe stehen 2 Möglichekeiten zur Verfügung. Der *Manager* bietet im Bereich der Vorbestellungen einen speziellen Übernhame-Button. Der erstellte Einkauf kann nachträglich angepasst (bearbeitet) werden.
+Für die Übernahme von Vorbestellungen in Einkäufe stehen 2 Möglichkeiten zur Verfügung. Der *Manager* bietet im Bereich der Vorbestellungen einen speziellen Übernahme-Button. Der erstellte Einkauf kann nachträglich angepasst (bearbeitet) werden.
 
 ![Einkauf durchführen 1](assets/de/order1.png)
 
@@ -61,8 +61,8 @@ Zur Übernahme steht zusätzlich eine spezielle App zur Verfügung, die die Übe
 ## Statistik
 
 Die Statistik bietet eine Antwort auf mehrere Fragestellungen:
-- Wieviele Vorbestellungen sind noch ausstehend, bzw. wurden übernommen?
-- Wieviele Einkäufe wurden ohne Vorbestellung durchgeführt?
+- Wie viele Vorbestellungen sind noch ausstehend, bzw. wurden übernommen?
+- Wie viele Einkäufe wurden ohne Vorbestellung durchgeführt?
 - Welche Einnahmen wurden erzielt?
 - Wie hoch ist der Bestand?
 - Wie hoch ist die Restmenge?
@@ -118,7 +118,7 @@ $ yarn build
 
 ## Start
 
-Es genügt den Server zu starten (im Verzeichnis des Sevrers):
+Es genügt den Server zu starten (im Verzeichnis des Servers):
 ```
 $ yarn start:prod
 ```   

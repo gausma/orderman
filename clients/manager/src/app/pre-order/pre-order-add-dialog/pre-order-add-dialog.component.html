@@ -1,0 +1,13 @@
+<h1 mat-dialog-title i18n>Text analysieren</h1>
+<div mat-dialog-content>
+    <mat-form-field style="width:100%;">
+        <mat-label i18n>Text</mat-label>
+        <textarea matInput rows="20" cols="20" [(ngModel)]="text"></textarea>      
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancel()" i18n>Abbrechen</button>
+    <button mat-raised-button color="primary" (click)="onOk()" i18n>Ok</button>
+</div>
+

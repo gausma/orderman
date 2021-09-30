@@ -1,13 +1,16 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/core";
-import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
+import { FormGroup, FormArray, FormBuilder, AbstractControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
 
+import { ConfigurationService } from "../../services/configuration.service";
 import { MenusService } from "../../services/menus.service";
 import { PreOrdersService } from "../../services/pre-orders.service";
 import { CommunicationsService } from "../../services/communications.service";
 import { Menu } from "../../contracts/menu";
 import { Communication } from "../../contracts/communication";
 import { PreOrder } from "../../contracts/pre-order";
+import { PreOrderAddDialogComponent } from '../pre-order-add-dialog/pre-order-add-dialog.component';
 
 @Component({
     selector: "app-pre-order-form",
@@ -29,7 +32,9 @@ export class PreOrderFormComponent implements OnInit {
 
     initialValues: any;
 
-    constructor(private formBuilder: FormBuilder,
+    constructor(public dialog: MatDialog,
+                private formBuilder: FormBuilder,
+                private configurationService: ConfigurationService,
                 private menusService: MenusService,
                 private preOrderService: PreOrdersService,
                 private communicationsService: CommunicationsService,
@@ -101,6 +106,70 @@ export class PreOrderFormComponent implements OnInit {
                 this.evalPreOrder();
             }
         });
+    }
+
+    addFromText(): void {
+        const dialogRef = this.dialog.open(PreOrderAddDialogComponent, {
+            width: "750px"
+        });
+
+        dialogRef.afterClosed().subscribe((info) => {
+            if (info == null) {               
+                return;
+            }
+
+            this.analyseText(info.text);
+        });    
+    }
+
+    private async analyseText(text: string): Promise<void> {     
+        if (text == null) {
+            return;
+        }
+
+        const configuration = await this.configurationService.getConfiguration().toPromise();
+
+        // Name
+        this.resolveControlValue(this.form.get("name1"), text, configuration.analyseText.scan.name1, "text");
+        this.resolveControlValue(this.form.get("name2"), text, configuration.analyseText.scan.name2, "text");
+
+        // Menus
+        this.menus.forEach((m, i) => {
+            const configMenu = configuration.analyseText.scan.menus.find(cm => cm.name == m.name);
+            if (configMenu != null) {
+                const control = this.form.get("positions").get(`${i}`);
+                this.resolveControlValue(control, text, configMenu.pattern, "number");
+            }
+        });
+
+        // Kommunikation
+        this.resolveControlValue(this.form.get("communicationValue"), text, configuration.analyseText.scan.communicationValue, "text");
+
+        var communicationName = configuration.analyseText.scan.communicationNameDefault;
+        configuration.analyseText.scan.communications.forEach((c) => {
+            var regex = new RegExp(c.pattern);
+            const match = text.match(regex);
+            if (match != null) {
+                communicationName = c.name;
+            }            
+        });
+
+        const communication = this.communications.find(c => c.name === communicationName);
+        if (communication != null) {
+            this.form.get("communication").setValue(communication);
+        }
+    }
+
+    private resolveControlValue(control: AbstractControl, text: string, pattern: string, type: string): void {
+        var regex = new RegExp(pattern);
+        const match = text.match(regex);
+        if (match != null) {
+            var value: string | number = match[1];
+            if (type === "number") {
+                value = parseInt(match[1], 10) || 0;
+            }
+            control.setValue(value);
+        }
     }
 
     private evalPreOrder(): void {

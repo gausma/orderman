@@ -1,6 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
     <h1>{{ title }}</h1>
 
+    <div class="commandline">
+        <div class="commandline-button">
+            <button mat-fab color="basic" (click)="addFromText()" type="button">
+                <mat-icon>get_app</mat-icon>
+            </button>
+        </div> 
+    </div>
+
     <mat-card [class.mat-elevation-z8]="true">
         <mat-card-content>
 

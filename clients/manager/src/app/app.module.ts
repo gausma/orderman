@@ -8,6 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { PreOrderListComponent } from "./pre-order/pre-order-list/pre-order-list.component";
 import { PreOrderFormComponent } from "./pre-order/pre-order-form/pre-order-form.component";
+import { PreOrderAddDialogComponent } from "./pre-order/pre-order-add-dialog/pre-order-add-dialog.component";
 import { OrderListComponent } from "./order/order-list/order-list.component";
 import { OrderFormComponent } from "./order/order-form/order-form.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -41,6 +42,7 @@ import { MatDialogModule } from "@angular/material/dialog";
         WelcomeComponent,
         PreOrderListComponent,
         PreOrderFormComponent,
+        PreOrderAddDialogComponent,
         OrderListComponent,
         OrderFormComponent,
         HeaderComponent,

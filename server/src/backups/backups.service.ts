@@ -51,20 +51,41 @@ export class BackupsService {
     async createPreOrdersCsv(): Promise<string> {
         const menus = await this.menusService.getAll();
         const preOrders = await this.preOrdersService.getAll();
-        
-        let csv = "";
 
+        // Header - line 1
         const sortedMenus = menus.sort((a, b) => a.sequence - b.sequence );
+
+        let csv = "Name1;Name2;Comment";
         sortedMenus.forEach((menu: Menu, index: number) => {
-            if (index > 0) {
-                csv += csvSeparator;
-            }
+            csv += csvSeparator;
             csv += this.encodeCsv(menu.name);
         });
+        csv += ";Count;Total";
         
         csv += lineSeparator;
 
+        // Header - line 2
+        csv += ";;";
+        sortedMenus.forEach((menu: Menu, index: number) => {
+            csv += csvSeparator;
+            csv += menu.price;
+        });
+        csv += ";;";
+
+        csv += lineSeparator;
+
+        // Data
         preOrders.forEach((preOrder) => {
+            var count = 0;
+            var total = 0;
+
+            csv += this.encodeCsv(preOrder.name1);
+            csv += csvSeparator;
+            csv += this.encodeCsv(preOrder.name2);
+            csv += csvSeparator;            
+            csv += this.encodeCsv(preOrder.comment);
+            csv += csvSeparator;            
+
             sortedMenus.forEach((menu: Menu, index: number) => {
                 if (index > 0) {
                     csv += csvSeparator;
@@ -72,7 +93,15 @@ export class BackupsService {
 
                 const preorder = preOrder.positions.find((position: PreOrderPosition) => position.id === menu.id);
                 csv += preorder.amount;
+
+                count += preorder.amount;
+                total += preorder.amount * menu.price;
             });
+
+            csv += ";";
+            csv += count;
+            csv += ";";
+            csv += total;
 
             csv += lineSeparator;
         });
@@ -99,9 +128,11 @@ export class BackupsService {
             }          
         });
 
+        // Header
         let csv = "Name1;Name2;Kommunikation;Kontakt";
         csv += lineSeparator;
 
+        // Data
         sortedPreOrders.forEach((preOrder: PreOrder) => {
             csv += this.encodeCsv(preOrder.name1);
             csv += csvSeparator;

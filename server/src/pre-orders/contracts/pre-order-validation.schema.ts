@@ -6,6 +6,7 @@ export const preOrderValidationSchema: Joi.ObjectSchema = Joi.object({
     name2: Joi.string().required().allow(""),
     comment: Joi.string().required().allow(""),
     datetime: Joi.string().required(),
+    eventId: Joi.string().guid({ version: ["uuidv1", "uuidv4"] }).required(),
     communicationId: Joi.string().guid({ version: ["uuidv1", "uuidv4"] }).required(),
     communicationValue: Joi.string().required().allow(""),
     positions: Joi.array()

@@ -4,6 +4,7 @@ export class OrderRow {
     name1: string;
     name2: string;
     comment: string;
+    eventId: string;    
     datetime: string;
     sum: number;
 }

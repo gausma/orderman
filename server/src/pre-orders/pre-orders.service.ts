@@ -19,6 +19,7 @@ export class PreOrdersService {
             name1: preOrderDocument.name1,
             name2: preOrderDocument.name2,
             comment: preOrderDocument.comment,
+            eventId: preOrderDocument.eventId,
             communicationId: preOrderDocument.communicationId,
             communicationValue: preOrderDocument.communicationValue,
             datetime: preOrderDocument.datetime,

@@ -23,6 +23,9 @@ export class Order {
     datetime: string;
 
     @Prop()
+    eventId: string;
+
+    @Prop()
     preOrderId: string;
 
     @Prop()

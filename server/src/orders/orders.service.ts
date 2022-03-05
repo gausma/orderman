@@ -18,6 +18,7 @@ export class OrdersService {
             name1: orderDocument.name1,
             name2: orderDocument.name2,
             comment: orderDocument.comment,
+            eventId: orderDocument.eventId,            
             datetime: orderDocument.datetime,
             preOrderId: orderDocument.preOrderId,
             positions: orderDocument.positions,

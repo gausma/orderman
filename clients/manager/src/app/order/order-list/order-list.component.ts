@@ -7,6 +7,8 @@ import { forkJoin, Subscription } from "rxjs";
 
 import { OrdersService } from "../../services/orders.service";
 import { Order } from "../../contracts/order";
+import { EventsService } from "../../services/events.service";
+import { Event } from "../../contracts/event";
 import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { ColumnDefinition } from "../../contracts/column-definition";
@@ -28,10 +30,12 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "name1", title: $localize`Name`, align: "left", type: "string" },
         { id: "name2", title: $localize`Vorname`, align: "left", type: "string" },
         { id: "comment", title: $localize`Bemerkung`, align: "left", type: "string" },
+        { id: "eventId", title: $localize`Veranstaltung`, align: "left", type: "string" },
         { id: "datetime", title: $localize`Erstellt`, align: "left", type: "date" },
         { id: "sum", title: $localize`Summe`, align: "center", type: "currency" },
     ];
 
+    events: Event[] = [];
     menus: Menu[] = [];
 
     columns: ColumnDefinition[] = [];
@@ -45,6 +49,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         private authenticationsService: AuthenticationsService,
+        private eventService: EventsService,
         private menusService: MenusService,
         private orderService: OrdersService,
         private router: Router) { }
@@ -93,12 +98,18 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private getData(): void {
         forkJoin([
+            this.eventService.getEvents(),
             this.menusService.getMenus(),
             this.orderService.getOrders()
         ]).subscribe(responseList => {
-            this.processMenus(responseList[0]);
-            this.processOrders(responseList[1]);
+            this.processEvents(responseList[0]);
+            this.processMenus(responseList[1]);
+            this.processOrders(responseList[2]);
         });
+    }
+
+    private processEvents(events: Event[]): void {
+        this.events = events;
     }
 
     private processMenus(menus: Menu[]): void {
@@ -132,12 +143,15 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
     private processOrders(orders: Order[]): void {
         const data: OrderRow[] = [];
         orders.forEach(order => {
+            const event = this.events.find(e => e.id === order.eventId);
+
             const element: OrderRow = {
                 id: order.id,
                 preOrderExists: order.preOrderId === "" ? "" : "✓",
                 name1: order.name1,
                 name2: order.name2,
                 comment: order.comment,
+                eventId: event.name,
                 datetime: order.datetime,
                 sum: 0.0,
             };

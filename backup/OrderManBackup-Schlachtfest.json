@@ -82,39 +82,32 @@
             "stock": 50
         }, {
             "id": "e00b5b70-f194-4448-bae6-f4e3b7cbda48",
-            "name": "Maultaschen",
-            "price": 6,
+            "name": "Kassler",
+            "price": 8,
             "comment": "",
             "sequence": 90,
             "stock": 120
         }, {
             "id": "6dde0b36-1290-4c02-9ff9-12cdcbf09035",
-            "name": "Flammkuchen",
+            "name": "Schnitzel + Kartoffelsalat",
             "price": 6,
             "comment": "",
             "sequence": 100,
             "stock": 100
         }, {
             "id": "3353f123-679c-49aa-abb1-2895e7e49376",
-            "name": "Pizza Margherita",
+            "name": "Schnitzel + Pommes",
             "price": 6,
             "comment": "",
             "sequence": 110,
             "stock": 100
         }, {
             "id": "db07ada8-e8a1-4163-aff1-555643a8aac6",
-            "name": "Pizza Salami",
+            "name": "Pommes",
             "price": 6,
             "comment": "",
             "sequence": 120,
-            "stock": 100
-        }, {
-            "id": "32326033-419a-4089-b11f-16c2135124f2",
-            "name": "Tellersülze",
-            "price": 6.5,
-            "comment": "",
-            "sequence": 130,
-            "stock": 180
+            "stock": 30
         }
     ],
     "orders": [{

@@ -7,6 +7,11 @@ export class Configuration {
                 name: string,
                 pattern: string,
             }[],
+            eventNameDefault: string,
+            events: {
+                name: string,
+                pattern: string,
+            }[],
             communicationValue: string,
             communicationNameDefault: string,
             communications: {

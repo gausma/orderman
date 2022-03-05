@@ -6,6 +6,7 @@ export class PreOrder {
     name1: string;
     name2: string;
     comment: string;
+    eventId: string;
     communicationId: string;
     communicationValue: string;
     positions: PreOrderPosition[];

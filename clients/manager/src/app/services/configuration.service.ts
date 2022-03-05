@@ -79,6 +79,17 @@ export class ConfigurationService {
                         pattern: "Tellersulz mit Brot: ([0-9]*)",
                     },
                 ],
+                eventNameDefault: "Togo",
+                events: [
+                    {
+                        name: "Togo",
+                        pattern: "Togo",
+                    },
+                    {
+                        name: "Präsenz",
+                        pattern: "Präsenz",
+                    },
+                ],
                 communicationValue: "Hallo [^ ]* [^ ]* \\(([^\\(\\)]*)\\),",
                 communicationNameDefault: "Email",
                 communications: [

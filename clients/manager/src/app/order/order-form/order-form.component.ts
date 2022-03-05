@@ -4,8 +4,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { MenusService } from "../../services/menus.service";
 import { OrdersService } from "../../services/orders.service";
+import { EventsService } from "../../services/events.service";
 import { Menu } from "../../contracts/menu";
 import { Order } from "../../contracts/order";
+import { Event } from "../../contracts/event";
 
 @Component({
     selector: "app-order-form",
@@ -21,13 +23,17 @@ export class OrderFormComponent implements OnInit {
 
     form: FormGroup;
     menuItems: FormArray;
+    eventItems: FormArray;
+
     menus: Menu[];
+    events: Event[];
 
     initialValues: any;
 
     constructor(private formBuilder: FormBuilder,
                 private menusService: MenusService,
                 private orderService: OrdersService,
+                private eventsService: EventsService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private renderer: Renderer2) { }
@@ -35,6 +41,7 @@ export class OrderFormComponent implements OnInit {
     async ngOnInit(): Promise<void> {
         this.initForm();
 
+        await this.getEvents();
         await this.getMenus();
         
         this.initMode();
@@ -44,12 +51,30 @@ export class OrderFormComponent implements OnInit {
 
     private initForm(): void {
         this.menuItems = this.formBuilder.array([]);        
+        this.eventItems = this.formBuilder.array([]);
         this.form = this.formBuilder.group({
             name1: [""],
             name2: [""],
             comment: [""],
+            event: [""],
             positions: this.menuItems,
         });
+    }
+
+    private async getEvents(): Promise<void> {
+        const events = await this.eventsService.getEvents().toPromise();
+        this.events = events.sort((a: Event, b: Event) => {
+            if (a.name === b.name) {
+                return 0;
+            } else if (a.name < b.name) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+        if (this.events.length > 0) {
+            this.form.get("event").setValue(this.events[0]);
+        }
     }
 
     private async getMenus(): Promise<void> {
@@ -87,6 +112,9 @@ export class OrderFormComponent implements OnInit {
             this.form.get("name2").setValue(order.name2);
             this.form.get("comment").setValue(order.comment);
 
+            const event = this.events.find(e => e.id === order.eventId);
+            this.form.get("event").setValue(event);
+
             this.menus.forEach((m, i) => {
                 const tempPosition = order.positions.find(p => p.id === m.id);
                 if (tempPosition != null) {
@@ -103,6 +131,7 @@ export class OrderFormComponent implements OnInit {
             name1: this.form.value.name1,
             name2: this.form.value.name2,
             comment: this.form.value.comment,
+            eventId: this.form.value.event.id,
             datetime: new Date().toISOString(),
             positions: [],
             preOrderId: this.preOrderId,

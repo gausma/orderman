@@ -6,8 +6,10 @@ import { MatDialog } from "@angular/material/dialog";
 import { ConfigurationService } from "../../services/configuration.service";
 import { MenusService } from "../../services/menus.service";
 import { PreOrdersService } from "../../services/pre-orders.service";
+import { EventsService } from "../../services/events.service";
 import { CommunicationsService } from "../../services/communications.service";
 import { Menu } from "../../contracts/menu";
+import { Event } from "../../contracts/event";
 import { Communication } from "../../contracts/communication";
 import { PreOrder } from "../../contracts/pre-order";
 import { PreOrderAddDialogComponent } from '../pre-order-add-dialog/pre-order-add-dialog.component';
@@ -25,9 +27,11 @@ export class PreOrderFormComponent implements OnInit {
 
     form: FormGroup;
     menuItems: FormArray;
+    eventItems: FormArray;
     communicationItems: FormArray;
 
     menus: Menu[];
+    events: Event[];
     communications: Communication[];
 
     initialValues: any;
@@ -37,6 +41,7 @@ export class PreOrderFormComponent implements OnInit {
                 private configurationService: ConfigurationService,
                 private menusService: MenusService,
                 private preOrderService: PreOrdersService,
+                private eventsService: EventsService,
                 private communicationsService: CommunicationsService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -45,6 +50,7 @@ export class PreOrderFormComponent implements OnInit {
     async ngOnInit(): Promise<void> {
         this.initForm();
 
+        await this.getEvents();
         await this.getCommunications();
         await this.getMenus();
 
@@ -55,15 +61,33 @@ export class PreOrderFormComponent implements OnInit {
 
     private initForm(): void {
         this.menuItems = this.formBuilder.array([]);
+        this.eventItems = this.formBuilder.array([]);
         this.communicationItems = this.formBuilder.array([]);
         this.form = this.formBuilder.group({
             name1: [""],
             name2: [""],
             comment: [""],
+            event: [""],
             communication: [""],
             communicationValue: [""],
             positions: this.menuItems,
         });
+    }
+
+    private async getEvents(): Promise<void> {
+        const events = await this.eventsService.getEvents().toPromise();
+        this.events = events.sort((a: Event, b: Event) => {
+            if (a.name === b.name) {
+                return 0;
+            } else if (a.name < b.name) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+        if (this.events.length > 0) {
+            this.form.get("event").setValue(this.events[0]);
+        }
     }
 
     private async getCommunications(): Promise<void> {
@@ -142,6 +166,21 @@ export class PreOrderFormComponent implements OnInit {
             }
         });
 
+       // Event
+       var eventName = configuration.analyseText.scan.eventNameDefault;
+       configuration.analyseText.scan.events.forEach((c) => {
+           var regex = new RegExp(c.pattern);
+           const match = text.match(regex);
+           if (match != null) {
+               eventName = c.name;
+           }            
+       });
+
+       const event = this.events.find(c => c.name === eventName);
+       if (event != null) {
+           this.form.get("event").setValue(event);
+       }
+
         // Kommunikation
         this.resolveControlValue(this.form.get("communicationValue"), text, configuration.analyseText.scan.communicationValue, "text");
 
@@ -179,6 +218,9 @@ export class PreOrderFormComponent implements OnInit {
             this.form.get("comment").setValue(preOrder.comment);
             this.form.get("communicationValue").setValue(preOrder.communicationValue);
 
+            const event = this.events.find(e => e.id === preOrder.eventId);
+            this.form.get("event").setValue(event);
+
             const communication = this.communications.find(c => c.id === preOrder.communicationId);
             this.form.get("communication").setValue(communication);
 
@@ -198,6 +240,7 @@ export class PreOrderFormComponent implements OnInit {
             name1: this.form.value.name1,
             name2: this.form.value.name2,
             comment: this.form.value.comment,
+            eventId: this.form.value.event.id,
             communicationId: this.form.value.communication.id,
             communicationValue: this.form.value.communicationValue,
             datetime: new Date().toISOString(),

@@ -23,6 +23,9 @@ export class PreOrder {
     datetime: string;
 
     @Prop()
+    eventId: string;
+
+    @Prop()
     communicationId: string;
 
     @Prop()

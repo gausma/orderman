@@ -10,6 +10,8 @@ import { PreOrder } from "../../contracts/pre-order";
 import { MenusService } from "../../services/menus.service";
 import { Menu } from "../../contracts/menu";
 import { ColumnDefinition } from "../../contracts/column-definition";
+import { EventsService } from "../../services/events.service";
+import { Event } from "../../contracts/event";
 import { CommunicationsService } from "../../services/communications.service";
 import { Communication } from "../../contracts/communication";
 import { OrdersService } from "../../services/orders.service";
@@ -33,12 +35,14 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "name1", title: $localize`Name`, align: "left", type: "string" },
         { id: "name2", title: $localize`Vorname`, align: "left", type: "string" },
         { id: "comment", title: $localize`Bemerkung`, align: "left", type: "string" },
+        { id: "eventId", title: $localize`Veranstaltung`, align: "left", type: "string" },
         { id: "communicationId", title: $localize`Kommunikation`, align: "left", type: "string" },
         { id: "communicationValue", title: $localize`Info`, align: "left", type: "string" },
         { id: "datetime", title: $localize`Erstellt`, align: "left", type: "date" },
         { id: "sum", title: $localize`Summe`, align: "center", type: "currency" },
     ];
 
+    events: Event[] = [];
     communications: Communication[] = [];
     menus: Menu[] = [];
     orders: Order[] = [];
@@ -55,6 +59,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         private authenticationsService: AuthenticationsService,
+        private eventService: EventsService,
         private communicationService: CommunicationsService,
         private menusService: MenusService,
         private preOrderService: PreOrdersService,
@@ -111,6 +116,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 name1: preOrder.name1,
                 name2: preOrder.name2,
                 comment: preOrder.comment,
+                eventId: preOrder.eventId,
                 datetime: new Date().toISOString(),
                 positions: [],
                 preOrderId: preOrder.id,
@@ -132,16 +138,22 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private getData(): void {
         forkJoin([
+            this.eventService.getEvents(),
             this.communicationService.getCommunications(),
             this.menusService.getMenus(),
             this.orderService.getOrders(),
             this.preOrderService.getPreOrders(),
         ]).subscribe(responseList => {
-            this.processCommunications(responseList[0]);
-            this.processMenus(responseList[1]);
-            this.processOrders(responseList[2]);
-            this.processPreOrders(responseList[3]);
+            this.processEvents(responseList[0]);
+            this.processCommunications(responseList[1]);
+            this.processMenus(responseList[2]);
+            this.processOrders(responseList[3]);
+            this.processPreOrders(responseList[4]);
         });
+    }
+
+    private processEvents(events: Event[]): void {
+        this.events = events;
     }
 
     private processCommunications(communications: Communication[]): void {
@@ -185,6 +197,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
 
         const data: PreOrderRow[] = [];
         this.preOrders.forEach(preOrder => {
+            const event = this.events.find(e => e.id === preOrder.eventId);
             const communication = this.communications.find(c => c.id === preOrder.communicationId);
 
             const element: PreOrderRow = {
@@ -193,6 +206,7 @@ export class PreOrderListComponent implements OnInit, AfterViewInit, OnDestroy {
                 name1: preOrder.name1,
                 name2: preOrder.name2,
                 comment: preOrder.comment,
+                eventId: event.name,
                 communicationId: communication.name,
                 communicationValue: preOrder.communicationValue,
                 datetime: preOrder.datetime,

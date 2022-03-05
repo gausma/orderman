@@ -7,5 +7,6 @@ export class Order {
     comment: string;
     datetime: string;
     preOrderId: string;
+    eventId: string;    
     positions: OrderPosition[];
 }

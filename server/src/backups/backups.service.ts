@@ -56,13 +56,14 @@ export class BackupsService {
     }
 
     async createPreOrdersCsv(): Promise<string> {
+        const events = await this.eventsService.getAll();
         const menus = await this.menusService.getAll();
         const preOrders = await this.preOrdersService.getAll();
 
         // Header - line 1
         const sortedMenus = menus.sort((a, b) => a.sequence - b.sequence );
 
-        let csv = "Name1;Name2;Comment";
+        let csv = "Name1;Name2;Comment;Event";
         sortedMenus.forEach((menu: Menu, index: number) => {
             csv += csvSeparator;
             csv += this.encodeCsv(menu.name);
@@ -91,6 +92,10 @@ export class BackupsService {
             csv += this.encodeCsv(preOrder.name2);
             csv += csvSeparator;            
             csv += this.encodeCsv(preOrder.comment);
+            csv += csvSeparator;            
+
+            const event = events.find((e) => e.id === preOrder.eventId);
+            csv += this.encodeCsv(event.name);
             csv += csvSeparator;            
 
             sortedMenus.forEach((menu: Menu, index: number) => {

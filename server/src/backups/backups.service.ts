@@ -1,16 +1,19 @@
 import { Injectable } from "@nestjs/common";
 
 import { Backup } from "./contracts/backup";
+
+import { PreOrdersService } from "../pre-orders/pre-orders.service";
 import { CommunicationsService } from "../communications/communications.service";
+import { EventsService } from "../events/events.service";
 import { MenusService } from "../menus/menus.service";
 import { OrdersService } from "../orders/orders.service";
-import { PreOrdersService } from "../pre-orders/pre-orders.service";
-import { Menu } from "../menus/contracts/Menu";
+
+import { PreOrder } from "src/pre-orders/contracts/pre-order";
 import { PreOrderPosition } from "../pre-orders/contracts/pre-order-position";
+import { Communication } from "src/communications/contracts/Communication";
+import { Menu } from "../menus/contracts/Menu";
 
 import * as _ from "lodash";
-import { PreOrder } from "src/pre-orders/contracts/pre-order";
-import { Communication } from "src/communications/contracts/Communication";
 
 const csvSeparator = ";";
 const lineSeparator = "\r\n";
@@ -18,6 +21,7 @@ const lineSeparator = "\r\n";
 @Injectable()
 export class BackupsService {
     constructor(
+        private eventsService: EventsService,
         private communicationsService: CommunicationsService,
         private menusService: MenusService,
         private ordersService: OrdersService,
@@ -26,6 +30,7 @@ export class BackupsService {
 
     async createBackup(): Promise<Backup> {
         const backup: Backup = {
+            events: await this.eventsService.getAll(),
             communications: await this.communicationsService.getAll(),
             menus: await this.menusService.getAll(),
             orders: await this.ordersService.getAll(),
@@ -35,11 +40,13 @@ export class BackupsService {
     }
 
     async restoreBackup(backup: Backup): Promise<void> {
+        await this.eventsService.deleteAll();
         await this.communicationsService.deleteAll();
         await this.menusService.deleteAll();
         await this.ordersService.deleteAll();
         await this.preOrdersService.deleteAll();
 
+        backup.events.map(e => this.eventsService.create(e));
         backup.communications.map(c => this.communicationsService.create(c));
         backup.menus.map(m => this.menusService.create(m));
         backup.orders.map(o => this.ordersService.create(o));

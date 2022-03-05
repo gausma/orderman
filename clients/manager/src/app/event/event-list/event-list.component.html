@@ -1,0 +1,75 @@
+<h1 i18n>Veranstaltung</h1>
+<div class="commandline">
+    <div class="commandline-filter">
+        <mat-form-field>
+            <input matInput autocomplete="off" type="text" (keyup)="doFilter($event.target.value)" i18n-placeholder placeholder="Filter" />
+        </mat-form-field>
+    </div>
+
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm" (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>    
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm || !credentials.events.write" (click)="add()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty() || !credentials.events.write" (click)="edit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div class="commandline-button">
+        <button mat-fab color="basic" [disabled]="showForm || selection.isEmpty() || !credentials.events.write" (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</div>
+
+<table mat-table matSort [dataSource]="dataSource" class="table mat-elevation-z8">
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.title }}</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="column.align">{{ element[column.id] }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="toggleSelection(row)"
+        [ngClass]="{ hovered: row.hovered, highlighted: selection.isSelected(row) }" (mouseover)="row.hovered = true"
+        (mouseout)="row.hovered = false"></tr>
+</table>
+
+<!-- Form -->
+<form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+    <div *ngIf="showForm === true">
+        <mat-card [class.mat-elevation-z8]="true">
+            <mat-card-content>
+
+                <div class="form-row2-wrapper">
+                    <mat-form-field>
+                        <mat-label i18n>Name</mat-label>
+                        <input id="name" matInput type="text" formControlName="name">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-select i18n-placeholder placeholder="Veranstaltung" formControlName="eventType">
+                            <mat-option *ngFor="let c of eventTypes" [value]="c">
+                                {{ c.title }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Buttons -->
+        <div class="buttonline">
+            <button mat-raised-button class="buttonline-item" color="basic" type="button"
+                (click)="cancel()" i18n>Abbrechen</button>
+            <button mat-raised-button class="buttonline-item" color="primary" type="submit"
+                [disabled]="form.value.name === ''">{{ command }}</button>
+        </div>
+    </div>
+</form>

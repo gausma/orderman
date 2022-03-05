@@ -9,6 +9,11 @@
             <mat-icon>attach_money</mat-icon> <span class="nav-caption" i18n>Einkäufe</span>
         </a>
     </div>
+    <div [hidden]="!credentials.events.read">
+        <a mat-list-item routerLink="/eventlist" (click)="onSidenavClose()">
+            <mat-icon>event</mat-icon> <span class="nav-caption" i18n>Veranstaltung</span>
+        </a>
+    </div>
     <div [hidden]="!credentials.communications.read">
         <a mat-list-item routerLink="/communicationlist" (click)="onSidenavClose()">
             <mat-icon>call</mat-icon> <span class="nav-caption" i18n>Kommunikation</span>

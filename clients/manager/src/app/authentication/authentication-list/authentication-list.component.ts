@@ -29,6 +29,8 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
         { id: "preOrdersOrder", title: $localize`Vorbestellung übernehmen`, align: "center", type: "bool" },
         { id: "ordersRead", title: $localize`Bestellung lesen`, align: "center", type: "bool" },
         { id: "ordersWrite", title: $localize`Bestellung schreiben`, align: "center", type: "bool" },
+        { id: "eventsRead", title: $localize`Veranstaltung lesen`, align: "center", type: "bool" },
+        { id: "eventsWrite", title: $localize`Veranstaltung schreiben`, align: "center", type: "bool" },
         { id: "communicationsRead", title: $localize`Kommunikation lesen`, align: "center", type: "bool" },
         { id: "communicationsWrite", title: $localize`Kommunikation schreiben`, align: "center", type: "bool" },
         { id: "menusRead", title: $localize`Gerichte lesen`, align: "center", type: "bool" },
@@ -43,6 +45,7 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
         "user", 
         "preOrdersRead", "preOrdersWrite", "preOrdersOrder",
         "ordersRead", "ordersWrite",
+        "eventsRead", "eventsWrite",
         "communicationsRead", "communicationsWrite",
         "menusRead", "menusWrite",
         "statisticsRead", "backupsRead", "infosRead",
@@ -89,6 +92,8 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
             preOrdersOrder: [false],
             ordersRead: [false],
             ordersWrite: [false],
+            eventsRead: [false],
+            eventsWrite: [false],
             communicationsRead: [false],
             communicationsWrite: [false],
             menusRead: [false],
@@ -127,6 +132,8 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
         this.form.get("preOrdersRead").setValue(false);
         this.form.get("ordersRead").setValue(false);
         this.form.get("ordersRead").setValue(false);
+        this.form.get("eventsRead").setValue(false);
+        this.form.get("eventsWrite").setValue(false);
         this.form.get("communicationsRead").setValue(false);
         this.form.get("communicationsWrite").setValue(false);
         this.form.get("menusRead").setValue(false);
@@ -156,6 +163,8 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
             this.form.get("preOrdersOrder").setValue(this.selection.selected[0].preOrdersOrder);
             this.form.get("ordersRead").setValue(this.selection.selected[0].ordersRead);
             this.form.get("ordersWrite").setValue(this.selection.selected[0].ordersWrite);
+            this.form.get("eventsRead").setValue(this.selection.selected[0].eventsRead);
+            this.form.get("eventsWrite").setValue(this.selection.selected[0].eventsWrite);
             this.form.get("communicationsRead").setValue(this.selection.selected[0].communicationsRead);
             this.form.get("communicationsWrite").setValue(this.selection.selected[0].communicationsWrite);
             this.form.get("menusRead").setValue(this.selection.selected[0].menusRead);
@@ -201,6 +210,8 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
                 preOrdersOrder: authentication.credentials.preOrders.order,
                 ordersRead: authentication.credentials.orders.read,
                 ordersWrite: authentication.credentials.orders.write,
+                eventsRead: authentication.credentials.events.read,
+                eventsWrite: authentication.credentials.events.write,
                 communicationsRead: authentication.credentials.communications.read,
                 communicationsWrite: authentication.credentials.communications.write,
                 menusRead: authentication.credentials.menus.read,
@@ -230,6 +241,10 @@ export class AuthenticationListComponent implements OnInit, AfterViewInit, OnDes
                 orders: {
                     read: this.form.value.ordersRead,
                     write: this.form.value.ordersWrite,
+                },
+                events: {
+                    read: this.form.value.eventsRead,
+                    write: this.form.value.eventsWrite,
                 },
                 communications: {
                     read: this.form.value.communicationsRead,

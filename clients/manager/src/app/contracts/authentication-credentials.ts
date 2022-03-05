@@ -8,6 +8,10 @@ export class AuthenticationCredentials {
         read: boolean,
         write: boolean,
     };
+    events: {
+        read: boolean,
+        write: boolean,
+    };
     communications: {
         read: boolean,
         write: boolean,

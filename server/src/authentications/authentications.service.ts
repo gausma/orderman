@@ -24,6 +24,10 @@ export class AuthenticationsService {
                 read: true,
                 write: true,
             },
+            events: {
+                read: true,
+                write: true,
+            },
             communications: {
                 read: true,
                 write: true,

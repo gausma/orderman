@@ -25,6 +25,10 @@ export class AuthenticationsService {
                 read: false,
                 write: false,
             },
+            events: {
+                read: false,
+                write: false,
+            },
             communications: {
                 read: false,
                 write: false,

@@ -39,6 +39,9 @@ export class AuthenticationCredentials {
     orders: AuthenticationCredentialsRW;
 
     @Prop()
+    events: AuthenticationCredentialsRW;
+
+    @Prop()
     communications: AuthenticationCredentialsRW;
 
     @Prop()

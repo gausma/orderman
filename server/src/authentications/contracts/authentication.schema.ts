@@ -14,6 +14,10 @@ export const authenticationValidationSchema: Joi.ObjectSchema = Joi.object({
             read: Joi.bool().required(),
             write: Joi.bool().required(),
         }),
+        events: Joi.object().keys({
+            read: Joi.bool().required(),
+            write: Joi.bool().required(),
+        }),
         communications: Joi.object().keys({
             read: Joi.bool().required(),
             write: Joi.bool().required(),

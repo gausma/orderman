@@ -13,6 +13,7 @@ import { OrderListComponent } from "./order/order-list/order-list.component";
 import { OrderFormComponent } from "./order/order-form/order-form.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SidenavListComponent } from "./navigation/sidenav-list/sidenav-list.component";
+import { EventListComponent } from "./event/event-list/event-list.component";
 import { CommunicationListComponent } from "./communication/communication-list/communication-list.component";
 import { MenuListComponent } from "./menu/menu-list/menu-list.component";
 import { StatisticComponent } from "./statistic/statistic.component";
@@ -47,6 +48,7 @@ import { MatDialogModule } from "@angular/material/dialog";
         OrderFormComponent,
         HeaderComponent,
         SidenavListComponent,
+        EventListComponent,
         CommunicationListComponent,
         MenuListComponent,
         StatisticComponent,

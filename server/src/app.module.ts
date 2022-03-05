@@ -7,6 +7,7 @@ import { AppService } from "./app.service";
 import { MenusModule } from "./menus/menus.module";
 import { OrdersModule } from "./orders/orders.module";
 import { PreOrdersModule } from "./pre-orders/pre-orders.module";
+import { EventsModule } from "./events/events.module";
 import { CommunicationsModule } from "./communications/communications.module";
 import { BackupsModule } from "./backups/backups.module";
 import { AuthenticationsModule } from "./authentications/authentications.module";
@@ -27,6 +28,7 @@ import { join } from "path";
         }),
         MongooseModule.forRoot("mongodb://localhost/orderman"),
         BackupsModule,
+        EventsModule,
         CommunicationsModule,
         MenusModule,
         OrdersModule,

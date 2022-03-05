@@ -8,6 +8,8 @@ export class AuthenticationRow {
     preOrdersOrder: boolean;
     ordersRead: boolean;
     ordersWrite: boolean;
+    eventsRead: boolean;
+    eventsWrite: boolean;
     communicationsRead: boolean;
     communicationsWrite: boolean;
     menusRead: boolean;

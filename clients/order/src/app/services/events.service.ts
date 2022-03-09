@@ -5,12 +5,12 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class MenusService {
+export class EventsService {
     private url = "";
 
     constructor(private http: HttpClient) { 
         const hostname = window.location.hostname;
-        this.url = `http://${hostname}:1956/menus`;
+        this.url = `http://${hostname}:1956/events`;
     }
 
     resolveItems(): Observable<any> {

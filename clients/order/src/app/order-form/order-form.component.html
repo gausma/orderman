@@ -35,7 +35,17 @@
             <div class="form-item">
                 <input class="form-input" type="text" formControlName="comment">
             </div>
-        </div>
+        </div>        
+        <div [hidden]="hideEvents">
+            <div class="form-row-wrapper">
+                <div class="form-item" i18n>Ereignis</div>
+                <div class="form-item">
+                    <select class="form-input" size="1" formControlName="event">
+                        <option [ngValue]="event" *ngFor="let event of eventList">{{event.name}}</option>
+                    </select>
+                </div>
+            </div>        
+        </div>        
     </div>
 
     <!-- Section Positions -->

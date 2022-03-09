@@ -8,6 +8,8 @@ import { PreOrdersService } from "../services/pre-orders.service";
 import { PreOrder } from "../contracts/pre-order";
 import { Order } from "../contracts/order";
 import { OrderPosition } from "../contracts/order-position";
+import { EventsService } from "../services/events.service";
+import { Event } from "../contracts/event";
 
 @Component({
     selector: "app-order-form",
@@ -22,17 +24,26 @@ export class OrderFormComponent implements OnInit {
     filter: string;
     selectedValue: PreOrder;
     selectionList: PreOrder[];
-    currentPreOrder: string;
+    eventValue: Event;
+    eventList: Event[];
+    currentPreOrderId: string;
     price: number = 0;
 
-    constructor(private formBuilder: FormBuilder, private menusService: MenusService,
-        private preOrderService: PreOrdersService, private orderService: OrdersService) { }
+    public hideEvents = true;
+
+    constructor(
+        private formBuilder: FormBuilder, 
+        private eventsService: EventsService,
+        private menusService: MenusService,
+        private preOrderService: PreOrdersService, 
+        private orderService: OrdersService) { }
 
     ngOnInit(): void {
-        this.currentPreOrder = "";
+        this.currentPreOrderId = "";
 
         this.initForm();
-        this.getMenus();
+        this.getEvents();
+        // this.getMenus();  Will be called from this.getEvents();
         this.onFilter("");
     }
 
@@ -42,6 +53,7 @@ export class OrderFormComponent implements OnInit {
             name1: [""],
             name2: [""],
             comment: [""],
+            event: [""],
             positions: this.menuItems
         });
     }
@@ -51,16 +63,27 @@ export class OrderFormComponent implements OnInit {
     }
 
     onSelect(preOrder: PreOrder): void {
-        this.currentPreOrder = preOrder.id;
+        this.currentPreOrderId = preOrder.id;
         this.getPreOrderById(preOrder.id);
     }
 
     onBaseDataChanged(text: string): void {
-        this.currentPreOrder = "";
+        this.currentPreOrderId = "";
     }
 
     onChange(value: string): void {
         this.updatePrice();
+    }
+
+    private getEvents(): void {
+        this.eventsService.resolveItems().subscribe((events: Event[]) => {
+            this.eventList = events;
+            this.hideEvents = events.length < 2;
+
+            this.form.get("event").setValue(events[0]);
+
+            this.getMenus();
+        });
     }
 
     private getMenus(): void {
@@ -69,6 +92,7 @@ export class OrderFormComponent implements OnInit {
             menus.forEach(() => {
                 this.menuItems.push(this.formBuilder.control(0));
             });
+
             this.initialValues = this.form.value;
         });
     }
@@ -85,6 +109,9 @@ export class OrderFormComponent implements OnInit {
                 this.form.get("name1").setValue(preOrder.name1);
                 this.form.get("name2").setValue(preOrder.name2);
                 this.form.get("comment").setValue(preOrder.comment);
+
+                const event = this.eventList.find((e) => e.id === preOrder.eventId);
+                this.form.get("event").setValue(event);
 
                 this.menus.forEach((m, i) => {
                     const tempPosition = preOrder.positions.find(p => p.id === m.id);
@@ -113,8 +140,9 @@ export class OrderFormComponent implements OnInit {
             name1: this.form.value.name1,
             name2: this.form.value.name2,
             comment: this.form.value.comment,
+            eventId: this.form.value.event.id,
             datetime: new Date().toISOString(),
-            preOrderId: this.currentPreOrder,
+            preOrderId: this.currentPreOrderId,
             positions: [],
         }
 
@@ -136,7 +164,7 @@ export class OrderFormComponent implements OnInit {
     reset(): void {
         this.form.reset(this.initialValues);
 
-        this.currentPreOrder = "";
+        this.currentPreOrderId = "";
         this.filter = "";
         this.onFilter("");
         this.updatePrice();

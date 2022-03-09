@@ -30,7 +30,7 @@ export class OrderListComponent implements OnInit, AfterViewInit, OnDestroy {
         { id: "name1", title: $localize`Name`, align: "left", type: "string" },
         { id: "name2", title: $localize`Vorname`, align: "left", type: "string" },
         { id: "comment", title: $localize`Bemerkung`, align: "left", type: "string" },
-        { id: "eventId", title: $localize`Veranstaltung`, align: "left", type: "string" },
+        { id: "eventId", title: $localize`Ereignis`, align: "left", type: "string" },
         { id: "datetime", title: $localize`Erstellt`, align: "left", type: "date" },
         { id: "sum", title: $localize`Summe`, align: "center", type: "currency" },
     ];

@@ -5,6 +5,7 @@ export class Order {
     name1: string;
     name2: string;
     comment: string;
+    eventId: string;
     datetime: string;
     preOrderId: string;
     positions: OrderPosition[];

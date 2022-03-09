@@ -13,6 +13,8 @@ import { PreOrdersService } from "../services/pre-orders.service";
 import { CommunicationsService } from '../services/communications.service';
 import { Communication } from '../contracts/communication';
 import { Statistic2Row } from '../contracts/statistic2-row';
+import { EventsService } from '../services/events.service';
+import { Event } from "../contracts/event";
 
 @Component({
     selector: "app-statistic",
@@ -46,7 +48,8 @@ export class StatisticComponent implements OnInit {
         private menusService: MenusService,
         private preOrderService: PreOrdersService,
         private orderService: OrdersService,
-        private communicationService: CommunicationsService) { }
+        private communicationService: CommunicationsService,
+        private eventsService: EventsService) { }
 
     ngOnInit(): void {
         this.getStatisticData();
@@ -62,7 +65,8 @@ export class StatisticComponent implements OnInit {
             this.menusService.getMenus(),
             this.preOrderService.getPreOrders(),
             this.orderService.getOrders(),
-            this.communicationService.getCommunications()
+            this.communicationService.getCommunications(),
+            this.eventsService.getEvents(),
         ]).subscribe(responseList => {
             this.processMenus(responseList[0]);
             this.processCommunications(responseList[3]);
@@ -77,11 +81,29 @@ export class StatisticComponent implements OnInit {
             const ordersWithouPreOrderData = this.calculateOrdersWithouPreOrder(responseList[2]);
             const remainingStockData = this.calculateRemainingStock(stockData, ordersWithPreOrderData, remainingPreOrdersData, ordersWithouPreOrderData);
 
+            const ordersData = this.calculateOrders(responseList[2]);
+
             this.statistic1DataSource.data = [
                 preOrdersData, ordersWithPreOrderData, remainingPreOrdersData,
                 emptyRow,
-                stockData, ordersWithouPreOrderData, remainingStockData
+                stockData, preOrdersData, ordersWithouPreOrderData, remainingStockData,
+                emptyRow,
+                ordersWithPreOrderData, ordersWithouPreOrderData, ordersData,
             ];
+
+            if (responseList[4].length > 1) {
+                    const preOrdersDataByEvent = this.calculatePreOrdersByEvent(responseList[1], responseList[4]);
+                    const remainingPreOrdersDataByEvent = this.calculateRemainingPreOrdersByEvent(responseList[1], responseList[2], responseList[4]);
+                    const ordersDataByEvent = this.calculateOrdersByEvent(responseList[2], responseList[4]);
+    
+                    const eventData = [
+                    emptyRow,
+                    preOrdersData, ...preOrdersDataByEvent, 
+                    remainingPreOrdersData, ...remainingPreOrdersDataByEvent,
+                    ordersData, ...ordersDataByEvent,
+                ];
+                this.statistic1DataSource.data.push(...eventData);
+            }
 
             const communicationData = this.calculateCommunications(responseList[1]);
             this.statistic2DataSource.data = [communicationData];
@@ -152,15 +174,65 @@ export class StatisticComponent implements OnInit {
         return data;
     }
 
+    private calculatePreOrdersByEvent(preOrders: PreOrder[], events: Event[]): Statistic1Row[] {
+        const datas: Statistic1Row[] = [];
+
+        events.forEach(event => {
+            const data: Statistic1Row = {
+                title: `... ${event.name}`,
+                customers: 0,
+                portions: 0,
+                sum: 0.0,
+            }
+            this.menus.forEach(menu => {
+                data[menu.id] = 0;
+            });
+    
+            let customers = 0;
+            let portions = 0;            
+            preOrders.forEach(preOrder => {
+                if (event.id === preOrder.eventId) {
+                    this.menus.forEach(menu => {
+                        const position = preOrder.positions.find(p => p.id === menu.id);
+                        if (position != null && position.amount !== 0) {
+                            data[menu.id] += position.amount;
+                            portions += position.amount;
+                        }
+                    });
+                    customers += 1;
+                }
+            });
+    
+            data.customers = customers;
+            data.portions = portions;
+    
+            let sum = 0.0;
+            this.menus.forEach(menu => {
+                const value = data[menu.id] * menu.price;
+                sum += value;
+            });
+    
+            data.sum = sum;
+
+            datas.push(data);
+        });
+
+        return datas;
+    }
+
     private calculateOrdersWithPreOrder(orders: Order[]): Statistic1Row {
-        return this.processOrdersHelper(orders, true, $localize`Einkäufe mit Vorbestellung`);
+        return this.processOrdersHelper(orders, 1, $localize`Einkäufe mit Vorbestellung`);
     }
 
     private calculateOrdersWithouPreOrder(orders: Order[]): Statistic1Row {
-        return this.processOrdersHelper(orders, false, $localize`Einkäufe ohne Vorbestellung`);
+        return this.processOrdersHelper(orders, 2, $localize`Einkäufe ohne Vorbestellung`);
     }
 
-    private processOrdersHelper(orders: Order[], preordered: boolean, title: string): Statistic1Row {
+    private calculateOrders(orders: Order[]): Statistic1Row {
+        return this.processOrdersHelper(orders, 3, $localize`Einkäufe`);
+    }
+
+    private processOrdersHelper(orders: Order[], mode: number, title: string): Statistic1Row {
         const data: Statistic1Row = {
             title,
             customers: 0,
@@ -174,8 +246,9 @@ export class StatisticComponent implements OnInit {
         let customers = 0;
         let portions = 0;
         orders.forEach(order => {
-            if ((preordered && order.preOrderId !== "") ||
-                (!preordered && order.preOrderId === "")) {
+            if ((mode === 1 && order.preOrderId !== "") ||
+                (mode === 2 && order.preOrderId === "") ||
+                (mode === 3)) {
                 this.menus.forEach(menu => {
                     const position = order.positions.find(p => p.id === menu.id);
                     if (position != null && position.amount !== 0) {
@@ -183,7 +256,7 @@ export class StatisticComponent implements OnInit {
                         portions += position.amount;
                     }
                 });
-                customers++;
+                customers += 1;
             }
         });
 
@@ -199,6 +272,52 @@ export class StatisticComponent implements OnInit {
         data.sum = sum;
 
         return data;
+    }
+
+    private calculateOrdersByEvent(orders: Order[], events: Event[]): Statistic1Row[] {
+        const datas: Statistic1Row[] = [];
+
+        events.forEach(event => {
+            const data: Statistic1Row = {
+                title: `... ${event.name}`,
+                customers: 0,
+                portions: 0,
+                sum: 0.0,
+            }
+            this.menus.forEach(menu => {
+                data[menu.id] = 0;
+            });
+
+            let customers = 0;
+            let portions = 0;
+            orders.forEach(order => {
+                if (event.id === order.eventId) {
+                    this.menus.forEach(menu => {
+                        const position = order.positions.find(p => p.id === menu.id);
+                        if (position != null && position.amount !== 0) {
+                            data[menu.id] += position.amount;
+                            portions += position.amount;
+                        }
+                    });
+                    customers++;
+                }
+            });
+
+            data.customers = customers;
+            data.portions = portions;
+
+            let sum = 0.0;
+            this.menus.forEach(menu => {
+                const value = data[menu.id] * menu.price;
+                sum += value;
+            });
+
+            data.sum = sum;
+
+            datas.push(data);
+        });
+
+        return datas;
     }
 
     private calculateStock(): Statistic1Row {
@@ -225,7 +344,7 @@ export class StatisticComponent implements OnInit {
 
     private calculateRemainingPreOrders(preOrders: PreOrder[], orders: Order[]): Statistic1Row {
         const data: Statistic1Row = {
-            title: $localize`Ausstehend`,
+            title: $localize`Ausstehende Vorbestellungen`,
             customers: 0,
             portions: 0,
             sum: 0.0,
@@ -256,6 +375,49 @@ export class StatisticComponent implements OnInit {
         data.sum = sum;
 
         return data;
+    }
+
+    private calculateRemainingPreOrdersByEvent(preOrders: PreOrder[], orders: Order[], events: Event[]): Statistic1Row[] {
+        const datas: Statistic1Row[] = [];
+
+        events.forEach(event => {
+            const data: Statistic1Row = {
+                title: `... ${event.name}`,
+                customers: 0,
+                portions: 0,
+                sum: 0.0,
+            }
+            this.menus.forEach(menu => {
+                data[menu.id] = 0;
+            });
+
+            let customers = 0;
+            let portions = 0;
+            let sum = 0.0;
+            preOrders.forEach(preOrder => {
+                if (event.id === preOrder.eventId) {
+                    if (!orders.find((order: Order) => order.preOrderId === preOrder.id)) {
+                        this.menus.forEach(menu => {                    
+                            const position = preOrder.positions.find(p => p.id === menu.id);
+                            if (position != null && position.amount !== 0) {
+                                data[menu.id] += position.amount;
+                                portions += position.amount;
+                                sum += position.amount * menu.price;
+                            }
+                        });           
+                        customers++;    
+                    }
+                }
+            });
+
+            data.customers = customers;
+            data.portions = portions;
+            data.sum = sum;
+
+            datas.push(data);
+        });
+
+        return datas;
     }
 
     private calculateRemainingStock(stockData: Statistic1Row, ordersWithPreOrderData: Statistic1Row, remainingPreOrdersData: Statistic1Row, ordersWithouPreOrderData: Statistic1Row): Statistic1Row {

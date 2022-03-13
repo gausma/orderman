@@ -55,13 +55,32 @@ export class ConfigurationService {
                         pattern: "Blut-/ und Leberwurst mit Sauerkraut: ([0-9]*)",
                     },
                     {
+                        name: "Kassler",
+                        pattern: "Kassler mit Sauerkraut: ([0-9]*)",
+                    },
+/*
+                    {
                         name: "Maultaschen",
                         pattern: "Maultaschen mit Kartoffelsalat: ([0-9]*)",
                     },
+*/
                     {
                         name: "Sauerkraut",
                         pattern: "Portion Sauerkraut: ([0-9]*)",
                     },
+                    {
+                        name: "Schnitzel + Kartoffelsalat",
+                        pattern: "Paniertes Schnitzel m\. Kartoffelsalat: ([0-9]*)",
+                    },
+                    {
+                        name: "Schnitzel + Pommes",
+                        pattern: "Paniertes Schnitzel m\. Pommes Frites: ([0-9]*)",
+                    },
+                    {
+                        name: "Pommes",
+                        pattern: "Portion Pommes Frites: ([0-9]*)",
+                    },
+/*                    
                     {
                         name: "Flammkuchen",
                         pattern: "Flammkuchen: ([0-9]*)",
@@ -78,16 +97,17 @@ export class ConfigurationService {
                         name: "Tellersülze",
                         pattern: "Tellersulz mit Brot: ([0-9]*)",
                     },
+*/
                 ],
                 eventNameDefault: "Togo",
                 events: [
                     {
                         name: "Togo",
-                        pattern: "Togo",
+                        pattern: "Mitnahme (To Go)",
                     },
                     {
                         name: "Präsenz",
-                        pattern: "Präsenz",
+                        pattern: "Verzehr vor Ort",
                     },
                 ],
                 communicationValue: "Hallo [^ ]* [^ ]* \\(([^\\(\\)]*)\\),",

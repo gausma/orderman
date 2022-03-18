@@ -150,6 +150,19 @@ To have launchd start mongodb/brew/mongodb-community@4.0 now and restart at logi
   brew services start mongodb/brew/mongodb-community@4.0
 Or, if you don't want/need a background service you can just run:
   mongod --config /usr/local/etc/mongod.conf
+  
+## Execution
+
+1. ~ >
+    PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH
+    mongod --config /usr/local/etc/mongod.conf
+2. orderman/clients/manager > 
+    yarn build:translation
+3. orderman/clients/order > 
+    yarn build:translation
+4. orderman/server > 
+    yarn build
+    yarn start:prod
 
 # Todo
 

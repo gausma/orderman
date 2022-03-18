@@ -83,6 +83,38 @@ export class StatisticComponent implements OnInit {
 
             const ordersData = this.calculateOrders(responseList[2]);
 
+            this.statistic1DataSource.data = [];
+            this.statistic1DataSource.data.push(preOrdersData);
+            if (responseList[4].length > 1) {
+                const preOrdersDataByEvent = this.calculatePreOrdersByEvent(responseList[1], responseList[4]);
+                this.statistic1DataSource.data.push(...preOrdersDataByEvent);
+            }            
+            this.statistic1DataSource.data.push(ordersWithPreOrderData);
+            this.statistic1DataSource.data.push(remainingPreOrdersData);
+            if (responseList[4].length > 1) {
+                const remainingPreOrdersDataByEvent = this.calculateRemainingPreOrdersByEvent(responseList[1], responseList[2], responseList[4]);
+                this.statistic1DataSource.data.push(...remainingPreOrdersDataByEvent);
+            }            
+
+            this.statistic1DataSource.data.push(emptyRow);
+
+            this.statistic1DataSource.data.push(stockData);
+            this.statistic1DataSource.data.push(preOrdersData);
+            this.statistic1DataSource.data.push(ordersWithouPreOrderData);
+            this.statistic1DataSource.data.push(remainingStockData);
+
+            this.statistic1DataSource.data.push(emptyRow);
+
+            this.statistic1DataSource.data.push(ordersWithPreOrderData);
+            this.statistic1DataSource.data.push(ordersWithouPreOrderData);
+            this.statistic1DataSource.data.push(ordersData);
+
+            if (responseList[4].length > 1) {
+                const ordersDataByEvent = this.calculateOrdersByEvent(responseList[2], responseList[4]);
+                this.statistic1DataSource.data.push(...ordersDataByEvent);
+            }            
+
+/*
             this.statistic1DataSource.data = [
                 preOrdersData, ordersWithPreOrderData, remainingPreOrdersData,
                 emptyRow,
@@ -104,6 +136,7 @@ export class StatisticComponent implements OnInit {
                 ];
                 this.statistic1DataSource.data.push(...eventData);
             }
+*/
 
             const communicationData = this.calculateCommunications(responseList[1]);
             this.statistic2DataSource.data = [communicationData];

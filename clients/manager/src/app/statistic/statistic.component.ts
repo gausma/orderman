@@ -61,6 +61,8 @@ export class StatisticComponent implements OnInit {
 
     private getStatisticData(): void {
         this.statistic1DataSource.data = [];
+        this.statistic2DataSource.data = [];
+
         forkJoin([
             this.menusService.getMenus(),
             this.preOrderService.getPreOrders(),
@@ -83,60 +85,40 @@ export class StatisticComponent implements OnInit {
 
             const ordersData = this.calculateOrders(responseList[2]);
 
-            this.statistic1DataSource.data = [];
-            this.statistic1DataSource.data.push(preOrdersData);
+            const tempData = [];
+
+            tempData.push(preOrdersData);
             if (responseList[4].length > 1) {
                 const preOrdersDataByEvent = this.calculatePreOrdersByEvent(responseList[1], responseList[4]);
-                this.statistic1DataSource.data.push(...preOrdersDataByEvent);
+                tempData.push(...preOrdersDataByEvent);
             }            
-            this.statistic1DataSource.data.push(ordersWithPreOrderData);
-            this.statistic1DataSource.data.push(remainingPreOrdersData);
+
+            tempData.push(ordersWithPreOrderData);
+            tempData.push(remainingPreOrdersData);
             if (responseList[4].length > 1) {
                 const remainingPreOrdersDataByEvent = this.calculateRemainingPreOrdersByEvent(responseList[1], responseList[2], responseList[4]);
-                this.statistic1DataSource.data.push(...remainingPreOrdersDataByEvent);
+                tempData.push(...remainingPreOrdersDataByEvent);
             }            
 
-            this.statistic1DataSource.data.push(emptyRow);
+            tempData.push(emptyRow);
 
-            this.statistic1DataSource.data.push(stockData);
-            this.statistic1DataSource.data.push(preOrdersData);
-            this.statistic1DataSource.data.push(ordersWithouPreOrderData);
-            this.statistic1DataSource.data.push(remainingStockData);
+            tempData.push(stockData);
+            tempData.push(preOrdersData);
+            tempData.push(ordersWithouPreOrderData);
+            tempData.push(remainingStockData);
 
-            this.statistic1DataSource.data.push(emptyRow);
+            tempData.push(emptyRow);
 
-            this.statistic1DataSource.data.push(ordersWithPreOrderData);
-            this.statistic1DataSource.data.push(ordersWithouPreOrderData);
-            this.statistic1DataSource.data.push(ordersData);
+            tempData.push(ordersWithPreOrderData);
+            tempData.push(ordersWithouPreOrderData);
+            tempData.push(ordersData);
 
             if (responseList[4].length > 1) {
                 const ordersDataByEvent = this.calculateOrdersByEvent(responseList[2], responseList[4]);
-                this.statistic1DataSource.data.push(...ordersDataByEvent);
+                tempData.push(...ordersDataByEvent);
             }            
 
-/*
-            this.statistic1DataSource.data = [
-                preOrdersData, ordersWithPreOrderData, remainingPreOrdersData,
-                emptyRow,
-                stockData, preOrdersData, ordersWithouPreOrderData, remainingStockData,
-                emptyRow,
-                ordersWithPreOrderData, ordersWithouPreOrderData, ordersData,
-            ];
-
-            if (responseList[4].length > 1) {
-                    const preOrdersDataByEvent = this.calculatePreOrdersByEvent(responseList[1], responseList[4]);
-                    const remainingPreOrdersDataByEvent = this.calculateRemainingPreOrdersByEvent(responseList[1], responseList[2], responseList[4]);
-                    const ordersDataByEvent = this.calculateOrdersByEvent(responseList[2], responseList[4]);
-    
-                    const eventData = [
-                    emptyRow,
-                    preOrdersData, ...preOrdersDataByEvent, 
-                    remainingPreOrdersData, ...remainingPreOrdersDataByEvent,
-                    ordersData, ...ordersDataByEvent,
-                ];
-                this.statistic1DataSource.data.push(...eventData);
-            }
-*/
+            this.statistic1DataSource.data = tempData;
 
             const communicationData = this.calculateCommunications(responseList[1]);
             this.statistic2DataSource.data = [communicationData];

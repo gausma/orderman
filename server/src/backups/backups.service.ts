@@ -73,7 +73,7 @@ export class BackupsService {
         csv += lineSeparator;
 
         // Header - line 2
-        csv += ";;";
+        csv += ";;;";
         sortedMenus.forEach((menu: Menu, index: number) => {
             csv += csvSeparator;
             csv += menu.price;
